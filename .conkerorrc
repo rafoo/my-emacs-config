@@ -1,0 +1,54 @@
+define_webjump("efu",
+        "http://emacs-fu.blogspot.fr/");
+
+define_webjump("duckduckgo",
+        "http://duckduckgo.com/?q=%s",
+        $alternative="http://duckduckgo.com");
+define_webjump("google",
+        "http://duckduckgo.com/?q=%s",
+        $alternative="http://duckduckgo.com");
+define_webjump("youtube",
+        "http://www.youtube.com/results?search_query=%s&search=Search",
+        $alternative="http://www.youtube.com");
+
+require("page-modes/wikipedia.js");
+wikipedia_webjumps_format = "wp-%s"; // controls the names of the webjumps.  default is "wikipedia-%s".
+define_wikipedia_webjumps("en", "fr");
+
+define_webjump("facebook", "http://www.facebook.com");
+define_webjump("xkcd", "xkcd.com");
+
+
+crans_sites = new Array("note", "intranet", "intranet2", "photos", "lists", "autostatus");
+for (i=0; i<crans_sites.length; i++) {
+    s = crans_sites[i];
+    define_webjump(s, s + ".crans.org");
+}
+
+define_webjump("autostatus_full", "www.crans.org/autostatus/local.html");
+define_webjump("wiki",
+        "http://wiki.crans.org/?action=fullsearch&value=%s&titlesearch=Titres",
+        $alternative="http://wiki.crans.org");
+define_webjump("carte", "https://intranet2.crans.org/wifimap/");
+define_webjump("seminaire", "wiki.crans.org/CransNounous/SeminaireTechnique");
+define_webjump("permanence","wiki.crans.org/PermanenesCrans");
+
+
+define_webjump("translate","http://translate.google.com/#en|fr|%s");
+
+define_webjump("lsv", "www.lsv.ens-cachan.fr");
+define_webjump("dptinfo", "http://www.dptinfo.ens-cachan.fr/");
+define_webjump("serveur_pedagogique", "https://admin.dptinfo.ens-cachan.fr/serveur_pedagogique/");
+
+define_webjump("francocube",
+        "http://www.google.com/search?q=%s site:francocube.com",
+        $alternative="http://forum.francocube.com");
+
+define_webjump("MPRI", "file:///home/harry/Téléchargements/MPRI.htm");
+
+define_webjump("emacswiki",
+        "http://www.google.com/search?q=%s site:emacswiki.org",
+        $alternative="http://www.emacswiki.org/");
+
+define_webjump("weiki",
+        "http://perso.crans.org/moisy-mabille/Weiki");
