@@ -14,9 +14,10 @@
 
 ;; Customizations depending on wheter emacs is in tty.
 ;; tty are recognized by the number of available colors.
-(setq ttyp (= (display-color-cells) 8))
+;(setq ttyp (= (display-color-cells) 8))
+(setq ttyp (not diplay-graphic-p))
 
-(unless ttyp
+(when window-system
   (require 'color-theme-conf)
   (require 'windows-conf))
 
@@ -25,12 +26,12 @@
 ;;; Bars and lines
 
 ;; Menu bar
-(if ttyp
-    (menu-bar-mode 0)
-  (eval-after-load "menu-bar" '(require 'menu-bar+)) )
+(if window-system
+    (eval-after-load "menu-bar" '(require 'menu-bar+))
+  (menu-bar-mode 0) )
 
 ;; Tool bar
-(unless ttyp
+(when window-system
   (add-hook 'after-change-major-mode-hook
             (lambda () (tool-bar-mode 0))) )
 
@@ -46,6 +47,7 @@
 ;(setq uniquify-buffer-name-style 'forward nil (uniquify)) 
 ;; update buffer contents when their files change
 (global-auto-revert-mode 1)
+(global-visual-line-mode 1) ;; wrap long lines on words
 
 ;; Minibuffer
 (setq minibuffer-auto-raise t
@@ -54,7 +56,7 @@
                                      face minibuffer-prompt) )
 
 ;; Cursor
-(unless ttyp
+(when window-system
   ;; (when (require 'bar-cursor nil t)
   ;;   (bar-cursor-mode 1) )
   ;; (blink-cursor-mode 1)
