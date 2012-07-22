@@ -15,9 +15,9 @@
 ;; Customizations depending on wheter emacs is in tty.
 ;; tty are recognized by the number of available colors.
 ;(setq ttyp (= (display-color-cells) 8))
-(setq ttyp (not display-graphic-p))
+(setq ttyp (not (display-graphic-p)))
 
-(when display-graphic-p
+(when (display-graphic-p)
   (require 'color-theme-conf)
   (require 'windows-conf))
 
@@ -26,12 +26,12 @@
 ;;; Bars and lines
 
 ;; Menu bar
-(if display-graphic-p
+(if (display-graphic-p)
     (eval-after-load "menu-bar" '(require 'menu-bar+))
   (menu-bar-mode 0) )
 
 ;; Tool bar
-(when display-graphic-p
+(when (display-graphic-p)
   (add-hook 'after-change-major-mode-hook
             (lambda () (tool-bar-mode 0))) )
 
@@ -56,7 +56,7 @@
                                      face minibuffer-prompt) )
 
 ;; Cursor
-(when display-graphic-p
+(when (display-graphic-p)
   ;; (when (require 'bar-cursor nil t)
   ;;   (bar-cursor-mode 1) )
   ;; (blink-cursor-mode 1)
