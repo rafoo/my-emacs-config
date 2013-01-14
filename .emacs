@@ -6,6 +6,10 @@
 (add-to-list 'load-path "~/elisp/rudel/") ;; For rudel
 (add-to-list 'load-path "~/elisp/rudel/obby/") ;; For rudel
 (add-to-list 'load-path "~/.emacs.d/elisp/") ;; Configuration
+(add-to-list 'load-path "~/wicd-mode/")
+(require 'wicd-mode)
+
+
 
 (require 'desktop-conf)
 
@@ -68,7 +72,7 @@
       read-buffer-completion-ignore-case t
       read-file-name-completion-ignore-case t )
 (icomplete-mode 1)
-(partial-completion-mode 1)
+; (partial-completion-mode 1)
 
 ;;; Applications
 
@@ -133,13 +137,14 @@
 (require 'printing)
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(backup-directory-alist (quote ((".*" . "./.bkp/"))))
  '(canlock-password "fa237fe1f7828a11d0a39636eeb88b2e97d29993")
  '(column-number-mode t)
+ '(ede-project-directories (quote ("/home/harry/wicd-mode")))
  '(glasses-uncapitalize-p t)
  '(global-reveal-mode t)
  '(indent-tabs-mode nil)
@@ -150,13 +155,14 @@
  '(show-paren-mode t)
  '(underline-minimum-offset 0)
  '(visible-bell t)
- '(which-function-mode t))
+ '(which-function-mode t)
+ '(wicd-wireless-filter ".*"))
 
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(isabelle-quote-face ((((type x) (class color) (background light)) (:foreground "red"))))
  '(isabelle-string-face ((((type x) (class color) (background light)) (:background "lightblue" :foreground "springgreen4"))))
  '(unicode-tokens-fraktur-font-face ((t (:slant normal :weight normal :height 120 :width normal :foundry "bitstream" :family "IsabelleText"))))
