@@ -11,10 +11,10 @@
 (add-to-list 'load-path "~/wicd-mode/")
 ; (require 'wicd-mode)
 
-(when (require 'package nil t)
-;  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
-  (package-initialize))
+;; (when (require 'package nil t)
+;;   (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+;;   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;;   (package-initialize))
 
 (require 'perspective)
 (persp-mode)
