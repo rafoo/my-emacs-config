@@ -1,14 +1,16 @@
 ;; Configuration of org mode
 
-(require 'org-install)
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(setq org-log-done t)
+; (require 'org-install)
+; (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+; (define-key global-map "\C-cl" 'org-store-link)
+; (define-key global-map "\C-ca" 'org-agenda)
+; (setq org-log-done t)
 
-(require 'org-special-blocks)
+; (require 'org-special-blocks nil t)
 
-(require 'org-latex)
+; (require 'org-latex)
+; (require 'org)
+
 (unless (boundp 'org-export-latex-classes)
   (setq org-export-latex-classes nil))
 
