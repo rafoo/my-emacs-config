@@ -7,7 +7,7 @@
 (add-to-list 'load-path "~/elisp/rudel/obby/") ;; For rudel
 (add-to-list 'load-path "~/.emacs.d/elisp/") ;; Configuration
 (add-to-list 'load-path "~/wicd-mode/")
-(require 'wicd-mode nil t)
+; (require 'wicd-mode)
 
 
 
