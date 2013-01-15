@@ -6,10 +6,12 @@
 (add-to-list 'load-path "~/elisp/rudel/") ;; For rudel
 (add-to-list 'load-path "~/elisp/rudel/obby/") ;; For rudel
 (add-to-list 'load-path "~/.emacs.d/elisp/") ;; Configuration
+(add-to-list 'load-path "~/.emacs.d/elisp/perspective/")
 (add-to-list 'load-path "~/wicd-mode/")
 ; (require 'wicd-mode)
 
-
+(require 'perspective)
+(persp-mode)
 
 (require 'desktop-conf)
 
