@@ -6,6 +6,12 @@
 (add-to-list 'load-path "~/elisp/rudel/") ;; For rudel
 (add-to-list 'load-path "~/elisp/rudel/obby/") ;; For rudel
 (add-to-list 'load-path "~/.emacs.d/elisp/") ;; Configuration
+(add-to-list 'load-path "~/.emacs.d/elpa/") ;; Installed packages
+
+(require 'package)
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(package-initialize)
 
 (require 'desktop-conf)
 
@@ -140,13 +146,19 @@
  '(backup-directory-alist (quote ((".*" . "./.bkp/"))))
  '(canlock-password "fa237fe1f7828a11d0a39636eeb88b2e97d29993")
  '(column-number-mode t)
+ '(coq-load-path (quote ("~/pkg/focalize-0.6.0/lib/zenon-0.6.2/" "/usr/local/lib/focalizec-0.6.0/")))
+ '(coq-prog-name "/home/cauderlier/pkg/focalize-0.6.0/bin/coqtop")
  '(glasses-uncapitalize-p t)
  '(global-reveal-mode t)
  '(indent-tabs-mode nil)
  '(initial-scratch-message nil)
  '(makefile-electric-keys t)
+ '(org-export-latex-default-packages-alist (quote (("" "fixltx2e" nil) ("" "graphicx" t) ("" "longtable" nil) ("" "float" nil) ("" "wrapfig" nil) ("" "soul" t) ("" "textcomp" t) ("" "marvosym" t) ("" "wasysym" t) ("" "latexsym" t) ("" "amssymb" t) ("" "hyperref" nil) "\\tolerance=1000")))
+ '(org-export-latex-packages-alist nil)
+ '(org-latex-to-pdf-process (quote ("xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
+ '(safe-local-variable-values (quote ((coq-prog-name . "~/pkg/focalize-0.6.0/bin/coqtop"))))
  '(show-paren-mode t)
  '(underline-minimum-offset 0)
  '(visible-bell t)
