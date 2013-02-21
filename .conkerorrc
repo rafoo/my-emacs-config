@@ -33,6 +33,8 @@ define_webjump("carte", "https://intranet2.crans.org/wifimap/");
 define_webjump("seminaire", "wiki.crans.org/CransNounous/SeminaireTechnique");
 define_webjump("permanence","wiki.crans.org/PermanenesCrans");
 
+define_webjump("perso", "http://perso.crans.org/cauderlier");
+define_webjump("org", "http://perso.crans.org/cauderlier/org");
 
 define_webjump("translate","http://translate.google.com/#en|fr|%s");
 
