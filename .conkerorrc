@@ -15,6 +15,7 @@ require("page-modes/wikipedia.js");
 wikipedia_webjumps_format = "wp-%s"; // controls the names of the webjumps.  default is "wikipedia-%s".
 define_wikipedia_webjumps("en", "fr");
 
+define_webjump("kokarde", "http://www.kokarde.net");
 define_webjump("facebook", "http://www.facebook.com");
 define_webjump("xkcd", "xkcd.com");
 
@@ -28,6 +29,9 @@ for (i=0; i<crans_sites.length; i++) {
 define_webjump("autostatus_full", "www.crans.org/autostatus/local.html");
 define_webjump("wiki",
         "http://wiki.crans.org/?action=fullsearch&value=%s&titlesearch=Titres",
+        $alternative="http://wiki.crans.org");
+define_webjump("wikoeur",
+        "http://acoeur.info/wikoeur/?action=fullsearch&value=%s&titlesearch=Titres",
         $alternative="http://wiki.crans.org");
 define_webjump("carte", "https://intranet2.crans.org/wifimap/");
 define_webjump("seminaire", "wiki.crans.org/CransNounous/SeminaireTechnique");
