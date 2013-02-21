@@ -31,8 +31,8 @@ define_webjump("wiki",
         "http://wiki.crans.org/?action=fullsearch&value=%s&titlesearch=Titres",
         $alternative="http://wiki.crans.org");
 define_webjump("wikoeur",
-        "http://acoeur.info/wikoeur/?action=fullsearch&value=%s&titlesearch=Titres",
-        $alternative="http://acoeur.info/wikoeur");
+        "http://pimeys.fr/wikoeur/?action=fullsearch&value=%s&titlesearch=Titres",
+        $alternative="http://pimeys.fr/wikoeur");
 define_webjump("carte", "https://intranet2.crans.org/wifimap/");
 define_webjump("seminaire", "wiki.crans.org/CransNounous/SeminaireTechnique");
 define_webjump("permanence","wiki.crans.org/PermanenesCrans");
