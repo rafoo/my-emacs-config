@@ -40,6 +40,9 @@ define_webjump("lsv", "www.lsv.ens-cachan.fr");
 define_webjump("dptinfo", "http://www.dptinfo.ens-cachan.fr/");
 define_webjump("serveur_pedagogique", "https://admin.dptinfo.ens-cachan.fr/serveur_pedagogique/");
 
+define_webjump("gandalf", "https://dsi.ens-cachan.fr/cgi-bin/WebObjects/DT3Web");
+define_webjump("trombiweb", "https://cas.ens-cachan.fr/login?service=https%3A%2F%2Fdsi.ens-cachan.fr%2Fcgi-bin%2FWebObjects%2FTrombiWeb.woa%2F1%2Fwa%2FcasCallBack");
+
 define_webjump("francocube",
         "http://www.google.com/search?q=%s site:francocube.com",
         $alternative="http://forum.francocube.com");
