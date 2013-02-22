@@ -20,7 +20,7 @@ define_webjump("facebook", "http://www.facebook.com");
 define_webjump("xkcd", "xkcd.com");
 
 
-crans_sites = new Array("note", "note2", "intranet", "intranet2", "photos", "lists", "autostatus", "tracker", "install-party", "i-p", "webnews");
+crans_sites = new Array("note", "note2", "intranet", "intranet2", "photos", "lists", "autostatus", "tracker", "install-party", "i-p", "webnews", "webmail", "horde", "roundcube", "sogo");
 for (i=0; i<crans_sites.length; i++) {
     s = crans_sites[i];
     define_webjump(s, s + ".crans.org");
