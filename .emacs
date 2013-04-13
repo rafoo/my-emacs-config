@@ -95,7 +95,11 @@
          (string= (buffer-name buf) "*Shell Command Output*")
          (with-current-buffer buf
            (ansi-color-apply-on-region (point-min) (point-max))))))
-
+;; et dans le buffer compilation
+(defun colorize-compilation-buffer ()
+  (let ((read-only))
+    (ansi-color-apply-on-region (point-min) (point-max))))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 ;; Web browser
 
