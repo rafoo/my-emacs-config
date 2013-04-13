@@ -11,7 +11,7 @@
   
   ; FlyMake
   (push '(".+\\.ml[yilp]?$"
-          flymake-simple-init
+          flymake-simple-make-init
           flymake-simple-cleanup
           flymake-get-real-file-name)
         flymake-allowed-file-name-masks)
