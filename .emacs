@@ -3,8 +3,6 @@
 
 ;; Extra lisp libs
 (add-to-list 'load-path "~/elisp/") ;; Downloaded packages
-(add-to-list 'load-path "~/elisp/rudel/") ;; For rudel
-(add-to-list 'load-path "~/elisp/rudel/obby/") ;; For rudel
 (add-to-list 'load-path "~/.emacs.d/elpa/") ;; Installed packages
 (add-to-list 'load-path "~/.emacs.d/elisp/") ;; Configuration
 (add-to-list 'load-path "~/.emacs.d/elisp/perspective/")
@@ -99,9 +97,6 @@
            (ansi-color-apply-on-region (point-min) (point-max))))))
 
 
-(require 'rudel-conf)
-(require 'org-conf)
-
 ;; Web browser
 
 ;; firefox is iceweasel on Debian
@@ -133,12 +128,7 @@
       iwlist-program-options '("wlan0" "scan"))
 
 ;; Editing
-
-(require 'latex-conf)
-(require 'focalize)
-(require 'dedukti)
-(require 'tuareg-conf)
-;(require 'isabelle)
+(require 'editing-conf)
 
 ;; Printing
 

@@ -8,6 +8,17 @@
     (add-to-list 'completion-ignored-extensions ext))
   (setq tuareg-font-lock-symbols t
         tuareg-in-indent 0)
+  
+  ; FlyMake
+  (push '(".+\\.ml[yilp]?$"
+          flymake-simple-init
+          flymake-simple-cleanup
+          flymake-get-real-file-name)
+        flymake-allowed-file-name-masks)
+  (push
+   '("^\\(\.+\.ml[yilp]?\\|\.lhs\\):\\([0-9]+\\):\\([0-9]+\\):\\(.+\\)"
+     1 2 3 4) flymake-err-line-patterns)
+
   )
 
 (provide 'tuareg-conf)
