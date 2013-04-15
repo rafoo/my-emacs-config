@@ -142,12 +142,7 @@
       iwlist-program-options '("wlan0" "scan"))
 
 ;; Editing
-
-(require 'latex-conf)
-(require 'focalize)
-(require 'dedukti)
-(require 'tuareg-conf)
-;(require 'isabelle)
+(require 'editing-conf)
 
 ;; Printing
 

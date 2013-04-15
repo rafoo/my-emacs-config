@@ -19,7 +19,10 @@
     (list "ocaml_flycheck.pl"
           (list source base-dir)))
   
-  (push '(".+\\.ml[yilp]?$" flymake-simple-make-init flymake-simple-cleanup flymake-get-real-file-name)
+  (push '(".+\\.ml[yilp]?$"
+          flymake-simple-make-init
+          flymake-simple-cleanup
+          flymake-get-real-file-name)
         flymake-allowed-file-name-masks)
   (push
    '("^\\(\.+\.ml[yilp]?\\|\.lhs\\):\\([0-9]+\\):\\([0-9]+\\):\\(.+\\)"
@@ -57,7 +60,6 @@
    '(lambda ()
       (define-key tuareg-mode-map "\C-cd"
         'credmp/flymake-display-err-minibuf)))
-
 
   )
 
