@@ -3,18 +3,18 @@
 
 ;; Extra lisp libs
 (add-to-list 'load-path "~/elisp/") ;; Downloaded packages
-(add-to-list 'load-path "~/elisp/rudel/") ;; For rudel
-(add-to-list 'load-path "~/elisp/rudel/obby/") ;; For rudel
+;(add-to-list 'load-path "~/elisp/rudel/") ;; For rudel
+;(add-to-list 'load-path "~/elisp/rudel/obby/") ;; For rudel
 (add-to-list 'load-path "~/.emacs.d/elpa/") ;; Installed packages
 (add-to-list 'load-path "~/.emacs.d/elisp/") ;; Configuration
 (add-to-list 'load-path "~/.emacs.d/elisp/perspective/")
 (add-to-list 'load-path "~/wicd-mode/")
 ; (require 'wicd-mode)
 
-;; (require 'package)
-;; (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
-;; (package-initialize)
+;; (when (require 'package nil t)
+;;   (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+;;   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;;   (package-initialize))
 
 (require 'perspective)
 (persp-mode 1)
@@ -49,7 +49,7 @@
 
 ;; Mode line
 (column-number-mode 1)
-
+x
 ;; Header line
 (require 'header-line-conf)
 
@@ -80,6 +80,8 @@
       read-buffer-completion-ignore-case t
       read-file-name-completion-ignore-case t )
 (icomplete-mode 1)
+(require 'auto-complete)
+(add-hook 'tuareg-mode-hook 'auto-complete-mode)
 ; (partial-completion-mode 1)
 
 ;;; Applications
@@ -97,9 +99,16 @@
          (string= (buffer-name buf) "*Shell Command Output*")
          (with-current-buffer buf
            (ansi-color-apply-on-region (point-min) (point-max))))))
+;; Et dans le buffer de compilation
+(defun colorize-compilation-buffer ()
+  (let ((buffer-read-only))
+    (ansi-color-apply-on-region (point-min) (point-max))
+    ))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 
-(require 'rudel-conf)
+
+;(require 'rudel-conf)
 (require 'org-conf)
 
 ;; Web browser
@@ -133,12 +142,7 @@
       iwlist-program-options '("wlan0" "scan"))
 
 ;; Editing
-
-(require 'latex-conf)
-(require 'focalize)
-(require 'dedukti)
-(require 'tuareg-conf)
-;(require 'isabelle)
+(require 'editing-conf)
 
 ;; Printing
 

@@ -15,11 +15,12 @@ require("page-modes/wikipedia.js");
 wikipedia_webjumps_format = "wp-%s"; // controls the names of the webjumps.  default is "wikipedia-%s".
 define_wikipedia_webjumps("en", "fr");
 
+define_webjump("kokarde", "http://www.kokarde.net");
 define_webjump("facebook", "http://www.facebook.com");
 define_webjump("xkcd", "xkcd.com");
 
 
-crans_sites = new Array("note", "intranet", "intranet2", "photos", "lists", "autostatus");
+crans_sites = new Array("note", "note2", "intranet", "intranet2", "photos", "lists", "autostatus", "tracker", "install-party", "i-p", "webnews", "webmail", "horde", "roundcube", "sogo");
 for (i=0; i<crans_sites.length; i++) {
     s = crans_sites[i];
     define_webjump(s, s + ".crans.org");
@@ -29,16 +30,24 @@ define_webjump("autostatus_full", "www.crans.org/autostatus/local.html");
 define_webjump("wiki",
         "http://wiki.crans.org/?action=fullsearch&value=%s&titlesearch=Titres",
         $alternative="http://wiki.crans.org");
+define_webjump("wikoeur",
+        "http://pimeys.fr/wikoeur/?action=fullsearch&value=%s&titlesearch=Titres",
+        $alternative="http://pimeys.fr/wikoeur");
 define_webjump("carte", "https://intranet2.crans.org/wifimap/");
 define_webjump("seminaire", "wiki.crans.org/CransNounous/SeminaireTechnique");
 define_webjump("permanence","wiki.crans.org/PermanenesCrans");
 
+define_webjump("perso", "http://perso.crans.org/cauderlier");
+define_webjump("org", "http://perso.crans.org/cauderlier/org");
 
 define_webjump("translate","http://translate.google.com/#en|fr|%s");
 
 define_webjump("lsv", "www.lsv.ens-cachan.fr");
 define_webjump("dptinfo", "http://www.dptinfo.ens-cachan.fr/");
 define_webjump("serveur_pedagogique", "https://admin.dptinfo.ens-cachan.fr/serveur_pedagogique/");
+
+define_webjump("gandalf", "https://dsi.ens-cachan.fr/cgi-bin/WebObjects/DT3Web");
+define_webjump("trombiweb", "https://dsi.ens-cachan.fr/cgi-bin/WebObjects/TrombiWeb.woa");
 
 define_webjump("francocube",
         "http://www.google.com/search?q=%s site:francocube.com",
