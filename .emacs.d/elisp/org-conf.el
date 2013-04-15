@@ -1,10 +1,8 @@
 ;; Configuration of org mode
 
 (require 'org-install)
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
-(setq org-log-done t)
 
 (require 'org-special-blocks)
 
@@ -24,6 +22,7 @@
              '("logic-article"
                "\\documentclass[11pt]{article}
 [NO-DEFAULT-PACKAGES]
+\\usepackage{a4wide}
 \\usepackage{fixltx2e}
 \\usepackage{graphicx}
 \\usepackage{longtable}
@@ -41,13 +40,44 @@
 \\setallmainfonts{FreeSerif}
 \\usepackage[french]{babel} 
 \\usepackage{bussproofs}
-\\newcommand{\\myUIC}[3]{\\mbox{\\AxiomC{#2}\\RightLabel{\\scriptsize(#1)}\\UnaryInfC{#3}\\DisplayProof}}
-\\newcommand{\\myBIC}[4]{\\mbox{\\AxiomC{#2}\\AxiomC{#3}\\RightLabel{\\scriptsize(#1)}\\BinaryInfC{#4}\\DisplayProof}}
-\\newcommand{\\myTIC}[5]{\\mbox{\\AxiomC{#2}\\AxiomC{#3}\\AxiomC{#4}\\RightLabel{\\scriptsize(#1)}\\TrinaryInfC{#5}\\DisplayProof}}
-\\newcommand{\\myQIC}[6]{\\mbox{\\AxiomC{#2}\\AxiomC{#3}\\AxiomC{#4}\\AxiomC{#5}\\RightLabel{\\scriptsize(#1)}\\QuaternaryInfC{#6}\\DisplayProof}}
+\\newcommand{\\myUIC}[3]
+  {\\mbox{
+     \\AxiomC{#2}
+     \\RightLabel{\\scriptsize(#1)}
+     \\UnaryInfC{#3}
+     \\DisplayProof}}
+\\newcommand{\\myBIC}[4]
+  {\\mbox{
+     \\AxiomC{#2}
+     \\AxiomC{#3}
+     \\RightLabel{\\scriptsize(#1)}
+     \\BinaryInfC{#4}
+     \\DisplayProof}}
+\\newcommand{\\myTIC}[5]
+  {\\mbox{
+     \\AxiomC{#2}
+     \\AxiomC{#3}
+     \\AxiomC{#4}
+     \\RightLabel{\\scriptsize(#1)}
+     \\TrinaryInfC{#5}
+     \\DisplayProof}}
+\\newcommand{\\myQIC}[6]
+  {\\mbox{
+     \\AxiomC{#2}
+     \\AxiomC{#3}
+     \\AxiomC{#4}
+     \\AxiomC{#5}
+     \\RightLabel{\\scriptsize(#1)}
+     \\QuaternaryInfC{#6}
+     \\DisplayProof}}
 \\usepackage{setspace}
 \\usepackage{framed}
-\\newenvironment{infset}{\\begin{center}\\begin{framed}\\setstretch{3}}{\\end{framed}\\end{center}}
+\\newenvironment{infset}
+  {\\begin{center}
+     \\begin{framed}
+       \\setstretch{3}}
+  {  \\end{framed}
+   \\end{center}}
 "
                ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
