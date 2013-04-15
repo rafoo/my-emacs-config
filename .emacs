@@ -3,8 +3,8 @@
 
 ;; Extra lisp libs
 (add-to-list 'load-path "~/elisp/") ;; Downloaded packages
-(add-to-list 'load-path "~/elisp/rudel/") ;; For rudel
-(add-to-list 'load-path "~/elisp/rudel/obby/") ;; For rudel
+;(add-to-list 'load-path "~/elisp/rudel/") ;; For rudel
+;(add-to-list 'load-path "~/elisp/rudel/obby/") ;; For rudel
 (add-to-list 'load-path "~/.emacs.d/elpa/") ;; Installed packages
 (add-to-list 'load-path "~/.emacs.d/elisp/") ;; Configuration
 (add-to-list 'load-path "~/.emacs.d/elisp/perspective/")
@@ -80,6 +80,8 @@
       read-buffer-completion-ignore-case t
       read-file-name-completion-ignore-case t )
 (icomplete-mode 1)
+(require 'auto-complete)
+(add-hook 'tuareg-mode-hook 'auto-complete-mode)
 ; (partial-completion-mode 1)
 
 ;;; Applications
@@ -97,9 +99,16 @@
          (string= (buffer-name buf) "*Shell Command Output*")
          (with-current-buffer buf
            (ansi-color-apply-on-region (point-min) (point-max))))))
+;; Et dans le buffer de compilation
+(defun colorize-compilation-buffer ()
+  (let ((buffer-read-only))
+    (ansi-color-apply-on-region (point-min) (point-max))
+    ))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 
-(require 'rudel-conf)
+
+;(require 'rudel-conf)
 (require 'org-conf)
 
 ;; Web browser
