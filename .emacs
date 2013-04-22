@@ -49,7 +49,7 @@
 
 ;; Mode line
 (column-number-mode 1)
-x
+
 ;; Header line
 (require 'header-line-conf)
 
