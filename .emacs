@@ -18,8 +18,8 @@
 ;;   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 ;;   (package-initialize))
 
-(require 'perspective)
-(persp-mode 1)
+(when (require 'perspective nil t)
+  (persp-mode 1))
 
 (require 'desktop-conf)
 
