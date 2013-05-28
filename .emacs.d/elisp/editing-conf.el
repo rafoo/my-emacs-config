@@ -15,7 +15,7 @@
 (require 'latex-conf) ; LaTeX
 (require 'org-conf) ; Org mode
 ; (require 'isabelle) ; Isabelle
-
+(require 'python-conf)
 
 
 (provide 'editing-conf)
