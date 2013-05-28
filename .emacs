@@ -3,10 +3,14 @@
 
 ;; Extra lisp libs
 (add-to-list 'load-path "~/elisp/") ;; Downloaded packages
+;(add-to-list 'load-path "~/elisp/rudel/") ;; For rudel
+;(add-to-list 'load-path "~/elisp/rudel/obby/") ;; For rudel
 (add-to-list 'load-path "~/.emacs.d/elpa/") ;; Installed packages
 (add-to-list 'load-path "~/.emacs.d/elisp/") ;; Configuration
 (add-to-list 'load-path "~/.emacs.d/elisp/perspective/")
 (add-to-list 'load-path "~/wicd-mode/")
+(add-to-list 'load-path "~/elisp/magit/")
+
 ; (require 'wicd-mode)
 
 ;; (when (require 'package nil t)
@@ -14,8 +18,8 @@
 ;;   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 ;;   (package-initialize))
 
-(require 'perspective)
-(persp-mode)
+(when (require 'perspective nil t)
+  (persp-mode 1))
 
 (require 'desktop-conf)
 
@@ -78,6 +82,8 @@
       read-buffer-completion-ignore-case t
       read-file-name-completion-ignore-case t )
 (icomplete-mode 1)
+(require 'auto-complete)
+(add-hook 'tuareg-mode-hook 'auto-complete-mode)
 ; (partial-completion-mode 1)
 
 ;;; Applications
@@ -87,19 +93,26 @@
 (require 'eshell-conf)
 
 ;; Couleurs du terminal dans le buffer *Shell Command Output*
-(require 'ansi-color)
-(defadvice display-message-or-buffer (before ansi-color activate)
-  "Process ANSI color codes in shell output."
-  (let ((buf (ad-get-arg 0)))
-    (and (bufferp buf)
-         (string= (buffer-name buf) "*Shell Command Output*")
-         (with-current-buffer buf
-           (ansi-color-apply-on-region (point-min) (point-max))))))
-;; et dans le buffer compilation
-(defun colorize-compilation-buffer ()
-  (let ((read-only))
-    (ansi-color-apply-on-region (point-min) (point-max))))
-(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+(when (display-graphic-p)
+  (require 'ansi-color)
+  (defadvice display-message-or-buffer (before ansi-color activate)
+    "Process ANSI color codes in shell output."
+    (let ((buf (ad-get-arg 0)))
+      (and (bufferp buf)
+           (string= (buffer-name buf) "*Shell Command Output*")
+           (with-current-buffer buf
+             (ansi-color-apply-on-region (point-min) (point-max))))))
+  ;; Et dans le buffer de compilation
+  (defun colorize-compilation-buffer ()
+    (let ((buffer-read-only))
+      (ansi-color-apply-on-region (point-min) (point-max))
+      ))
+  (add-hook 'compilation-filter-hook 'colorize-compilation-buffer))
+
+
+
+;(require 'rudel-conf)
+(require 'org-conf)
 
 ;; Web browser
 
@@ -134,29 +147,35 @@
 ;; Editing
 (require 'editing-conf)
 
+;; Git
+(require 'magit nil t)
+
 ;; Printing
 
 (require 'printing)
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(backup-directory-alist (quote ((".*" . "./.bkp/"))))
  '(canlock-password "fa237fe1f7828a11d0a39636eeb88b2e97d29993")
  '(column-number-mode t)
  '(coq-load-path (quote ("~/pkg/focalize-0.6.0/lib/zenon-0.6.2/" "/usr/local/lib/focalizec-0.6.0/")))
  '(coq-prog-name "/home/cauderlier/pkg/focalize-0.6.0/bin/coqtop")
+ '(dired-listing-switches "-lrth --time-style=+%D%6R")
  '(ede-project-directories (quote ("/home/harry/wicd-mode")))
  '(glasses-uncapitalize-p t)
  '(global-reveal-mode t)
  '(indent-tabs-mode nil)
  '(initial-scratch-message nil)
+ '(list-directory-verbose-switches "-l")
  '(makefile-electric-keys t)
  '(org-export-latex-default-packages-alist (quote (("" "fixltx2e" nil) ("" "graphicx" t) ("" "longtable" nil) ("" "float" nil) ("" "wrapfig" nil) ("" "soul" t) ("" "textcomp" t) ("" "marvosym" t) ("" "wasysym" t) ("" "latexsym" t) ("" "amssymb" t) ("" "hyperref" nil) "\\tolerance=1000")))
  '(org-export-latex-packages-alist nil)
  '(org-latex-to-pdf-process (quote ("xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
+ '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m org-special-blocks)))
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
  '(safe-local-variable-values (quote ((coq-prog-name . "~/pkg/focalize-0.6.0/bin/coqtop"))))
@@ -167,10 +186,11 @@
  '(wicd-wireless-filter ".*"))
 
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(font-lock-preprocessor-face ((t (:inherit font-lock-builtin-face :foreground "dark green"))))
  '(isabelle-quote-face ((((type x) (class color) (background light)) (:foreground "red"))))
  '(isabelle-string-face ((((type x) (class color) (background light)) (:background "lightblue" :foreground "springgreen4"))))
  '(unicode-tokens-fraktur-font-face ((t (:slant normal :weight normal :height 120 :width normal :foundry "bitstream" :family "IsabelleText"))))

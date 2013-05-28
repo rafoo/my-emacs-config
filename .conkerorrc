@@ -50,13 +50,13 @@ define_webjump("gandalf", "https://dsi.ens-cachan.fr/cgi-bin/WebObjects/DT3Web")
 define_webjump("trombiweb", "https://dsi.ens-cachan.fr/cgi-bin/WebObjects/TrombiWeb.woa");
 
 define_webjump("francocube",
-        "http://www.google.com/search?q=%s site:francocube.com",
+        "https://duckduckgo.com/?q=%s+site:francocube.com",
         $alternative="http://forum.francocube.com");
 
 define_webjump("MPRI", "file:///home/harry/Téléchargements/MPRI.htm");
 
 define_webjump("emacswiki",
-        "http://www.google.com/search?q=%s site:emacswiki.org",
+        "https://duckduckgo.com/?q=%s+site:emacswiki.org",
         $alternative="http://www.emacswiki.org/");
 
 define_webjump("weiki",
