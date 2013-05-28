@@ -9,6 +9,8 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/") ;; Configuration
 (add-to-list 'load-path "~/.emacs.d/elisp/perspective/")
 (add-to-list 'load-path "~/wicd-mode/")
+(add-to-list 'load-path "~/elisp/magit/")
+
 ; (require 'wicd-mode)
 
 ;; (when (require 'package nil t)
@@ -143,6 +145,9 @@
 
 ;; Editing
 (require 'editing-conf)
+
+;; Git
+(require 'magit nil t)
 
 ;; Printing
 
