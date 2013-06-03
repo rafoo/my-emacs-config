@@ -3,20 +3,18 @@
 
 ;; Extra lisp libs
 (add-to-list 'load-path "~/elisp/") ;; Downloaded packages
-;(add-to-list 'load-path "~/elisp/rudel/") ;; For rudel
-;(add-to-list 'load-path "~/elisp/rudel/obby/") ;; For rudel
 (add-to-list 'load-path "~/.emacs.d/elpa/") ;; Installed packages
 (add-to-list 'load-path "~/.emacs.d/elisp/") ;; Configuration
-(add-to-list 'load-path "~/.emacs.d/elisp/perspective/")
 (add-to-list 'load-path "~/wicd-mode/")
 (add-to-list 'load-path "~/elisp/magit/")
 
 ; (require 'wicd-mode)
 
-;; (when (require 'package nil t)
-;;   (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-;;   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
-;;   (package-initialize))
+(when (require 'package nil t)
+  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+;  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  (package-initialize))
 
 (when (require 'perspective nil t)
   (persp-mode 1))
@@ -32,7 +30,7 @@
 (setq ttyp (not (display-graphic-p)))
 
 (when (display-graphic-p)
-  (require 'color-theme-conf)
+;  (require 'color-theme-conf)
   (require 'windows-conf))
 
 (require 'resize)
