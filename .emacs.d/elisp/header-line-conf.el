@@ -2,9 +2,9 @@
 
 (setq global-header-string)
 (defmacro var-subst (var1 var2 exp)
-  (list 'let (list (list var1 var2))
-        exp
-        (list 'setq var2 var1) ) )
+  `(let ((,var1 ,var2))
+        ,exp
+        (setq ,var2 ,var1) ) )
 
 (defun apply-header (fun &rest args)
   "Apply function FUN with arguments ARGS using `global-header-string'
@@ -30,8 +30,8 @@ in place of `global-mode-string'."
   (apply-header 'display-time-mode 1) )
 
 ;; Battery usage
-(when (require 'battery nil t)
-  (apply-header 'display-battery-mode 1))
+;(when (require 'battery nil t)
+;  (apply-header 'display-battery-mode 1))
 
 ;; Wireless network
 (when (require 'wireless nil t)

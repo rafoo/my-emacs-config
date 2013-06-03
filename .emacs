@@ -3,23 +3,14 @@
 
 ;; Extra lisp libs
 (add-to-list 'load-path "~/elisp/") ;; Downloaded packages
-;(add-to-list 'load-path "~/elisp/rudel/") ;; For rudel
-;(add-to-list 'load-path "~/elisp/rudel/obby/") ;; For rudel
 (add-to-list 'load-path "~/.emacs.d/elpa/") ;; Installed packages
 (add-to-list 'load-path "~/.emacs.d/elisp/") ;; Configuration
-(add-to-list 'load-path "~/.emacs.d/elisp/perspective/")
-(add-to-list 'load-path "~/wicd-mode/")
-(add-to-list 'load-path "~/elisp/magit/")
 
-; (require 'wicd-mode)
-
-;; (when (require 'package nil t)
-;;   (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-;;   (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
-;;   (package-initialize))
-
-(when (require 'perspective nil t)
-  (persp-mode 1))
+(when (require 'package nil t)
+  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+;  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  (package-initialize))
 
 (require 'desktop-conf)
 
@@ -28,7 +19,6 @@
 
 ;; Customizations depending on wheter emacs is in tty.
 ;; tty are recognized by the number of available colors.
-;(setq ttyp (= (display-color-cells) 8))
 (setq ttyp (not (display-graphic-p)))
 
 (when (display-graphic-p)
@@ -71,11 +61,7 @@
 
 ;; Cursor
 (when (display-graphic-p)
-  ;; (when (require 'bar-cursor nil t)
-  ;;   (bar-cursor-mode 1) )
-  ;; (blink-cursor-mode 1)
-  ;; (setq x-stretch-cursor t) );; if a block cursor is over a tab, it will be drawn as wide as that tab on the display
-  (setq cursor-type 'bar))
+  (setq-default cursor-type 'bar))
 
 ;; Completion
 (setq completion-auto-help 'lazy
@@ -155,15 +141,16 @@
 (require 'printing)
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(backup-directory-alist (quote ((".*" . "./.bkp/"))))
  '(canlock-password "fa237fe1f7828a11d0a39636eeb88b2e97d29993")
  '(column-number-mode t)
  '(coq-load-path (quote ("~/pkg/focalize-0.6.0/lib/zenon-0.6.2/" "/usr/local/lib/focalizec-0.6.0/")))
  '(coq-prog-name "/home/cauderlier/pkg/focalize-0.6.0/bin/coqtop")
+ '(custom-safe-themes (quote ("f61972772958e166cda8aaf0eba700aad4faa0b4101cee319e894e7a747645c9" default)))
  '(dired-listing-switches "-lrth --time-style=+%D%6R")
  '(ede-project-directories (quote ("/home/harry/wicd-mode")))
  '(glasses-uncapitalize-p t)
@@ -186,25 +173,18 @@
  '(wicd-wireless-filter ".*"))
 
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(font-lock-preprocessor-face ((t (:inherit font-lock-builtin-face :foreground "dark green"))))
- '(isabelle-quote-face ((((type x) (class color) (background light)) (:foreground "red"))))
- '(isabelle-string-face ((((type x) (class color) (background light)) (:background "lightblue" :foreground "springgreen4"))))
- '(unicode-tokens-fraktur-font-face ((t (:slant normal :weight normal :height 120 :width normal :foundry "bitstream" :family "IsabelleText"))))
- '(unicode-tokens-script-font-face ((t (:slant italic :weight normal :height 113 :width normal :foundry "unknown" :family "LMMathSymbols6"))))
- '(unicode-tokens-symbol-font-face ((t (:slant normal :weight normal :height 98 :width normal :foundry "bitstream" :family "IsabelleText")))))
-
-;(global-set-key "\C-c\C-j" 'proof-goto-point)
-;(proofgeneral)
-
+ '(isabelle-quote-face ((((type x) (class color) (background light)) (:foreground "red"))) t)
+ '(isabelle-string-face ((((type x) (class color) (background light)) (:background "lightblue" :foreground "springgreen4"))) t)
+ '(unicode-tokens-fraktur-font-face ((t (:slant normal :weight normal :height 120 :width normal :foundry "bitstream" :family "IsabelleText"))) t)
+ '(unicode-tokens-script-font-face ((t (:slant italic :weight normal :height 113 :width normal :foundry "unknown" :family "LMMathSymbols6"))) t)
+ '(unicode-tokens-symbol-font-face ((t (:slant normal :weight normal :height 98 :width normal :foundry "bitstream" :family "IsabelleText"))) t))
 
 (require 'init-actions nil t)
-
-; (require 'apt)
-
 
 ;; other interesting emacs features :
 ;; SES : tableur en elisp
