@@ -24,9 +24,9 @@
 
 (add-to-list 'org-export-latex-classes
              '("logic-article"
-               "\\documentclass[11pt]{article}
+               "\\documentclass{llncs}
 [NO-DEFAULT-PACKAGES]
-\\usepackage{a4wide}
+\\usepackage{amsmath}
 \\usepackage{fixltx2e}
 \\usepackage{graphicx}
 \\usepackage{longtable}
@@ -42,7 +42,7 @@
 \\tolerance=1000
 \\usepackage{mathspec}
 \\setallmainfonts{FreeSerif}
-\\usepackage[french]{babel} 
+%\\usepackage[french]{babel} 
 \\usepackage{bussproofs}
 \\newcommand{\\myUIC}[3]
   {\\mbox{
