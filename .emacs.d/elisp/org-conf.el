@@ -27,7 +27,7 @@
                "\\documentclass{llncs}
 [NO-DEFAULT-PACKAGES]
 \\usepackage{amsmath}
-\\usepackage{a4wide}
+%\\usepackage{a4wide}
 \\usepackage{fixltx2e}
 \\usepackage{graphicx}
 \\usepackage{longtable}
