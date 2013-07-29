@@ -100,4 +100,7 @@
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 
+
+(setq org-export-latex-hyperref-format "\\ref{%s}")
+
 (provide 'org-conf)
