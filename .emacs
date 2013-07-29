@@ -145,13 +145,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auth-source-save-behavior nil)
  '(backup-directory-alist (quote ((".*" . "./.bkp/"))))
  '(canlock-password "fa237fe1f7828a11d0a39636eeb88b2e97d29993")
  '(column-number-mode t)
  '(coq-load-path (quote ("~/pkg/focalize-0.6.0/lib/zenon-0.6.2/" "/usr/local/lib/focalizec-0.6.0/")))
  '(coq-prog-name "/home/cauderlier/pkg/focalize-0.6.0/bin/coqtop")
  '(custom-enabled-themes (quote (zenburn)))
- '(custom-safe-themes (quote ("3d6b08cd1b1def3cc0bc6a3909f67475e5612dba9fa98f8b842433d827af5d30" "f61972772958e166cda8aaf0eba700aad4faa0b4101cee319e894e7a747645c9" default)))
+ '(custom-safe-themes (quote ("fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a" "3d6b08cd1b1def3cc0bc6a3909f67475e5612dba9fa98f8b842433d827af5d30" "f61972772958e166cda8aaf0eba700aad4faa0b4101cee319e894e7a747645c9" default)))
  '(dired-listing-switches "-lrth --time-style=+%D%6R")
  '(ede-project-directories (quote ("/home/harry/wicd-mode")))
  '(glasses-uncapitalize-p t)
@@ -164,6 +165,7 @@
  '(org-export-latex-packages-alist nil)
  '(org-latex-to-pdf-process (quote ("xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
  '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m org-special-blocks)))
+ '(package-archive-exclude-alist (quote (("melpa" org))))
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
  '(safe-local-variable-values (quote ((coq-prog-name . "~/pkg/focalize-0.6.0/bin/coqtop"))))

@@ -11,18 +11,18 @@
 ; (require 'org-latex)
 ; (require 'org)
 
-(unless (boundp 'org-export-latex-classes)
-  (setq org-export-latex-classes nil))
+(unless (boundp 'org-latex-classes)
+  (setq org-latex-classes nil))
 
-;(add-to-list 'org-export-latex-packages-alist
+;(add-to-list 'org-latex-packages-alist
 ;             '( "utf8" . "inputenc" ))
 
-;; (add-to-list ' org-export-latex-classes
+;; (add-to-list ' org-latex-classes
 ;;              '("article"
 ;;                "\\documentclass{article}"
 ;;                ("\\section{%s}" . "\\section*{%s}")))
 
-(add-to-list 'org-export-latex-classes
+(add-to-list 'org-latex-classes
              '("logic-article"
                "\\documentclass{llncs}
 [NO-DEFAULT-PACKAGES]
@@ -42,7 +42,9 @@
 \\usepackage{hyperref}
 \\tolerance=1000
 \\usepackage{mathspec}
+\\usepackage{unicode-math}
 \\setallmainfonts{FreeSerif}
+\\setmathfont{xits-math.otf}
 %\\usepackage[french]{babel} 
 \\usepackage{bussproofs}
 \\newcommand{\\myUIC}[3]
@@ -90,7 +92,7 @@
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-(add-to-list 'org-export-latex-classes
+(add-to-list 'org-latex-classes
              '("article"
                "\\documentclass[11pt]{article}"
                ("\\section{%s}" . "\\section*{%s}")
