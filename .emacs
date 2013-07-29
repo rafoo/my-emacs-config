@@ -177,7 +177,7 @@
  '(org-export-latex-packages-alist nil)
  '(org-latex-to-pdf-process (quote ("xelatex -interaction nonstopmode -output-directory %o %f" "bibtex %b" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
  '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m org-special-blocks)))
- '(package-archives (quote (("gnu" . "http://elpa.gnu.org/packages/") ("melpa" . "http://melpa.milkbox.net/packages/"))))
+ '(package-archive-exclude-alist (quote (("melpa" org))))
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
  '(safe-local-variable-values (quote ((coq-prog-name . "~/pkg/focalize-0.6.0/bin/coqtop"))))
