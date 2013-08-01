@@ -105,4 +105,11 @@
 
 (setq org-export-latex-hyperref-format "\\ref{%s}")
 
+(defun my-latex-captions-bellow (link backend info)
+  (when (string-match
+         "^\\(\\\\begin{figure}\n\\)\\(\\\\caption.*\n\\)\\(\\(.*\n\\)*\\)\\(\\\\end{figure}\n$\\)"
+         link)
+    (replace-match "\\1\\3\\2\\5" nil nil link)))
+(add-to-list 'org-export-filter-special-block-functions 'my-latex-captions-bellow)
+
 (provide 'org-conf)
