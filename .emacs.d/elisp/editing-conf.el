@@ -1,20 +1,14 @@
 ;;; Programming
 
 ;; FlyMake : on-the-fly syntax checking
-<<<<<<< HEAD
-;(require 'flymake)
-;(add-hook 'find-file-hook 'flymake-find-file-hook)
-=======
 ;; (require 'flymake)
 ;; (add-hook 'find-file-hook 'flymake-find-file-hook)
->>>>>>> 7021362bf630c0ff4b857c1ac452cd9ac5908aec
 
 ;; Auto-complete
 ;(require 'auto-complete)
 ;(add-hook 'prog-mode-hook 'auto-complete-mode)
 
 ;; Modes for special languages
-<<<<<<< HEAD
 ;(require 'tuareg-conf) ; OCaml
 ;(require 'focalize) ; FoCaLiZe
 ;(require 'dedukti) ; Dedukti
