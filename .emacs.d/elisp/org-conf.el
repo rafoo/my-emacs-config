@@ -11,22 +11,23 @@
 ; (require 'org-latex)
 ; (require 'org)
 
-(unless (boundp 'org-export-latex-classes)
-  (setq org-export-latex-classes nil))
+(unless (boundp 'org-latex-classes)
+  (setq org-latex-classes nil))
 
-;(add-to-list 'org-export-latex-packages-alist
+;(add-to-list 'org-latex-packages-alist
 ;             '( "utf8" . "inputenc" ))
 
-;; (add-to-list ' org-export-latex-classes
+;; (add-to-list ' org-latex-classes
 ;;              '("article"
 ;;                "\\documentclass{article}"
 ;;                ("\\section{%s}" . "\\section*{%s}")))
 
-(add-to-list 'org-export-latex-classes
+(add-to-list 'org-latex-classes
              '("logic-article"
-               "\\documentclass[11pt]{article}
+               "\\documentclass{llncs}
 [NO-DEFAULT-PACKAGES]
-\\usepackage{a4wide}
+\\usepackage{amsmath}
+%\\usepackage{a4wide}
 \\usepackage{fixltx2e}
 \\usepackage{graphicx}
 \\usepackage{longtable}
@@ -41,8 +42,10 @@
 \\usepackage{hyperref}
 \\tolerance=1000
 \\usepackage{mathspec}
+\\usepackage{unicode-math}
 \\setallmainfonts{FreeSerif}
-\\usepackage[french]{babel} 
+\\setmathfont{xits-math.otf}
+%\\usepackage[french]{babel} 
 \\usepackage{bussproofs}
 \\newcommand{\\myUIC}[3]
   {\\mbox{
@@ -89,7 +92,7 @@
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-(add-to-list 'org-export-latex-classes
+(add-to-list 'org-latex-classes
              '("article"
                "\\documentclass[11pt]{article}"
                ("\\section{%s}" . "\\section*{%s}")
@@ -98,5 +101,15 @@
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
+
+
+(setq org-export-latex-hyperref-format "\\ref{%s}")
+
+(defun my-latex-captions-bellow (link backend info)
+  (when (string-match
+         "^\\(\\\\begin{figure}\n\\)\\(\\\\caption.*\n\\)\\(\\(.*\n\\)*\\)\\(\\\\end{figure}\n$\\)"
+         link)
+    (replace-match "\\1\\3\\2\\5" nil nil link)))
+(add-to-list 'org-export-filter-special-block-functions 'my-latex-captions-bellow)
 
 (provide 'org-conf)
