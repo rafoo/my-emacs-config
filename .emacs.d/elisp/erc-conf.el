@@ -1,7 +1,7 @@
 ;; ERC
 ;; ERC is an IRC client
 (setq erc-header-line-format "%o" ;; just the channel title in title bar
-      erc-insert-timestamp-function 'erc-insert-timestamp-left ;; timestamp on the left
+;      erc-insert-timestamp-function 'erc-insert-timestamp-left ;; timestamp on the left
       erc-interpret-mirc-color t
       erc-modules '(autojoin ;; rejoin chans as soon as possible
                     button
@@ -25,8 +25,8 @@
                     track)
       erc-nick "Harry"
       erc-nick-uniquifier "_"
-      erc-timestamp-format "<%T>" ;; HH:MM:SS
-      erc-timestamp-format-left "<%T>"
+;      erc-timestamp-format "<%T>" ;; HH:MM:SS
+;      erc-timestamp-format-left "<%T>"
       erc-user-full-name "Raphaël Cauderlier"
       ;erc-warn-about-blank-lines nil
       erc-whowas-on-nosuchnick t ;; if nick is unknown, use whowas instead of whois
