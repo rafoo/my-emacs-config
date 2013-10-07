@@ -68,8 +68,8 @@
       read-buffer-completion-ignore-case t
       read-file-name-completion-ignore-case t )
 (icomplete-mode 1)
-(require 'auto-complete)
-(add-hook 'tuareg-mode-hook 'auto-complete-mode)
+; (require 'auto-complete)
+; (add-hook 'tuareg-mode-hook 'auto-complete-mode)
 ; (partial-completion-mode 1)
 
 ;;; Applications
