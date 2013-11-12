@@ -142,22 +142,6 @@
 
 (require 'printing)
 
-(defun dedukti-compilation-error-find-file ()
-  (save-excursion 
-    (re-search-backward "[a-zA-Z_/]+.dk")
-    (list (match-string 0))))
-
-(require 'compile)
-(add-to-list 'compilation-error-regexp-alist
-   '("^File \\(.+\\), line \\([0-9]+\\), characters \\([0-9]+\\)-\\([0-9]+\\):"
-     1 2 (3 . 4)))
-(add-to-list 'compilation-error-regexp-alist
-   '("^\\[l:\\([0-9]+\\);c:\\([0-9]+\\)\\].*\\[KO\\]"
-     nil 1 2))
-(add-to-list 'compilation-error-regexp-alist
-   '("^\\(WARNING|ERROR\\) line:\\([0-9]+\\) column:\\([0-9]+\\)"
-     nil 2 3))
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

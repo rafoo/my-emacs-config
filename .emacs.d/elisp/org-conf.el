@@ -110,6 +110,7 @@
          "^\\(\\\\begin{figure}\n\\)\\(\\\\caption.*\n\\)\\(\\(.*\n\\)*\\)\\(\\\\end{figure}\n$\\)"
          link)
     (replace-match "\\1\\3\\2\\5" nil nil link)))
+
 (when (boundp 'org-export-filter-special-block-functions)
   (add-to-list 'org-export-filter-special-block-functions 'my-latex-captions-bellow))
 
