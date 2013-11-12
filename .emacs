@@ -68,8 +68,8 @@
       read-buffer-completion-ignore-case t
       read-file-name-completion-ignore-case t )
 (icomplete-mode 1)
-(require 'auto-complete)
-(add-hook 'tuareg-mode-hook 'auto-complete-mode)
+; (require 'auto-complete)
+; (add-hook 'tuareg-mode-hook 'auto-complete-mode)
 ; (partial-completion-mode 1)
 
 ;;; Applications
@@ -161,6 +161,7 @@
  '(initial-scratch-message nil)
  '(list-directory-verbose-switches "-l")
  '(makefile-electric-keys t)
+ '(org-agenda-files (quote ("~/org/todo.org")))
  '(org-latex-default-packages-alist (quote (("" "fixltx2e" nil) ("" "graphicx" t) ("" "longtable" nil) ("" "float" nil) ("" "wrapfig" nil) ("" "soul" t) ("" "textcomp" t) ("" "marvosym" t) ("" "wasysym" t) ("" "latexsym" t) ("" "amssymb" t) ("" "hyperref" nil) "\\tolerance=1000")))
  '(org-export-latex-default-packages-alist (quote (("" "fixltx2e" nil) ("" "graphicx" t) ("" "longtable" nil) ("" "float" nil) ("" "wrapfig" nil) ("" "soul" t) ("" "textcomp" t) ("" "marvosym" t) ("" "wasysym" t) ("" "latexsym" t) ("" "amssymb" t) ("" "hyperref" nil) "\\tolerance=1000")))
  '(org-export-latex-packages-alist nil)
