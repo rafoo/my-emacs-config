@@ -1,4 +1,4 @@
-;;; dedukti.el --- Basics syntax highlighting for Dedukti files in GNU Emacs
+;;; dedukti-mode.el --- Basics syntax highlighting for Dedukti files in GNU Emacs
 
 ;; Copyright 2013 Raphaël Cauderlier
 
@@ -85,6 +85,6 @@ in the same order."
     '("^\\(WARNING|ERROR\\) line:\\([0-9]+\\) column:\\([0-9]+\\)"
       nil 2 3))
 
-(provide 'dedukti)
+(provide 'dedukti-mode)
 
-;;; dedukti.el ends here
+;;; dedukti-mode.el ends here
