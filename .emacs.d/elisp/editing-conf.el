@@ -5,8 +5,8 @@
 ;; (add-hook 'find-file-hook 'flymake-find-file-hook)
 
 ;; Auto-complete
-;(require 'auto-complete)
-;(add-hook 'prog-mode-hook 'auto-complete-mode)
+(require 'auto-complete)
+(add-hook 'prog-mode-hook 'auto-complete-mode)
 
 ;; Modes for special languages
 ;(require 'tuareg-conf) ; OCaml
