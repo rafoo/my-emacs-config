@@ -1,5 +1,21 @@
-;; Basics syntax highlighting for Dedukti files in GNU Emacs
-;; Author: Raphaël Cauderlier 
+;;; dedukti.el --- Basics syntax highlighting for Dedukti files in GNU Emacs
+
+;; Copyright 2013 Raphaël Cauderlier
+
+;; Author: Raphaël Cauderlier
+;; Version: 0.1
+;; License: CeCILL-B
+
+;;; Commentary:
+;; This file defines a major mode for editing Dedukti files.
+;; Dedukti is a type checker for the lambda-Pi-calculus modulo.
+;; It is a free software under the CeCILL-B license.
+;; Dedukti is available at the following url:
+;; <https://www.rocq.inria.fr/deducteam/Dedukti/>
+
+;; This major mode is defined using the generic major mode mechanism.
+
+;;; Code:
 
 (require 'generic-x)
 
@@ -70,3 +86,5 @@ in the same order."
       nil 2 3))
 
 (provide 'dedukti)
+
+;;; dedukti.el ends here
