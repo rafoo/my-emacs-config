@@ -168,6 +168,7 @@
  '(global-reveal-mode t)
  '(indent-tabs-mode nil)
  '(initial-scratch-message nil)
+ '(langtool-language-tool-jar "/home/cauderlier/bin/LanguageTool-2.3/languagetool-commandline.jar")
  '(list-directory-verbose-switches "-l")
  '(makefile-electric-keys t)
  '(org-agenda-files (quote ("~/org/todo.org")))
