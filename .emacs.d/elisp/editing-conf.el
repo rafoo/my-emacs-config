@@ -8,6 +8,12 @@
 (when (require 'auto-complete nil t)
   (add-hook 'prog-mode-hook 'auto-complete-mode))
 
+;; Enforce 80 columns
+(when (require 'column-enforce-mode nil t)
+  (add-hook 'prog-mode-hook 'column-enforce-mode))
+
+
+
 ;; Modes for special languages
 ;(require 'tuareg-conf) ; OCaml
 ;(require 'focalize) ; FoCaLiZe
