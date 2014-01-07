@@ -72,6 +72,9 @@
 ; (add-hook 'tuareg-mode-hook 'auto-complete-mode)
 ; (partial-completion-mode 1)
 
+(require 'ido)
+(ido-mode t)
+
 ;;; Applications
 
 (require 'erc-conf)
