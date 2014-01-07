@@ -141,6 +141,7 @@
 
 ;; Git
 (require 'magit nil t)
+(global-set-key (kbd "C-c m") 'magit-status)
 
 ;; Printing
 
