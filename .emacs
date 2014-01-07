@@ -158,6 +158,8 @@
  '(custom-safe-themes (quote ("fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a" "3d6b08cd1b1def3cc0bc6a3909f67475e5612dba9fa98f8b842433d827af5d30" "f61972772958e166cda8aaf0eba700aad4faa0b4101cee319e894e7a747645c9" default)))
  '(dired-listing-switches "-lrth --time-style=+%D%6R")
  '(ede-project-directories (quote ("/home/harry/wicd-mode")))
+ '(electric-pair-mode t)
+ '(electric-pair-pairs (quote ((34 . 34) (40 . 41) (123 . 125) (91 . 93))))
  '(glasses-uncapitalize-p t)
  '(global-reveal-mode t)
  '(indent-tabs-mode nil)
