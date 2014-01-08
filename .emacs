@@ -142,8 +142,8 @@
 (require 'editing-conf)
 
 ;; Git
-(require 'magit nil t)
-(global-set-key (kbd "C-c m") 'magit-status)
+(when (require 'magit nil t)
+  (global-set-key (kbd "C-c m") 'magit-status))
 
 ;; Printing
 
