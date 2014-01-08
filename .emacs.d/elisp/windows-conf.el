@@ -1,6 +1,11 @@
 ;; Configuration of Windows and panes look
 
 (set-scroll-bar-mode 'right)
+(setq
+  scroll-margin 0
+  scroll-conservatively 100000
+  scroll-preserve-screen-position 1)
+
 (add-hook
  'after-change-major-mode-hook
  (lambda () (setq indicate-buffer-boundaries 'right)) )

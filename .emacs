@@ -72,6 +72,12 @@
 ; (add-hook 'tuareg-mode-hook 'auto-complete-mode)
 ; (partial-completion-mode 1)
 
+(require 'ido)
+(ido-mode t)
+
+(when (require 'discover nil t)
+  (global-discover-mode 1))
+
 ;;; Applications
 
 (require 'erc-conf)
@@ -136,7 +142,8 @@
 (require 'editing-conf)
 
 ;; Git
-(require 'magit nil t)
+(when (require 'magit nil t)
+  (global-set-key (kbd "C-c m") 'magit-status))
 
 ;; Printing
 
@@ -147,19 +154,17 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(auth-source-save-behavior nil)
  '(backup-directory-alist (quote ((".*" . "./.bkp/"))))
- '(canlock-password "fa237fe1f7828a11d0a39636eeb88b2e97d29993")
- '(column-number-mode t)
  '(custom-enabled-themes (quote (zenburn)))
  '(custom-safe-themes (quote ("fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a" "3d6b08cd1b1def3cc0bc6a3909f67475e5612dba9fa98f8b842433d827af5d30" "f61972772958e166cda8aaf0eba700aad4faa0b4101cee319e894e7a747645c9" default)))
+ '(coq-load-path (quote ("/usr/local/lib/focalize" "/usr/local/lib/zenon")))
+ '(delete-selection-mode t)
  '(dired-listing-switches "-lrth --time-style=+%D%6R")
  '(ede-project-directories (quote ("/home/harry/wicd-mode")))
- '(glasses-uncapitalize-p t)
- '(global-reveal-mode t)
+ '(electric-pair-mode t)
+ '(electric-pair-pairs (quote ((34 . 34) (40 . 41) (123 . 125) (91 . 93))))
  '(indent-tabs-mode nil)
  '(initial-scratch-message nil)
- '(langtool-language-tool-jar "/home/cauderlier/bin/LanguageTool-2.3/languagetool-commandline.jar")
  '(list-directory-verbose-switches "-l")
  '(makefile-electric-keys t)
  '(org-agenda-files (quote ("~/zamok/org/todo.org" "~/org/todo.org")))
@@ -188,11 +193,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(font-lock-preprocessor-face ((t (:inherit font-lock-builtin-face :foreground "dark green"))))
- '(isabelle-quote-face ((((type x) (class color) (background light)) (:foreground "red"))) t)
- '(isabelle-string-face ((((type x) (class color) (background light)) (:background "lightblue" :foreground "springgreen4"))) t)
- '(unicode-tokens-fraktur-font-face ((t (:slant normal :weight normal :height 120 :width normal :foundry "bitstream" :family "IsabelleText"))) t)
- '(unicode-tokens-script-font-face ((t (:slant italic :weight normal :height 113 :width normal :foundry "unknown" :family "LMMathSymbols6"))) t)
- '(unicode-tokens-symbol-font-face ((t (:slant normal :weight normal :height 98 :width normal :foundry "bitstream" :family "IsabelleText"))) t))
+ )
 
 (require 'init-actions nil t)
 
