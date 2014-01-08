@@ -161,6 +161,7 @@
  '(delete-selection-mode t)
  '(dired-listing-switches "-lrth --time-style=+%D%6R")
  '(ede-project-directories (quote ("/home/harry/wicd-mode")))
+ '(electric-indent-mode t)
  '(electric-pair-mode t)
  '(electric-pair-pairs (quote ((34 . 34) (40 . 41) (123 . 125) (91 . 93))))
  '(indent-tabs-mode nil)
