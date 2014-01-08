@@ -155,9 +155,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(backup-directory-alist (quote ((".*" . "./.bkp/"))))
- '(custom-enabled-themes (quote (zenburn)))
- '(custom-safe-themes (quote ("fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a" "3d6b08cd1b1def3cc0bc6a3909f67475e5612dba9fa98f8b842433d827af5d30" "f61972772958e166cda8aaf0eba700aad4faa0b4101cee319e894e7a747645c9" default)))
  '(coq-load-path (quote ("/usr/local/lib/focalize" "/usr/local/lib/zenon")))
+ '(custom-enabled-themes (quote (zenburn)))
+ '(custom-safe-themes (quote ("f3d2144fed1adb27794a45e61166e98820ab0bbf3cc7ea708e4bf4b57447ee27" "fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a" "3d6b08cd1b1def3cc0bc6a3909f67475e5612dba9fa98f8b842433d827af5d30" "f61972772958e166cda8aaf0eba700aad4faa0b4101cee319e894e7a747645c9" default)))
  '(delete-selection-mode t)
  '(dired-listing-switches "-lrth --time-style=+%D%6R")
  '(ede-project-directories (quote ("/home/harry/wicd-mode")))
@@ -192,8 +192,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(font-lock-preprocessor-face ((t (:inherit font-lock-builtin-face :foreground "dark green"))))
- )
+ '(font-lock-preprocessor-face ((t (:inherit font-lock-builtin-face :foreground "dark green")))))
 
 (require 'init-actions nil t)
 
