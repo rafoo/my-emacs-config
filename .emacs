@@ -1,45 +1,32 @@
 ;; .emacs, GNU Emacs config file
 ;; see also .gnus.el for gnus news and mail reader config file
 
-;; Extra lisp libs
+;; Load-path
 (add-to-list 'load-path "~/elisp/") ;; Downloaded packages
 (add-to-list 'load-path "~/.emacs.d/elpa/") ;; Installed packages
 (add-to-list 'load-path "~/.emacs.d/elisp/") ;; Configuration
 
+;; Package management
 (when (require 'package nil t)
-  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-;  (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  (setq package-archives
+        '(("gnu" . "http://elpa.gnu.org/packages/")
+          ("org" . "http://orgmode.org/elpa/")
+          ("melpa" . "http://melpa.milkbox.net/packages/")))
   (package-initialize))
 
 (global-set-key (kbd "C-c p") 'list-packages)
 
+;; History
 (require 'desktop-conf)
-
 
 ;;; Display
 
 ;; Customizations depending on wheter emacs is in tty.
-;; tty are recognized by the number of available colors.
-(setq ttyp (not (display-graphic-p)))
-
-(when (display-graphic-p)
-;  (require 'color-theme-conf)
-  (require 'windows-conf))
+(if (display-graphic-p)
+    (require 'graphic-conf)
+  (require 'tty-conf))
 
 (require 'resize)
-
-;;; Bars and lines
-
-;; Menu bar
-(if (display-graphic-p)
-    (eval-after-load "menu-bar" '(require 'menu-bar+))
-  (menu-bar-mode 0) )
-
-;; Tool bar
-(when (display-graphic-p)
-  (add-hook 'after-change-major-mode-hook
-            (lambda () (tool-bar-mode 0))) )
 
 ;; Mode line
 (column-number-mode 1)
@@ -49,8 +36,6 @@
 
 ;;; Buffers
 
-;; uniquify buffer names according to their files paths
-;(setq uniquify-buffer-name-style 'forward nil (uniquify)) 
 ;; update buffer contents when their files change
 (global-auto-revert-mode 1)
 (global-visual-line-mode 1) ;; wrap long lines on words
@@ -61,18 +46,11 @@
                                      point-entered minibuffer-avoid-prompt
                                      face minibuffer-prompt) )
 
-;; Cursor
-(when (display-graphic-p)
-  (setq-default cursor-type 'bar))
-
 ;; Completion
 (setq completion-auto-help 'lazy
       read-buffer-completion-ignore-case t
       read-file-name-completion-ignore-case t )
 (icomplete-mode 1)
-; (require 'auto-complete)
-; (add-hook 'tuareg-mode-hook 'auto-complete-mode)
-; (partial-completion-mode 1)
 
 (require 'ido)
 (ido-mode t)
@@ -86,26 +64,6 @@
 (require 'emms-conf)
 (require 'eshell-conf)
 
-;; Couleurs du terminal dans le buffer *Shell Command Output*
-(when (display-graphic-p)
-  (require 'ansi-color)
-  (defadvice display-message-or-buffer (before ansi-color activate)
-    "Process ANSI color codes in shell output."
-    (let ((buf (ad-get-arg 0)))
-      (and (bufferp buf)
-           (string= (buffer-name buf) "*Shell Command Output*")
-           (with-current-buffer buf
-             (ansi-color-apply-on-region (point-min) (point-max))))))
-  ;; Et dans le buffer de compilation
-  (defun colorize-compilation-buffer ()
-    (let ((buffer-read-only))
-      (ansi-color-apply-on-region (point-min) (point-max))
-      ))
-  (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
-  )
-
-
-
 ;(require 'rudel-conf)
 (require 'org-conf)
 
@@ -113,7 +71,9 @@
 
 ;; firefox is iceweasel on Debian
 (let ((file "/usr/bin/iceweasel"))
-  (and (file-exists-p file) (file-executable-p file) (setq browse-url-firefox-programm "iceweasel")))
+  (and (file-exists-p file)
+       (file-executable-p file)
+       (setq browse-url-firefox-programm "iceweasel")))
 
 (if (require 'w3m nil t)
     (progn
@@ -124,7 +84,6 @@
 ;; File browser
 (setq dired-auto-revert-buffer t
       dired-dwim-target t ;; guess default target dir
-      dired-listing-switches "-lrth" ;; options passed to ls
 )
 
 
