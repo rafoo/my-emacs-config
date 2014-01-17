@@ -12,6 +12,8 @@
   (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
   (package-initialize))
 
+(global-set-key (kbd "C-c p") 'list-packages)
+
 (require 'desktop-conf)
 
 
@@ -197,6 +199,13 @@
  '(font-lock-preprocessor-face ((t (:inherit font-lock-builtin-face :foreground "dark green")))))
 
 (require 'init-actions nil t)
+
+(defun my-startup ()
+  "Visit my startup file."
+  (interactive)
+  (find-file "~/org/startup.org"))
+
+(global-set-key (kbd "<menu>") 'my-startup)
 
 ;; other interesting emacs features :
 ;; SES : tableur en elisp
