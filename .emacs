@@ -116,8 +116,6 @@
  ;; If there is more than one, they won't work right.
  '(backup-directory-alist (quote ((".*" . "./.bkp/"))))
  '(coq-load-path (quote ("/usr/local/lib/focalize" "/usr/local/lib/zenon")))
- '(custom-enabled-themes (quote (zenburn)))
- '(custom-safe-themes (quote ("9370aeac615012366188359cb05011aea721c73e1cb194798bc18576025cabeb" default)))
  '(delete-selection-mode t)
  '(dired-listing-switches "-lrth --time-style=+%D%6R")
  '(ede-project-directories (quote ("/home/harry/wicd-mode")))

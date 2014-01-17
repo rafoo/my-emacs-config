@@ -48,4 +48,7 @@
     ))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
+;; Color theme
+(load-theme 'zenburn t)
+
 (provide 'graphic-conf)
