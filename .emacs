@@ -111,7 +111,7 @@
  '(backup-directory-alist (quote ((".*" . "./.bkp/"))))
  '(coq-load-path (quote ("/usr/local/lib/focalize" "/usr/local/lib/zenon")))
  '(custom-enabled-themes (quote (zenburn)))
- '(custom-safe-themes (quote ("f3d2144fed1adb27794a45e61166e98820ab0bbf3cc7ea708e4bf4b57447ee27" "fc6e906a0e6ead5747ab2e7c5838166f7350b958d82e410257aeeb2820e8a07a" "3d6b08cd1b1def3cc0bc6a3909f67475e5612dba9fa98f8b842433d827af5d30" "f61972772958e166cda8aaf0eba700aad4faa0b4101cee319e894e7a747645c9" default)))
+ '(custom-safe-themes (quote ("9370aeac615012366188359cb05011aea721c73e1cb194798bc18576025cabeb" default)))
  '(delete-selection-mode t)
  '(dired-listing-switches "-lrth --time-style=+%D%6R")
  '(ede-project-directories (quote ("/home/harry/wicd-mode")))
