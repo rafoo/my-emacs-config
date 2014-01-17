@@ -103,6 +103,12 @@
 
 (require 'printing)
 
+;; Pairs matching
+(setq electric-pair-pairs '((?\" . ?\")
+                            (?\( . ?\))
+                            (?\{ . ?\})
+                            (?\[ . ?\])))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -117,7 +123,6 @@
  '(ede-project-directories (quote ("/home/harry/wicd-mode")))
  '(electric-indent-mode t)
  '(electric-pair-mode t)
- '(electric-pair-pairs (quote ((?\" . ?\") (?\( . ?\)) (?\{ . ?\}) (?\[ . ?\]))))
  '(indent-tabs-mode nil)
  '(initial-scratch-message nil)
  '(list-directory-verbose-switches "-l")
