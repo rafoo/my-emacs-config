@@ -46,14 +46,7 @@
                                      point-entered minibuffer-avoid-prompt
                                      face minibuffer-prompt) )
 
-;; Completion
-(setq completion-auto-help 'lazy
-      read-buffer-completion-ignore-case t
-      read-file-name-completion-ignore-case t )
-(icomplete-mode 1)
-
-(require 'ido)
-(ido-mode t)
+(require 'completion-conf)
 
 (when (require 'discover nil t)
   (global-discover-mode 1))
