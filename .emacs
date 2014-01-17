@@ -165,7 +165,7 @@
  '(ede-project-directories (quote ("/home/harry/wicd-mode")))
  '(electric-indent-mode t)
  '(electric-pair-mode t)
- '(electric-pair-pairs (quote ((34 . 34) (40 . 41) (123 . 125) (91 . 93))))
+ '(electric-pair-pairs (quote ((?\" . ?\") (?\( . ?\)) (?\{ . ?\}) (?\[ . ?\]))))
  '(indent-tabs-mode nil)
  '(initial-scratch-message nil)
  '(list-directory-verbose-switches "-l")
