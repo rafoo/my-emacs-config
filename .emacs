@@ -5,6 +5,7 @@
 (add-to-list 'load-path "~/elisp/") ;; Downloaded packages
 (add-to-list 'load-path "~/.emacs.d/elpa/") ;; Installed packages
 (add-to-list 'load-path "~/.emacs.d/elisp/") ;; Configuration
+(add-to-list 'load-path "~/wicd-mode/") ;; My wicd interface
 
 ;; Package management
 (when (require 'package nil t)
@@ -108,6 +109,9 @@
                             (?\( . ?\))
                             (?\{ . ?\})
                             (?\[ . ?\])))
+
+(when (require 'wicd-mode nil t)
+  (global-set-key (kbd "C-c w") 'wicd))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
