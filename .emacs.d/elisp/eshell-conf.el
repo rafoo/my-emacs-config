@@ -14,4 +14,6 @@
 ;; Activate compilation-shell-minor-mode to jump to files
 (add-hook 'shell-mode-hook 'compilation-shell-minor-mode)
 
+(global-set-key (kbd "C-c s") 'eshell)
+
 (provide 'eshell-conf)
