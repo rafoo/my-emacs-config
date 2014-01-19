@@ -20,6 +20,9 @@
 ;; History
 (require 'desktop-conf)
 
+;; Local configuration
+(require 'local-conf nil t)
+
 ;;; Display
 
 ;; Customizations depending on wheter emacs is in tty.
