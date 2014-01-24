@@ -1,5 +1,8 @@
-;; .emacs, GNU Emacs config file
+;;; .emacs --- GNU Emacs config file
 ;; see also .gnus.el for gnus news and mail reader config file
+;;; Commentary:
+;; This is not part of Emacs.
+;;; Code:
 
 ;; Load-path
 (add-to-list 'load-path "~/elisp/") ;; Downloaded packages
@@ -25,7 +28,7 @@
 
 ;;; Display
 
-;; Customizations depending on wheter emacs is in tty.
+;; Customizations depending on wheter Emacs is in tty.
 (if (display-graphic-p)
     (require 'graphic-conf)
   (require 'tty-conf))
@@ -177,3 +180,5 @@
 ;; vc-mode -> Version Control
 ;; org-mode -> TODO lists
 ;; WoMan
+
+;;; .emacs ends here
