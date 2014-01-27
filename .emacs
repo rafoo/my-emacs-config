@@ -119,6 +119,8 @@
 (when (require 'wicd-mode nil t)
   (global-set-key (kbd "C-c w") 'wicd))
 
+(require 'xkcd nil t)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
