@@ -127,15 +127,18 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auth-source-save-behavior nil)
  '(backup-directory-alist (quote ((".*" . "./.bkp/"))))
  '(coq-load-path (quote ("/usr/local/lib/focalize" "/usr/local/lib/zenon")))
  '(dedukti-compile-options (quote ("-nc" "-e" "-r")))
  '(dedukti-check-options (quote ("-nc" "-r")))
+ '(default-input-method "TeX")
  '(delete-selection-mode t)
  '(dired-listing-switches "-lrth --time-style=+%D%6R")
  '(ede-project-directories (quote ("/home/harry/wicd-mode")))
  '(electric-indent-mode t)
  '(electric-pair-mode t)
+ '(erc-track-switch-direction (quote importance))
  '(indent-tabs-mode nil)
  '(initial-scratch-message nil)
  '(list-directory-verbose-switches "-l")
