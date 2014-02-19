@@ -3,4 +3,4 @@
 ;; Menu bar
 (menu-bar-mode 0)
 
-(provide tty-conf)
+(provide 'tty-conf)
