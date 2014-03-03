@@ -133,6 +133,8 @@
  '(dedukti-compile-options (quote ("-nc" "-e" "-r")))
  '(dedukti-reduction-command "#WNF %s.")
  '(delete-selection-mode t)
+ '(desktop-files-not-to-save "\\(^/[^/:]*:\\|(ftp)$\\)\\|\\.\\(gpg\\|v\\)$")
+ '(desktop-save t)
  '(dired-listing-switches "-lrth --time-style=+%D%6R")
  '(ede-project-directories (quote ("/home/harry/wicd-mode")))
  '(electric-indent-mode t)
