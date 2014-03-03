@@ -156,7 +156,7 @@
  '(package-archive-exclude-alist (quote (("melpa" org))))
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
- '(safe-local-variable-values (quote ((coq-prog-name . "~/pkg/focalize-0.6.0/bin/coqtop"))))
+ '(safe-local-variable-values (quote ((encoding . utf-8) (coq-prog-name . "~/pkg/focalize-0.6.0/bin/coqtop"))))
  '(show-paren-mode t)
  '(underline-minimum-offset 0)
  '(visible-bell t)
