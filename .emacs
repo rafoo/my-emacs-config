@@ -9,6 +9,7 @@
 (add-to-list 'load-path "~/.emacs.d/elpa/") ;; Installed packages
 (add-to-list 'load-path "~/.emacs.d/elisp/") ;; Configuration
 (add-to-list 'load-path "~/wicd-mode/") ;; My wicd interface
+(add-to-list 'load-path "~/.emacs.d/elpa/auctex-11.87.3/") ;; Should not be necessary
 
 ;; Package management
 (when (require 'package nil t)
