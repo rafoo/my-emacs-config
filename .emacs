@@ -163,6 +163,7 @@
  '(recentf-mode t)
  '(safe-local-variable-values (quote ((encoding . utf-8) (coq-prog-name . "~/pkg/focalize-0.6.0/bin/coqtop"))))
  '(show-paren-mode t)
+ '(show-trailing-whitespace t)
  '(underline-minimum-offset 0)
  '(visible-bell t)
  '(w3m-search-default-engine "duckduckgo")
