@@ -15,6 +15,9 @@
   (setq emms-mode-line-titlebar-function
 	(lambda ()
 	  (emms-track-description (emms-playlist-current-selected-track))))
+  (require 'emms-lyrics)
+  (emms-lyrics 1)
+  (setq emms-lyrics-display-on-minibuffer t)
   )
 
 (provide 'emms-conf)
