@@ -30,7 +30,9 @@
       erc-user-full-name "Raphaël Cauderlier"
       ;erc-warn-about-blank-lines nil
       erc-whowas-on-nosuchnick t ;; if nick is unknown, use whowas instead of whois
-      erc-join-buffer 'window-noselect)
+      erc-join-buffer 'window-noselect
+      erc-track-switch-direction 'importance)
+
 (add-hook 'erc-mode-hook (lambda () (global-hl-line-mode 1))) ;; highlight current line
 
 (setq erc-autojoin-channels-alist

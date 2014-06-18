@@ -5,14 +5,14 @@
 ;;; Code:
 
 ;; Load-path
-(add-to-list 'load-path "~/elisp/") ;; Downloaded packages
-(add-to-list 'load-path "~/.emacs.d/elpa/") ;; Installed packages
-(add-to-list 'load-path "~/.emacs.d/elisp/") ;; Configuration
-(add-to-list 'load-path "~/git/wicd-mode/") ;; My wicd interface
-(add-to-list 'load-path "~/.emacs.d/elpa/auctex-11.87.3/") ;; Should not be necessary
+(add-to-list 'load-path "~/elisp/")          ; Downloaded packages
+(add-to-list 'load-path "~/.emacs.d/elpa/")  ; Installed packages
+(add-to-list 'load-path "~/.emacs.d/elisp/") ; Configuration
+(add-to-list 'load-path "~/git/wicd-mode/")  ; My wicd interface
+(add-to-list 'load-path "~/.emacs.d/elpa/auctex-11.87.3/") ; Should not be necessary
 
 ;; Package management
-(when (require 'package nil t)
+(when (require 'package nil t)          ; Don't complain on Emacs < 23
   (setq package-archives
         '(("gnu" . "http://elpa.gnu.org/packages/")
           ("org" . "http://orgmode.org/elpa/")
@@ -25,7 +25,7 @@
 ;; History
 (require 'desktop-conf)
 
-;; Local configuration
+;; Per-host, unversionized configuration
 (require 'local-conf nil t)
 
 ;;; Display
@@ -35,7 +35,7 @@
     (require 'graphic-conf)
   (require 'tty-conf))
 
-(require 'resize)
+(require 'resize)                       ; resize windows with C-c +
 
 ;; Mode line
 (column-number-mode 1)
@@ -45,15 +45,14 @@
 
 ;;; Buffers
 
-;; update buffer contents when their files change
-(global-auto-revert-mode 1)
-(global-visual-line-mode 1) ;; wrap long lines on words
+(global-auto-revert-mode 1)     ; update buffer contents when their files change
+(global-visual-line-mode 1)     ; wrap long lines on words
 
 ;; Minibuffer
 (setq minibuffer-auto-raise t
       minibuffer-prompt-properties '(read-only t
                                      point-entered minibuffer-avoid-prompt
-                                     face minibuffer-prompt) )
+                                     face minibuffer-prompt))
 
 (require 'completion-conf)
 
@@ -79,16 +78,40 @@
 
 (if (require 'w3m nil t)
     (progn
-      (setq browse-url-browser-function 'w3m-browse-url)
+      (setq browse-url-browser-function 'w3m-browse-url
+            w3m-search-default-engine "duckduckgo"
+            w3m-search-engine-alist
+            '(("debian-pkg"
+               "http://packages.debian.org/cgi-bin/search_contents.pl?word=%s"
+               nil)
+              ("debian-bts"
+               "http://bugs.debian.org/cgi-bin/pkgreport.cgi?archive=yes&pkg=%s"
+               nil)
+              ("emacswiki"
+               "http://www.emacswiki.org/cgi-bin/wiki?search=%s"
+               nil)
+              ("wikipedia-en"
+               "http://en.wikipedia.org/wiki/Special:Search?search=%s"
+               nil)
+              ("wikipedia-fr"
+               "http://fr.wikipedia.org/wiki/Special:Search?search=%s"
+               utf-8)
+              ("ja.wikipedia"
+               "http://ja.wikipedia.org/wiki/Special:Search?search=%s"
+               utf-8)
+              ("duckduckgo" "https://duckduckgo.com/?q=%s" utf-8)
+              ("wiki"
+               "http://wiki.crans.org/?action=fullsearch&value=%s"
+               utf-8)
+              ("wikoeur"
+               "http://pimeys.fr/wikoeur/?action=fullsearch&value=%s"
+               utf-8)))
       (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t))
   (setq browse-url-browser-function 'browse-url-default-browser))
 
 ;; File browser
 (setq dired-auto-revert-buffer t
-      dired-dwim-target t ;; guess default target dir
-)
-
-
+      dired-dwim-target t) ; guess default target dir
 
 ;; Spell checking
 (setq ispell-program-name "aspell")
@@ -129,53 +152,27 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ac-ignore-case nil)
  '(auth-source-save-behavior nil)
  '(backup-directory-alist (quote ((".*" . "./.bkp/"))))
- '(coq-load-path (quote ("/usr/local/lib/focalize" "/usr/local/lib/zenon")))
- '(dedukti-check-options (quote ("-nc" "-r")))
- '(dedukti-compile-options (quote ("-nc" "-e" "-r")))
- '(dedukti-reduction-command "#WNF %s.")
  '(default-input-method "TeX")
  '(delete-selection-mode t)
- '(desktop-files-not-to-save "\\(^/[^/:]*:\\|(ftp)$\\)\\|\\.\\(gpg\\|v\\)$")
- '(desktop-save t)
  '(dired-listing-switches "-lrth --time-style=+%D%6R")
  '(ede-project-directories (quote ("/home/harry/wicd-mode")))
  '(electric-indent-mode t)
  '(electric-pair-mode t)
- '(erc-track-switch-direction (quote importance))
  '(indent-tabs-mode nil)
  '(initial-scratch-message nil)
  '(list-directory-verbose-switches "-l")
  '(makefile-electric-keys t)
- '(org-agenda-files (quote ("~/zamok/org/todo.org" "~/org/todo.org")))
- '(org-agenda-span 14)
- '(org-export-latex-default-packages-alist (quote (("" "fixltx2e" nil) ("" "graphicx" t) ("" "longtable" nil) ("" "float" nil) ("" "wrapfig" nil) ("" "soul" t) ("" "textcomp" t) ("" "marvosym" t) ("" "wasysym" t) ("" "latexsym" t) ("" "amssymb" t) ("" "hyperref" nil) "\\tolerance=1000")))
- '(org-export-latex-packages-alist nil)
- '(org-latex-default-packages-alist (quote (("" "fixltx2e" nil) ("" "graphicx" t) ("" "longtable" nil) ("" "float" nil) ("" "wrapfig" nil) ("" "soul" t) ("" "textcomp" t) ("" "marvosym" t) ("" "wasysym" t) ("" "latexsym" t) ("" "amssymb" t) ("" "hyperref" nil) "\\tolerance=1000")))
- '(org-latex-listings t)
- '(org-latex-packages-alist nil)
- '(org-latex-pdf-process (quote ("xelatex -interaction nonstopmode -output-directory %o %f" "bibtex %b" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
- '(org-latex-to-pdf-process (quote ("xelatex -interaction nonstopmode -output-directory %o %f" "bibtex %b" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
- '(org-mobile-directory "~/zamok/org/mobile/")
- '(org-modules (quote (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m org-special-blocks)))
- '(org-src-fontify-natively t)
  '(package-archive-exclude-alist (quote (("melpa" org))))
- '(proof-disappearing-proofs t)
- '(proof-electric-terminator-enable t)
- '(proof-three-window-mode-policy (quote hybrid))
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
- '(safe-local-variable-values (quote ((encoding . utf-8) (coq-prog-name . "~/pkg/focalize-0.6.0/bin/coqtop"))))
+ '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(underline-minimum-offset 0)
  '(visible-bell t)
- '(w3m-search-default-engine "duckduckgo")
- '(w3m-search-engine-alist (quote (("debian-pkg" "http://packages.debian.org/cgi-bin/search_contents.pl?directories=yes&arch=i386&version=unstable&case=insensitive&word=%s" nil) ("debian-bts" "http://bugs.debian.org/cgi-bin/pkgreport.cgi?archive=yes&pkg=%s" nil) ("emacswiki" "http://www.emacswiki.org/cgi-bin/wiki?search=%s" nil) ("wikipedia-en" "http://en.wikipedia.org/wiki/Special:Search?search=%s" nil) ("wikipedia-fr" "http://fr.wikipedia.org/wiki/Special:Search?search=%s" utf-8) ("ja.wikipedia" "http://ja.wikipedia.org/wiki/Special:Search?search=%s" utf-8) ("duckduckgo" "https://duckduckgo.com/?q=%s" utf-8) ("wiki" " http://wiki.crans.org/?action=fullsearch&value=%s&titlesearch=Titres" utf-8) ("wikoeur" "http://pimeys.fr/wikoeur/?action=fullsearch&value=%s&titlesearch=Titres" utf-8))))
- '(which-function-mode t)
- '(wicd-wireless-filter ".*"))
+ '(which-function-mode t))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

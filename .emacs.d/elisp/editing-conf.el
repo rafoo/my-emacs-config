@@ -4,10 +4,6 @@
 ;; (require 'flymake)
 ;; (add-hook 'find-file-hook 'flymake-find-file-hook)
 
-;; Auto-complete
-(when (require 'auto-complete nil t)
-  (add-hook 'prog-mode-hook 'auto-complete-mode))
-
 ;; Enforce 80 columns
 (when (require 'column-enforce-mode nil t)
   (add-hook 'prog-mode-hook 'column-enforce-mode))
@@ -22,5 +18,7 @@
 (require 'org-conf) ; Org mode
 ; (require 'isabelle) ; Isabelle
 (require 'python-conf)
+
+(require 'coq-conf)
 
 (provide 'editing-conf)

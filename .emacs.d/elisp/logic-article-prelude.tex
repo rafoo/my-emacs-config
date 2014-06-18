@@ -1,0 +1,58 @@
+\documentclass{llncs}
+[NO-DEFAULT-PACKAGES]
+\usepackage{amsmath}
+% \usepackage{a4wide}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{soul}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\usepackage{mathspec}
+\usepackage{unicode-math}
+\setallmainfonts{FreeSerif}
+\setmathfont{xits-math.otf}
+% \usepackage[french]{babel}
+\usepackage{bussproofs}
+\newcommand{\myUIC}[3]
+{\mbox{
+    \AxiomC{#2}
+    \RightLabel{\scriptsize(#1)}
+    \UnaryInfC{#3}
+    \DisplayProof}}
+\newcommand{\myBIC}[4]
+{\mbox{
+    \AxiomC{#2}
+    \AxiomC{#3}
+    \RightLabel{\scriptsize(#1)}
+    \BinaryInfC{#4}
+    \DisplayProof}}
+\newcommand{\myTIC}[5]
+{\mbox{
+    \AxiomC{#2}
+    \AxiomC{#3}
+    \AxiomC{#4}
+    \RightLabel{\scriptsize(#1)}
+    \TrinaryInfC{#5}
+    \DisplayProof}}
+\newcommand{\myQIC}[6]
+{\mbox{
+    \AxiomC{#2}
+    \AxiomC{#3}
+    \AxiomC{#4}
+    \AxiomC{#5}
+    \RightLabel{\scriptsize(#1)}
+    \QuaternaryInfC{#6}
+    \DisplayProof}}
+\usepackage{setspace}
+\usepackage{framed}
+\newenvironment{infset}
+{\begin{center}\begin{framed}\setstretch{3}}
+    {\end{framed}\end{center}}
