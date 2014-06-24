@@ -27,4 +27,12 @@
 (define-key 'help-command (kbd "C-k") 'find-function-on-key)
 (define-key 'help-command (kbd "C-v") 'find-variable)
 
+;; Spell checking
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
+;; Checking
+(when (fboundp 'flycheck-mode)
+  (add-hook 'prog-mode-hook 'flycheck-mode))
+
 (provide 'editing-conf)
