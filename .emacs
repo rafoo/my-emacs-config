@@ -32,7 +32,8 @@
     (require 'graphic-conf)
   (require 'tty-conf))
 
-(require 'resize)                       ; resize windows with C-c +
+(autoload 'v-resize "resize" 'interactive nil) ; resize windows with C-c +
+(global-set-key "\C-c+" 'v-resize)
 
 ;; Mode line
 (column-number-mode 1)
@@ -58,12 +59,20 @@
 
 ;;; Applications
 
-(require 'erc-conf)
-(require 'emms-conf)
-(require 'eshell-conf)
+(eval-after-load "erc"
+  '(require 'erc-conf))
 
-;(require 'rudel-conf)
-(require 'org-conf)
+(eval-after-load "emms"
+  '(require 'emms-conf))
+
+(eval-after-load "eshell"
+  '(require 'eshell-conf))
+
+(eval-after-load "rudel"
+  '(require 'rudel-conf))
+
+(eval-after-load "org"
+  '(require 'org-conf))
 
 ;; Web browser
 
@@ -73,64 +82,62 @@
        (file-executable-p file)
        (setq browse-url-firefox-programm "iceweasel")))
 
-(if (require 'w3m nil t)
-    (progn
-      (setq browse-url-browser-function 'w3m-browse-url
-            w3m-search-default-engine "duckduckgo"
-            w3m-search-engine-alist
-            '(("debian-pkg"
-               "http://packages.debian.org/cgi-bin/search_contents.pl?word=%s"
-               nil)
-              ("debian-bts"
-               "http://bugs.debian.org/cgi-bin/pkgreport.cgi?archive=yes&pkg=%s"
-               nil)
-              ("emacswiki"
-               "http://www.emacswiki.org/cgi-bin/wiki?search=%s"
-               nil)
-              ("wikipedia-en"
-               "http://en.wikipedia.org/wiki/Special:Search?search=%s"
-               nil)
-              ("wikipedia-fr"
-               "http://fr.wikipedia.org/wiki/Special:Search?search=%s"
-               utf-8)
-              ("ja.wikipedia"
-               "http://ja.wikipedia.org/wiki/Special:Search?search=%s"
-               utf-8)
-              ("duckduckgo" "https://duckduckgo.com/?q=%s" utf-8)
-              ("wiki"
-               "http://wiki.crans.org/?action=fullsearch&value=%s"
-               utf-8)
-              ("wikoeur"
-               "http://pimeys.fr/wikoeur/?action=fullsearch&value=%s"
-               utf-8)))
-      (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t))
-  (setq browse-url-browser-function 'browse-url-default-browser))
+(setq browse-url-browser-function 'browse-url-default-browser)
+(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." 'interactive)
+(eval-after-load "w3m"
+  '(setq browse-url-browser-function 'w3m-browse-url
+         w3m-search-default-engine "duckduckgo"
+         w3m-search-engine-alist
+         '(("debian-pkg"
+            "http://packages.debian.org/cgi-bin/search_contents.pl?word=%s"
+            nil)
+           ("debian-bts"
+            "http://bugs.debian.org/cgi-bin/pkgreport.cgi?archive=yes&pkg=%s"
+            nil)
+           ("emacswiki"
+            "http://www.emacswiki.org/cgi-bin/wiki?search=%s"
+            nil)
+           ("wikipedia-en"
+            "http://en.wikipedia.org/wiki/Special:Search?search=%s"
+            nil)
+           ("wikipedia-fr"
+            "http://fr.wikipedia.org/wiki/Special:Search?search=%s"
+            utf-8)
+           ("ja.wikipedia"
+            "http://ja.wikipedia.org/wiki/Special:Search?search=%s"
+            utf-8)
+           ("duckduckgo" "https://duckduckgo.com/?q=%s" utf-8)
+           ("wiki"
+            "http://wiki.crans.org/?action=fullsearch&value=%s"
+            utf-8)
+           ("wikoeur"
+            "http://pimeys.fr/wikoeur/?action=fullsearch&value=%s"
+            utf-8))))
 
 ;; File browser
-(setq dired-auto-revert-buffer t
-      dired-dwim-target t) ; guess default target dir
+(eval-after-load "dired"
+  '(setq dired-auto-revert-buffer t
+         dired-dwim-target t)) ; guess default target dir
 
 ;; Spell checking
-(setq ispell-program-name "aspell")
+(eval-after-load "ispell"
+  '(setq ispell-program-name "aspell"))
 
 ;; Net-utils
-(setq arp-program "/usr/sbin/arp"
-      ifconfig-program "/sbin/ifconfig"
-      iwconfig-program "/sbin/iwconfig"
-      iwconfig-program-options '("wlan0")
-      iwlist-program "/sbin/iwlist"
-      iwlist-program-options '("wlan0" "scan"))
+(eval-after-load "net-utils"
+  '(setq arp-program "/usr/sbin/arp"
+         ifconfig-program "/sbin/ifconfig"
+         iwconfig-program "/sbin/iwconfig"
+         iwconfig-program-options '("wlan0")
+         iwlist-program "/sbin/iwlist"
+         iwlist-program-options '("wlan0" "scan")))
 
 ;; Editing
 (require 'editing-conf)
 
 ;; Git
-(when (require 'magit nil t)
-  (global-set-key (kbd "C-c g") 'magit-status))
-
-;; Printing
-
-(require 'printing)
+(eval-after-load "magit"
+  '(global-set-key (kbd "C-c g") 'magit-status))
 
 ;; Pairs matching
 (setq electric-pair-pairs '((?\" . ?\")
@@ -138,11 +145,11 @@
                             (?\{ . ?\})
                             (?\[ . ?\])))
 
-(when (require 'wicd-mode nil t)
-  (global-set-key (kbd "C-c w") 'wicd))
+(eval-after-load "wicd-mode"
+  '(global-set-key (kbd "C-c w") 'wicd))
 
-(when (require 'xkcd nil t)
-  (global-set-key (kbd "C-c x") 'xkcd))
+(eval-after-load "xkcd"
+  '(global-set-key (kbd "C-c x") 'xkcd))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

@@ -11,13 +11,6 @@
 in place of `global-mode-string'."
   (var-subst global-mode-string global-header-string (apply fun args)) )
 
-;; (defmacro advice-header (fun)
-;;   (list
-;;    'defadvice
-;;    fun
-;;    (list 'around 'header 'activate)
-;;    (list 'var-subst 'global-mode-string 'global-header-string 'ad-do-it) ) )
-
 ;;; Global information
 
 ;; Time
@@ -29,16 +22,10 @@ in place of `global-mode-string'."
         display-time-mail-string "" )
   (apply-header 'display-time-mode 1) )
 
-;; Battery usage
-;(when (require 'battery nil t)
-;  (apply-header 'display-battery-mode 1))
-
 ;; Wireless network
 (when (require 'wireless nil t)
   (setq wireless-mode-line-format "[%n:%k,%l,%s]")
   (apply-header 'display-wireless-mode 1))
-
-;; TODO wicd-mode
 
 ;;; More header-line
 
