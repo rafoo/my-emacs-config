@@ -65,6 +65,13 @@
 (eval-after-load "emms"
   '(require 'emms-conf))
 
+(autoload 'eshell-in-other-window "eshell-conf")
+(global-set-key (kbd "<s-return>") 'eshell-in-other-window)
+(global-set-key (kbd "C-c s") 'eshell)
+
+;; Activate compilation-shell-minor-mode to jump to files
+(add-hook 'shell-mode-hook 'compilation-shell-minor-mode)
+
 (eval-after-load "eshell"
   '(require 'eshell-conf))
 
