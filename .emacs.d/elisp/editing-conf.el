@@ -12,7 +12,7 @@
 (eval-after-load "tuareg"
   '(require 'tuareg-conf)) ; OCaml
 ;(require 'focalize) ; FoCaLiZe
-(eval-after-load "auctex"
+(eval-after-load "tex"
   '(require 'latex-conf)) ; LaTeX
 ; (require 'isabelle) ; Isabelle
 (eval-after-load "python"

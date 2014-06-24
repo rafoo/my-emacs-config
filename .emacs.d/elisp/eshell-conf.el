@@ -18,9 +18,6 @@
                             eshell-term
                             eshell-unix))
 
-;; Activate compilation-shell-minor-mode to jump to files
-(add-hook 'shell-mode-hook 'compilation-shell-minor-mode)
-
 (defvar eshell-before-wconf nil
   "Window configuration recorded by `eshell-in-other-window'
 and restored by `eshell-exit'.")
