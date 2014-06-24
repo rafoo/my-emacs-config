@@ -21,21 +21,16 @@
 ;; Activate compilation-shell-minor-mode to jump to files
 (add-hook 'shell-mode-hook 'compilation-shell-minor-mode)
 
-(global-set-key (kbd "C-c s") 'eshell)
-
-
-
 (defvar eshell-before-wconf nil
   "Window configuration recorded by `eshell-in-other-window'
 and restored by `eshell-exit'.")
 
 (defun eshell-in-other-window ()
+  "Save window configuration and start eshell in other window."
   (interactive)
   (setq eshell-before-wconf (current-window-configuration))
   (with-current-buffer (pop-to-buffer nil)
     (eshell)))
-
-(global-set-key (kbd "<s-return>") 'eshell-in-other-window)
 
 (defun eshell-exit ()
   (interactive)
@@ -53,7 +48,6 @@ and restored by `eshell-exit'.")
             (local-set-key
               (kbd "C-d")
               'eshell-exit)))
-
 
 (provide 'eshell-conf)
 ;;; eshell-conf.el ends here
