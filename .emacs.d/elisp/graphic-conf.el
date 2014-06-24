@@ -29,7 +29,7 @@
       (setq hcz-set-cursor-type-buffer (buffer-name)))
     )
   )
-(add-hook 'post-command-hook 'hcz-set-cursor-type-according-to-mode) 
+(add-hook 'post-command-hook 'hcz-set-cursor-type-according-to-mode)
 
 ;; Couleurs du terminal dans le buffer *Shell Command Output*
 (require 'ansi-color)

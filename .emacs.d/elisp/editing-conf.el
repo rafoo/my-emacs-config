@@ -5,7 +5,7 @@
 ;; (add-hook 'find-file-hook 'flymake-find-file-hook)
 
 ;; Enforce 80 columns
-(when (require 'column-enforce-mode nil t)
+(when (fboundp 'column-enforce-mode)
   (add-hook 'prog-mode-hook 'column-enforce-mode))
 
 ;; Modes for special languages

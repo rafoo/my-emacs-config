@@ -12,7 +12,7 @@
 (ido-mode t)
 
 ;; Auto-complete
-(when (require 'auto-complete nil t)
+(when (fboundp 'auto-complete)
   (add-hook 'prog-mode-hook 'auto-complete-mode)
   (setq ac-ignore-case nil))
 
