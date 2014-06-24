@@ -25,9 +25,6 @@
 ;; History
 (require 'desktop-conf)
 
-;; Per-host, unversionized configuration
-(require 'local-conf nil t)
-
 ;;; Display
 
 ;; Customizations depending on wheter Emacs is in tty.
@@ -189,6 +186,9 @@
   (find-file "~/org/startup.org"))
 
 (global-set-key (kbd "<menu>") 'my-startup)
+
+;; Per-host, unversionized configuration
+(require 'local-conf nil t)
 
 ;; other interesting emacs features :
 ;; SES : tableur en elisp
