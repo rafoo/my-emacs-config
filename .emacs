@@ -11,6 +11,15 @@
 (add-to-list 'load-path "~/git/wicd-mode/")  ; My wicd interface
 (add-to-list 'load-path "~/.emacs.d/elpa/auctex-11.87.3/") ; Should not be necessary
 
+(defmacro my-with-persp (name &rest body)
+  "Switch to the perspective given by NAME and evaluate BODY."
+  (if (fboundp 'persp-mode)             ; persp library available
+      `(progn
+         (persp-mode 1)
+         (persp-switch ,name)
+         ,@body)
+    body))
+
 ;; Package management
 (when (require 'package nil t)          ; Don't complain on Emacs < 23
   (setq package-archives
@@ -20,7 +29,12 @@
           ("marmalade" . "http://marmalade-repo.org/packages/")))
   (package-initialize))
 
-(global-set-key (kbd "C-c p") 'list-packages)
+(defun persp-list-packages ()
+  "List packages in a new perspective if possible."
+  (interactive)
+  (my-with-persp "packages" (list-packages)))
+
+(global-set-key (kbd "C-c p") 'persp-list-packages)
 
 ;; History
 (require 'desktop-conf)
@@ -46,8 +60,14 @@
 (global-auto-revert-mode 1)     ; update buffer contents when their files change
 (global-visual-line-mode 1)     ; wrap long lines on words
 
-;; Rebind C-x b to ibuffer, an improved buffer list
-(global-set-key (kbd "C-x b") 'ibuffer)
+;; Buffers listing
+(defun persp-ibuffer ()
+  "Run Ibuffer in a dedicated perspective"
+  (interactive)
+  (my-with-persp "ibuffer" (ibuffer)))
+
+;; Rebind C-x C-b to ibuffer, an improved buffer list
+(global-set-key (kbd "C-x C-b") 'persp-ibuffer)
 
 ;; Minibuffer
 (setq minibuffer-auto-raise t
@@ -70,7 +90,12 @@
 
 (autoload 'eshell-in-other-window "eshell-conf")
 (global-set-key (kbd "<s-return>") 'eshell-in-other-window)
-(global-set-key (kbd "C-c s") 'eshell)
+
+(defun persp-eshell ()
+  (interactive)
+  (my-with-persp "eshell" (eshell)))
+
+(global-set-key (kbd "C-c s") 'persp-eshell)
 
 ;; Activate compilation-shell-minor-mode to jump to files
 (add-hook 'shell-mode-hook 'compilation-shell-minor-mode)
@@ -179,7 +204,6 @@
  '(list-directory-verbose-switches "-l")
  '(makefile-electric-keys t)
  '(package-archive-exclude-alist (quote (("melpa" org))))
- '(persp-mode t)
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
  '(safe-local-variable-values (quote ((encoding . utf-8))))
@@ -201,7 +225,7 @@
 (defun my-startup ()
   "Visit my startup file."
   (interactive)
-  (find-file "~/org/startup.org"))
+  (my-with-persp "main" (find-file "~/org/startup.org")))
 
 (global-set-key (kbd "<menu>") 'my-startup)
 
