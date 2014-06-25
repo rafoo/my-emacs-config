@@ -33,7 +33,7 @@
   (require 'tty-conf))
 
 (autoload 'v-resize "resize" 'interactive nil) ; resize windows with C-c +
-(global-set-key "\C-c+" 'v-resize)
+(global-set-key (kbd "C-c +") 'v-resize)
 
 ;; Mode line
 (column-number-mode 1)
