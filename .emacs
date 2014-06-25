@@ -77,8 +77,8 @@
 
 (require 'completion-conf)
 
-(when (require 'discover nil t)
-  (global-discover-mode 1))
+;; (when (require 'discover nil t)
+;;   (global-discover-mode 1))
 
 ;;; Applications
 
