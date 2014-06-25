@@ -176,6 +176,7 @@
  '(list-directory-verbose-switches "-l")
  '(makefile-electric-keys t)
  '(package-archive-exclude-alist (quote (("melpa" org))))
+ '(persp-mode t)
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
  '(safe-local-variable-values (quote ((encoding . utf-8))))
