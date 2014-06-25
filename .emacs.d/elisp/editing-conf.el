@@ -27,6 +27,9 @@
 (define-key 'help-command (kbd "C-k") 'find-function-on-key)
 (define-key 'help-command (kbd "C-v") 'find-variable)
 
+;; Iedit-mode
+(global-set-key (kbd "C-;") 'iedit-mode)
+
 ;; Spell checking
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
