@@ -171,8 +171,7 @@
 (require 'editing-conf)
 
 ;; Git
-(eval-after-load "magit"
-  '(global-set-key (kbd "C-c g") 'magit-status))
+(global-set-key (kbd "C-c g") 'magit-status)
 
 ;; Pairs matching
 (setq electric-pair-pairs '((?\" . ?\")
