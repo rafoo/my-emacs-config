@@ -185,6 +185,9 @@
 (eval-after-load "xkcd"
   '(global-set-key (kbd "C-c x") 'xkcd))
 
+(require 'zone)
+(zone-when-idle 120)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
