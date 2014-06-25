@@ -46,6 +46,9 @@
 (global-auto-revert-mode 1)     ; update buffer contents when their files change
 (global-visual-line-mode 1)     ; wrap long lines on words
 
+;; Rebind C-x b to ibuffer, an improved buffer list
+(global-set-key (kbd "C-x b") 'ibuffer)
+
 ;; Minibuffer
 (setq minibuffer-auto-raise t
       minibuffer-prompt-properties '(read-only t
