@@ -7,6 +7,7 @@
 (eval-after-load "menu-bar" '(require 'menu-bar+))
 
 ;; Tool-bar
+(tool-bar-mode 0)
 (add-hook 'after-change-major-mode-hook
           (lambda () (tool-bar-mode 0)))
 
@@ -49,8 +50,6 @@
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 ;; Color theme
-(defun load-zenburn ()
-  (load-theme 'zenburn t))
-(add-hook 'after-init-hook 'load-zenburn)
+(load-theme 'zenburn t)
 
 (provide 'graphic-conf)
