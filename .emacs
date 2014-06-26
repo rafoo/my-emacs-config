@@ -27,9 +27,9 @@ If the perspective library is not available, just evaluate BODY."
 If KEY is non nil, bind it to this command.
 If FIRST-FORM is non nil,
 call it before FORM when perspective is created."
-  (let ((persp-command-name (concat "persp-" persp-name)))
+  (let ((persp-command (intern (concat "persp-" persp-name))))
     (list 'progn
-     `(defun ,(read persp-command-name) ()
+     `(defun ,persp-command ()
         ,(format "Run %s in a dedicated perspective." persp-name)
         (interactive)
         (my-with-persp ,persp-name
@@ -39,7 +39,7 @@ call it before FORM when perspective is created."
                              ,first-form ,form)
                           form)))
      (when key
-       `(global-set-key ,key ',(read persp-command-name))))))
+       `(global-set-key ,key ',persp-command)))))
 
 (define-persp-app "packages" (list-packages) (kbd "C-c p"))
 
