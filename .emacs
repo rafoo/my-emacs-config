@@ -20,14 +20,6 @@
          ,@body)
     body))
 
-;; Package management
-(when (require 'package nil t)          ; Don't complain on Emacs < 23
-  (setq package-archives
-        '(("gnu" . "http://elpa.gnu.org/packages/")
-          ("org" . "http://orgmode.org/elpa/")
-          ("melpa" . "http://melpa.milkbox.net/packages/")
-          ("marmalade" . "http://marmalade-repo.org/packages/")))
-  (package-initialize))
 
 (defun persp-list-packages ()
   "List packages in a new perspective if possible."
@@ -35,6 +27,13 @@
   (my-with-persp "packages" (list-packages)))
 
 (global-set-key (kbd "C-c p") 'persp-list-packages)
+;; Package management
+(eval-after-load "package"
+  '(setq package-archives
+         '(("gnu" . "http://elpa.gnu.org/packages/")
+           ("org" . "http://orgmode.org/elpa/")
+           ("melpa" . "http://melpa.milkbox.net/packages/")
+           ("marmalade" . "http://marmalade-repo.org/packages/"))))
 
 ;; History
 (require 'desktop-conf)
