@@ -2,13 +2,6 @@
 
 (define-key global-map "\C-cl" 'org-store-link)
 
-(defun persp-org-agenda ()
-  "Run org-agenda in a dedicated perspective"
-  (interactive)
-  (my-with-persp "agenda" (org-agenda)))
-
-(global-set-key (kbd "C-c a") 'persp-org-agenda)
-
 (unless (boundp 'org-latex-classes)
   (setq org-latex-classes nil))
 

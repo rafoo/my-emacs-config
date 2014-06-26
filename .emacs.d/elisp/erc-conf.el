@@ -41,15 +41,4 @@
 ;(erc :server "irc")
 ;(erc :server "localhost")
 
-(defun persp-erc ()
-  "Run ERC in a dedicated perspective."
-  (interactive)
-  (cond
-   ((and (fboundp 'persp-names)
-         (member "erc" (persp-names)))
-    (persp-switch "erc"))
-   (t (my-with-persp "erc" (erc)))))
-
-(global-set-key (kbd "C-c e") 'persp-erc)
-
 (provide 'erc-conf)

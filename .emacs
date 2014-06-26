@@ -12,7 +12,9 @@
 (add-to-list 'load-path "~/.emacs.d/elpa/auctex-11.87.3/") ; Should not be necessary
 
 (defmacro my-with-persp (name &rest body)
-  "Switch to the perspective given by NAME and evaluate BODY."
+  "Switch to the perspective given by NAME and evaluate BODY.
+If the perspective NAME doesn't yet exists, create it.
+If the perspective library is not available, just evaluate BODY."
   (if (fboundp 'persp-mode)             ; persp library available
       `(progn
          (persp-mode 1)
@@ -20,13 +22,27 @@
          ,@body)
     body))
 
+(defmacro define-persp-app (persp-name form &optional key first-form)
+  "Define a command persp- PERSP-NAME by wrapping FORM by `my-with-persp'.
+If KEY is non nil, bind it to this command.
+If FIRST-FORM is non nil,
+call it before FORM when perspective is created."
+  (let ((persp-command-name (concat "persp-" persp-name)))
+    (list 'progn
+     `(defun ,(read persp-command-name) ()
+        ,(format "Run %s in a dedicated perspective." persp-name)
+        (interactive)
+        (my-with-persp ,persp-name
+                       ,(if first-form
+                          `(unless (and (fboundp 'persp-names)
+                                        (member ,persp-name (persp-names)))
+                             ,first-form ,form)
+                          form)))
+     (when key
+       `(global-set-key ,key ',(read persp-command-name))))))
 
-(defun persp-list-packages ()
-  "List packages in a new perspective if possible."
-  (interactive)
-  (my-with-persp "packages" (list-packages)))
+(define-persp-app "packages" (list-packages) (kbd "C-c p"))
 
-(global-set-key (kbd "C-c p") 'persp-list-packages)
 ;; Package management
 (eval-after-load "package"
   '(setq package-archives
@@ -60,13 +76,8 @@
 (global-visual-line-mode 1)     ; wrap long lines on words
 
 ;; Buffers listing
-(defun persp-ibuffer ()
-  "Run Ibuffer in a dedicated perspective"
-  (interactive)
-  (my-with-persp "ibuffer" (ibuffer)))
-
 ;; Rebind C-x C-b to ibuffer, an improved buffer list
-(global-set-key (kbd "C-x C-b") 'persp-ibuffer)
+(define-persp-app "ibuffer" (ibuffer) (kbd "C-x C-b"))
 
 ;; Minibuffer
 (setq minibuffer-auto-raise t
@@ -84,17 +95,18 @@
 (eval-after-load "erc"
   '(require 'erc-conf))
 
+(define-persp-app "erc" () (kbd "C-c i") (erc))
+
 (eval-after-load "emms"
   '(require 'emms-conf))
+
+(define-persp-app "emms" (emms) (kbd "C-c m")
+  (emms-play-playlist "~/Musique/playlist"))
 
 (autoload 'eshell-in-other-window "eshell-conf")
 (global-set-key (kbd "<s-return>") 'eshell-in-other-window)
 
-(defun persp-eshell ()
-  (interactive)
-  (my-with-persp "eshell" (eshell)))
-
-(global-set-key (kbd "C-c s") 'persp-eshell)
+(define-persp-app "eshell" (eshell) (kbd "C-c s"))
 
 ;; Activate compilation-shell-minor-mode to jump to files
 (add-hook 'shell-mode-hook 'compilation-shell-minor-mode)
@@ -104,6 +116,8 @@
 
 (eval-after-load "rudel"
   '(require 'rudel-conf))
+
+(define-persp-app "agenda" (org-agenda) (kbd "C-c a"))
 
 (eval-after-load "org"
   '(require 'org-conf))
@@ -178,11 +192,9 @@
                             (?\{ . ?\})
                             (?\[ . ?\])))
 
-(eval-after-load "wicd-mode"
-  '(global-set-key (kbd "C-c w") 'wicd))
+(define-persp-app "wicd" (wicd) (kbd "C-c w"))
 
-(eval-after-load "xkcd"
-  '(global-set-key (kbd "C-c x") 'xkcd))
+(define-persp-app "xkcd" (xkcd) (kbd "C-c x"))
 
 (require 'zone)
 (zone-when-idle 120)
