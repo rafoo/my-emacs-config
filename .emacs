@@ -57,9 +57,11 @@ call it before FORM when perspective is created."
 ;;; Display
 
 ;; Customizations depending on wheter Emacs is in tty.
-(if (display-graphic-p)
-    (require 'graphic-conf)
-  (require 'tty-conf))
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+            (if (display-graphic-p frame)
+                (require 'graphic-conf)
+              (require 'tty-conf))))
 
 (autoload 'v-resize "resize" 'interactive nil) ; resize windows with C-c +
 (global-set-key (kbd "C-c +") 'v-resize)
