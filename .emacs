@@ -17,7 +17,7 @@ If the perspective NAME doesn't yet exists, create it.
 If the perspective library is not available, just evaluate BODY."
   (if (fboundp 'persp-mode)             ; persp library available
       `(progn
-         (persp-mode 1)
+         (unless persp-mode (persp-mode))
          (persp-switch ,name)
          ,@body)
     body))
