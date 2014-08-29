@@ -212,7 +212,6 @@ call it before FORM when perspective is created."
  '(delete-selection-mode t)
  '(dired-listing-switches "-lrth --time-style=+%D%6R")
  '(ede-project-directories (quote ("/home/harry/wicd-mode")))
- '(electric-indent-mode t)
  '(electric-pair-mode t)
  '(eshell-visual-commands (quote ("vi" "screen" "top" "less" "more" "lynx" "ncftp" "pine" "tin" "trn" "elm" "htop" "wicd-curses")))
  '(indent-tabs-mode nil)
