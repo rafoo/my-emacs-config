@@ -224,6 +224,7 @@ call it before FORM when perspective is created."
  '(safe-local-variable-values (quote ((encoding . utf-8))))
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
+ '(tab-always-indent (quote complete))
  '(underline-minimum-offset 0)
  '(visible-bell t)
  '(which-function-mode t))
