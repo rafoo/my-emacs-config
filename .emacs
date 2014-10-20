@@ -9,18 +9,17 @@
 (add-to-list 'load-path "~/.emacs.d/elpa/")  ; Installed packages
 (add-to-list 'load-path "~/.emacs.d/elisp/") ; Configuration
 (add-to-list 'load-path "~/git/wicd-mode/")  ; My wicd interface
-(add-to-list 'load-path "~/.emacs.d/elpa/auctex-11.87.3/") ; Should not be necessary
 
 (defmacro my-with-persp (name &rest body)
   "Switch to the perspective given by NAME and evaluate BODY.
 If the perspective NAME doesn't yet exists, create it.
 If the perspective library is not available, just evaluate BODY."
-  (if (fboundp 'persp-mode)             ; persp library available
-      `(progn
+  `(if (fboundp 'persp-mode)             ; persp library available
+       (progn
          (unless persp-mode (persp-mode))
          (persp-switch ,name)
          ,@body)
-    body))
+     ,@body))
 
 (defmacro define-persp-app (persp-name form &optional key first-form)
   "Define a command persp- PERSP-NAME by wrapping FORM by `my-with-persp'.
@@ -50,6 +49,9 @@ call it before FORM when perspective is created."
            ("org" . "http://orgmode.org/elpa/")
            ("melpa" . "http://melpa.milkbox.net/packages/")
            ("marmalade" . "http://marmalade-repo.org/packages/"))))
+
+(let ((default-directory "~/.emacs.d/elpa/"))
+  (normal-top-level-add-subdirs-to-load-path))
 
 ;; History
 (require 'desktop-conf)
@@ -186,6 +188,7 @@ call it before FORM when perspective is created."
 (require 'editing-conf)
 
 ;; Git
+(autoload 'magit-status "magit" "Open a Magit status buffer […]" t nil)
 (global-set-key (kbd "C-c g") 'magit-status)
 
 ;; Pairs matching
@@ -200,6 +203,9 @@ call it before FORM when perspective is created."
 
 (require 'zone)
 (zone-when-idle 120)
+
+(when (require 'hungry-delete nil t)
+  (global-hungry-delete-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -218,10 +224,12 @@ call it before FORM when perspective is created."
  '(initial-scratch-message nil)
  '(list-directory-verbose-switches "-l")
  '(makefile-electric-keys t)
+ '(mm-text-html-renderer (quote w3m))
  '(package-archive-exclude-alist (quote (("melpa" org))))
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
- '(safe-local-variable-values (quote ((encoding . utf-8))))
+ '(safe-local-variable-values (quote ((ispell-dictionnary . "fr") (ispell-dictionary . "en") (encoding . utf-8))))
+ '(send-mail-function (quote smtpmail-send-it))
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(tab-always-indent (quote complete))

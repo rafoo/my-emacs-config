@@ -2,8 +2,11 @@
 ;; EMMS is a media player, to start a playlist use M-x emms-play-playlist-directory-tree
 ;; from EMMS info pages
 
+(require 'emms-mode-line)
 (emms-mode-line-enable)
 (emms-mode-line-restore-mode-line)
+
+(require 'emms-playing-time)
 (emms-playing-time-enable-display)
 
 (require 'emms-setup)
