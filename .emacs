@@ -15,12 +15,12 @@
   "Switch to the perspective given by NAME and evaluate BODY.
 If the perspective NAME doesn't yet exists, create it.
 If the perspective library is not available, just evaluate BODY."
-  (if (fboundp 'persp-mode)             ; persp library available
-      `(progn
+  `(if (fboundp 'persp-mode)             ; persp library available
+       (progn
          (unless persp-mode (persp-mode))
          (persp-switch ,name)
          ,@body)
-    body))
+     ,@body))
 
 (defmacro define-persp-app (persp-name form &optional key first-form)
   "Define a command persp- PERSP-NAME by wrapping FORM by `my-with-persp'.
