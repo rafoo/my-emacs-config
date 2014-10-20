@@ -226,6 +226,7 @@ call it before FORM when perspective is created."
  '(initial-scratch-message nil)
  '(list-directory-verbose-switches "-l")
  '(makefile-electric-keys t)
+ '(mm-text-html-renderer (quote w3m))
  '(package-archive-exclude-alist (quote (("melpa" org))))
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
