@@ -51,6 +51,9 @@ call it before FORM when perspective is created."
            ("melpa" . "http://melpa.milkbox.net/packages/")
            ("marmalade" . "http://marmalade-repo.org/packages/"))))
 
+(let ((default-directory "~/.emacs.d/elpa/"))
+  (normal-top-level-add-subdirs-to-load-path))
+
 ;; History
 (require 'desktop-conf)
 
