@@ -189,6 +189,7 @@ call it before FORM when perspective is created."
 (require 'editing-conf)
 
 ;; Git
+(autoload 'magit-status "magit" "Open a Magit status buffer […]" t nil)
 (global-set-key (kbd "C-c g") 'magit-status)
 
 ;; Pairs matching
