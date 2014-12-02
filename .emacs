@@ -214,6 +214,9 @@ to case differences."
 (autoload 'magit-status "magit" "Open a Magit status buffer […]" t nil)
 (global-set-key (kbd "C-c g") 'magit-status)
 
+;; Compilation
+(global-set-key (kbd "C-c c") 'compile)
+
 ;; Pairs matching
 (setq electric-pair-pairs '((?\" . ?\")
                             (?\( . ?\))
