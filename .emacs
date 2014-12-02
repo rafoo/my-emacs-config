@@ -257,8 +257,7 @@ to case differences."
  '(show-trailing-whitespace t)
  '(tab-always-indent (quote complete))
  '(underline-minimum-offset 0)
- '(visible-bell t)
- '(which-function-mode t))
+ '(visible-bell t))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
