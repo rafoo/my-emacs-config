@@ -73,7 +73,7 @@ to case differences."
 (add-to-list 'exec-path my-extra-path)
 
 (unless (string-suffix-p my-extra-path my-path)
-  (setenv "PATH" (concat my-path ":" my-extra-path)))
+  (setenv "PATH" (concat my-extra-path ":" my-path)))
 
 
 ;; History
