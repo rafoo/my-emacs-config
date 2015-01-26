@@ -251,6 +251,7 @@ to case differences."
  '(list-directory-verbose-switches "-l")
  '(makefile-electric-keys t)
  '(mm-text-html-renderer (quote w3m))
+ '(org-agenda-files (quote ("/zamok:org/todo.org.gpg")))
  '(package-archive-exclude-alist (quote (("melpa" org))))
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
