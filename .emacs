@@ -255,7 +255,12 @@ to case differences."
  '(package-archive-exclude-alist (quote (("melpa" org))))
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
- '(safe-local-variable-values (quote ((ispell-dictionnary . "fr") (ispell-dictionary . "en") (encoding . utf-8))))
+ '(safe-local-variable-values
+   (quote
+    ((ispell-dictionary . "english")
+     (ispell-dictionary . "fr")
+     (ispell-dictionary . "en")
+     (encoding . utf-8))))
  '(send-mail-function (quote smtpmail-send-it))
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
