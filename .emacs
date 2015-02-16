@@ -65,8 +65,10 @@ If IGNORE-CASE is non-nil, the comparison is done without paying attention
 to case differences."
   (let ((n1 (length str1))
         (n2 (length str2)))
-    (eq t (compare-strings str1 nil nil
-                           str2 (- n2 n1) nil ignore-case))))
+    (and
+     (<= n1 n2)
+     (eq t (compare-strings str1 nil nil
+                           str2 (- n2 n1) nil ignore-case)))))
 
 (setq my-extra-path (concat my-home "/.opam/system/bin"))
 
