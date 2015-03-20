@@ -76,9 +76,6 @@ to case differences."
   (setenv "PATH" (concat my-extra-path ":" my-path)))
 
 
-;; History
-(require 'desktop-conf)
-
 ;;; Display
 
 ;; Customizations depending on wheter Emacs is in tty.
