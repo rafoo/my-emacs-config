@@ -246,6 +246,9 @@ call it before FORM when perspective is created."
  '(mm-text-html-renderer (quote w3m))
  '(org-agenda-files (quote ("/zamok:org/todo.org.gpg")))
  '(package-archive-exclude-alist (quote (("melpa" org))))
+ '(package-selected-packages
+   (quote
+    (paredit-everywhere paredit paredit-menu paradox zenburn-theme xkcd windresize wgrep undo-tree tuareg tabbar-ruler rudel rainbow-mode rainbow-delimiters php-mode perspective org nyan-prompt menu-bar+ mentor magit lua-mode iedit ido-vertical-mode ido-ubiquitous ibuffer-vc ibuffer-git hungry-delete htmlize howdoi graphviz-dot-mode gnorb flycheck-dedukti f eww-lnum enwc emms emacsd-tile discover-my-major column-enforce-mode color-theme auto-complete auctex apache-mode 2048-game)))
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
  '(safe-local-variable-values
