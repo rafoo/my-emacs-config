@@ -134,8 +134,8 @@ to case differences."
 
 (autoload 'eshell-in-other-window "eshell-conf")
 (global-set-key (kbd "<s-return>") 'eshell-in-other-window)
-
-(define-persp-app "eshell" (eshell) (kbd "C-c s"))
+(global-set-key (kbd "M-RET") 'eshell-in-other-window)
+(global-set-key (kbd "C-c s") 'eshell-in-other-window)
 
 ;; Activate compilation-shell-minor-mode to jump to files
 (add-hook 'shell-mode-hook 'compilation-shell-minor-mode)
