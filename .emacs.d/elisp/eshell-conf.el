@@ -31,7 +31,6 @@ and restored by `eshell-exit'.")
 
 (defun eshell-exit ()
   (interactive)
-  (kill-buffer (current-buffer))
   (when eshell-before-wconf
     (set-window-configuration eshell-before-wconf))
   (setq eshell-before-wconf nil))
