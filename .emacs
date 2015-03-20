@@ -57,26 +57,19 @@ call it before FORM when perspective is created."
 ;; Extend path with opam directory
 
 (setq my-home (getenv "HOME"))
-(setq my-path (getenv "PATH"))
 
-(defun string-suffix-p (str1 str2 &optional ignore-case)
-  "Return non-nil if STR1 is a suffix of STR2.
-If IGNORE-CASE is non-nil, the comparison is done without paying attention
-to case differences."
-  (let ((n1 (length str1))
-        (n2 (length str2)))
-    (and
-     (<= n1 n2)
-     (eq t (compare-strings str1 nil nil
-                           str2 (- n2 n1) nil ignore-case)))))
+(defun add-to-path (dirname)
+  "Add DIRNAME to `'exec-path' and env variable PATH."
+  (let ((path (getenv "PATH")))
+    (add-to-list 'exec-path dirname)
+    (unless (string-match-p
+             (concat (regexp-quote dirname) ":")
+             path)
+      (setenv "PATH" (concat dirname ":" path)))))
 
-(setq my-extra-path (concat my-home "/.opam/system/bin"))
-
-(add-to-list 'exec-path my-extra-path)
-
-(unless (string-suffix-p my-extra-path my-path)
-  (setenv "PATH" (concat my-extra-path ":" my-path)))
-
+(mapcar
+ 'add-to-path
+ (file-expand-wildcards (concat my-home "/.opam/*/bin")))
 
 ;; History
 (require 'desktop-conf)
