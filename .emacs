@@ -252,7 +252,9 @@ call it before FORM when perspective is created."
  '(recentf-mode t)
  '(safe-local-variable-values
    (quote
-    ((ispell-dictionary . "english")
+    ((org-html-postamble)
+     (org-html-preamble)
+     (ispell-dictionary . "english")
      (ispell-dictionary . "fr")
      (ispell-dictionary . "en")
      (encoding . utf-8))))
