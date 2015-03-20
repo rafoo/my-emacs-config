@@ -141,6 +141,8 @@ call it before FORM when perspective is created."
 
 (define-persp-app "agenda" (org-agenda) (kbd "C-c a"))
 
+(define-persp-app "org" (dired (concat my-home "/git/org")) (kbd "C-c o"))
+
 (eval-after-load "org"
   '(require 'org-conf))
 
