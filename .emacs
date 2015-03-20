@@ -57,24 +57,19 @@ call it before FORM when perspective is created."
 ;; Extend path with opam directory
 
 (setq my-home (getenv "HOME"))
-(setq my-path (getenv "PATH"))
 
-(defun string-suffix-p (str1 str2 &optional ignore-case)
-  "Return non-nil if STR1 is a suffix of STR2.
-If IGNORE-CASE is non-nil, the comparison is done without paying attention
-to case differences."
-  (let ((n1 (length str1))
-        (n2 (length str2)))
-    (eq t (compare-strings str1 nil nil
-                           str2 (- n2 n1) nil ignore-case))))
+(defun add-to-path (dirname)
+  "Add DIRNAME to `'exec-path' and env variable PATH."
+  (let ((path (getenv "PATH")))
+    (add-to-list 'exec-path dirname)
+    (unless (string-match-p
+             (concat (regexp-quote dirname) ":")
+             path)
+      (setenv "PATH" (concat dirname ":" path)))))
 
-(setq my-extra-path (concat my-home "/.opam/system/bin"))
-
-(add-to-list 'exec-path my-extra-path)
-
-(unless (string-suffix-p my-extra-path my-path)
-  (setenv "PATH" (concat my-extra-path ":" my-path)))
-
+(mapcar
+ 'add-to-path
+ (file-expand-wildcards (concat my-home "/.opam/*/bin")))
 
 ;;; Display
 
@@ -129,8 +124,8 @@ to case differences."
 
 (autoload 'eshell-in-other-window "eshell-conf")
 (global-set-key (kbd "<s-return>") 'eshell-in-other-window)
-
-(define-persp-app "eshell" (eshell) (kbd "C-c s"))
+(global-set-key (kbd "M-RET") 'eshell-in-other-window)
+(global-set-key (kbd "C-c s") 'eshell-in-other-window)
 
 ;; Activate compilation-shell-minor-mode to jump to files
 (add-hook 'shell-mode-hook 'compilation-shell-minor-mode)
@@ -142,6 +137,8 @@ to case differences."
   '(require 'rudel-conf))
 
 (define-persp-app "agenda" (org-agenda) (kbd "C-c a"))
+
+(define-persp-app "org" (dired (concat my-home "/git/org")) (kbd "C-c o"))
 
 (eval-after-load "org"
   '(require 'org-conf))
@@ -254,7 +251,9 @@ to case differences."
  '(recentf-mode t)
  '(safe-local-variable-values
    (quote
-    ((ispell-dictionary . "english")
+    ((org-html-postamble)
+     (org-html-preamble)
+     (ispell-dictionary . "english")
      (ispell-dictionary . "fr")
      (ispell-dictionary . "en")
      (encoding . utf-8))))

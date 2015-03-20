@@ -27,11 +27,11 @@ and restored by `eshell-exit'.")
   (interactive)
   (setq eshell-before-wconf (current-window-configuration))
   (with-current-buffer (pop-to-buffer nil)
-    (eshell)))
+    (let ((eshell-buffer-name (concat "*eshell* <" (persp-name persp-curr) ">")))
+      (eshell))))
 
 (defun eshell-exit ()
   (interactive)
-  (kill-buffer (current-buffer))
   (when eshell-before-wconf
     (set-window-configuration eshell-before-wconf))
   (setq eshell-before-wconf nil))
