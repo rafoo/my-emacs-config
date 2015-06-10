@@ -67,9 +67,9 @@ call it before FORM when perspective is created."
              path)
       (setenv "PATH" (concat dirname ":" path)))))
 
-(mapcar
- 'add-to-path
- (file-expand-wildcards (concat my-home "/.opam/*/bin")))
+(when (executable-find "opam")
+  (add-to-path
+   (concat my-home "/.opam/" (substring (shell-command-to-string "opam switch show") 0 -1) "/bin")))
 
 ;;; Display
 
