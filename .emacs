@@ -40,6 +40,13 @@ call it before FORM when perspective is created."
      (when key
        `(global-set-key ,key ',persp-command)))))
 
+(defmacro define-persp-magit-app (persp-name key)
+  "Define a perspective application for a git project using `magit-status'."
+  `(define-persp-app
+     ,persp-name
+     (magit-status ,(concat "~/git/" persp-name))
+     ,key))
+
 (define-persp-app "packages" (list-packages) (kbd "C-c p"))
 
 ;; Package management
