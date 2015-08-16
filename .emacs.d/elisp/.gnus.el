@@ -53,6 +53,13 @@
 (setq smtpmail-sendto-domain "crans.org")
 (require 'smtpmail)
 
+;; BBDB (http://bbdb.sourceforge.net/bbdb.html)
+(when (require 'bbdb nil 'noerror)
+  (bbdb-initialize 'gnus 'message)
+  (bbdb-mua-auto-update-init 'message 'gnus)
+  (setq bbdb-mua-auto-update-p 'query)
+  )
+
 ;; Display
 (gnus-add-configuration
  '(article
@@ -115,10 +122,3 @@
 
 ;; nov
 (setq nnimap-nov-is-evil t)
-
-;; BBDB (http://bbdb.sourceforge.net/bbdb.html)
-(when (require 'bbdb nil 'noerror)
-  (bbdb-initialize 'gnus 'message)
-  (bbdb-mua-auto-update-init 'message 'gnus)
-  (setq bbdb-mua-auto-update-p 'query)
-  )
