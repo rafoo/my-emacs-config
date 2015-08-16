@@ -143,6 +143,7 @@
  '(electric-indent-mode t)
  '(electric-pair-mode t)
  '(erc-track-switch-direction (quote importance))
+ '(gnus-init-file "~/.emacs.d/elisp/.gnus")
  '(indent-tabs-mode nil)
  '(initial-scratch-message nil)
  '(list-directory-verbose-switches "-l")
