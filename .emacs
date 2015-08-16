@@ -86,6 +86,10 @@
       dired-dwim-target t ;; guess default target dir
 )
 
+;; BBDB
+;(require 'bbdb)
+;(bbdb-initialize 'gnus 'message)
+
 
 
 ;; Spell checking
