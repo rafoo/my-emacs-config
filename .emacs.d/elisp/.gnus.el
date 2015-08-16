@@ -116,7 +116,9 @@
 ;; nov
 (setq nnimap-nov-is-evil t)
 
-;; BBDB
-(when (featurep 'bbdb)
-  (setq bbdb/mail-auto-create-p t)
+;; BBDB (http://bbdb.sourceforge.net/bbdb.html)
+(when (require 'bbdb nil 'noerror)
+  (bbdb-initialize 'gnus 'message)
+  (bbdb-mua-auto-update-init 'message 'gnus)
+  (setq bbdb-mua-auto-update-p 'query)
   )
