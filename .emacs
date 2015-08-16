@@ -244,6 +244,10 @@ call it before FORM when perspective is created."
  ;; If there is more than one, they won't work right.
  '(auth-source-save-behavior nil)
  '(backup-directory-alist (quote ((".*" . "./.bkp/"))))
+ '(canlock-password "0a42e4942e41dbbd56282757bd18beccbbbcd635")
+ '(coq-load-path (quote ("/usr/local/lib/focalize" "/usr/local/lib/zenon")))
+ '(dedukti-check-options (quote ("-nc" "-r")))
+ '(dedukti-compile-options (quote ("-nc" "-e" "-r")))
  '(default-input-method "TeX")
  '(delete-selection-mode t)
  '(dired-listing-switches "-lrth --time-style=+%D%6R")
@@ -256,13 +260,57 @@ call it before FORM when perspective is created."
  '(list-directory-verbose-switches "-l")
  '(makefile-electric-keys t)
  '(mm-text-html-renderer (quote w3m))
- '(org-agenda-files (quote ("/zamok:org/todo.org.gpg")))
+ '(org-agenda-span 14)
+ '(org-export-latex-default-packages-alist
+   (quote
+    (("" "fixltx2e" nil)
+     ("" "graphicx" t)
+     ("" "longtable" nil)
+     ("" "float" nil)
+     ("" "wrapfig" nil)
+     ("" "soul" t)
+     ("" "textcomp" t)
+     ("" "marvosym" t)
+     ("" "wasysym" t)
+     ("" "latexsym" t)
+     ("" "amssymb" t)
+     ("" "hyperref" nil)
+     "\\tolerance=1000")))
+ '(org-export-latex-packages-alist nil)
+ '(org-latex-default-packages-alist
+   (quote
+    (("" "fixltx2e" nil)
+     ("" "graphicx" t)
+     ("" "longtable" nil)
+     ("" "float" nil)
+     ("" "wrapfig" nil)
+     ("" "soul" t)
+     ("" "textcomp" t)
+     ("" "marvosym" t)
+     ("" "wasysym" t)
+     ("" "latexsym" t)
+     ("" "amssymb" t)
+     ("" "hyperref" nil)
+     "\\tolerance=1000")))
+ '(org-latex-packages-alist nil)
+ '(org-latex-pdf-process
+   (quote
+    ("xelatex -interaction nonstopmode -output-directory %o %f" "bibtex %b" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
+ '(org-latex-to-pdf-process
+   (quote
+    ("xelatex -interaction nonstopmode -output-directory %o %f" "bibtex %b" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
+ '(org-mobile-directory "~/org/mobile/")
+ '(org-modules
+   (quote
+    (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m org-special-blocks)))
+ '(org-src-fontify-natively t)
  '(package-archive-exclude-alist (quote (("melpa" org))))
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
  '(safe-local-variable-values
    (quote
-    ((org-html-postamble)
+    ((coq-prog-name . "~/pkg/focalize-0.6.0/bin/coqtop")
+     (org-html-postamble)
      (org-html-preamble)
      (ispell-dictionary . "english")
      (ispell-dictionary . "fr")
@@ -273,14 +321,29 @@ call it before FORM when perspective is created."
  '(show-trailing-whitespace t)
  '(tab-always-indent (quote complete))
  '(underline-minimum-offset 0)
- '(visible-bell t))
+ '(visible-bell t)
+ '(w3m-search-default-engine "duckduckgo")
+ '(w3m-search-engine-alist
+   (quote
+    (("debian-pkg" "http://packages.debian.org/cgi-bin/search_contents.pl?directories=yes&arch=i386&version=unstable&case=insensitive&word=%s" nil)
+     ("debian-bts" "http://bugs.debian.org/cgi-bin/pkgreport.cgi?archive=yes&pkg=%s" nil)
+     ("emacswiki" "http://www.emacswiki.org/cgi-bin/wiki?search=%s" nil)
+     ("wikipedia-en" "http://en.wikipedia.org/wiki/Special:Search?search=%s" nil)
+     ("wikipedia-fr" "http://fr.wikipedia.org/wiki/Special:Search?search=%s" utf-8)
+     ("ja.wikipedia" "http://ja.wikipedia.org/wiki/Special:Search?search=%s" utf-8)
+     ("duckduckgo" "https://duckduckgo.com/?q=%s" utf-8)
+     ("wiki" " http://wiki.crans.org/?action=fullsearch&value=%s&titlesearch=Titres" utf-8)
+     ("wikoeur" "http://pimeys.fr/wikoeur/?action=fullsearch&value=%s&titlesearch=Titres" utf-8))))
+ '(which-function-mode t)
+ '(wicd-wireless-filter ".*"))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(font-lock-preprocessor-face ((t (:inherit font-lock-builtin-face :foreground "dark green")))))
+ '(font-lock-preprocessor-face ((t (:inherit font-lock-builtin-face :foreground "dark green"))))
+ '(w3m-anchor ((((class color) (background light)) (:foreground "light blue")))))
 
 (require 'init-actions nil t)
 

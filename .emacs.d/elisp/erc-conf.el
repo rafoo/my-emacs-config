@@ -36,7 +36,7 @@
 (add-hook 'erc-mode-hook (lambda () (global-hl-line-mode 1))) ;; highlight current line
 
 (setq erc-autojoin-channels-alist
-      '(("irc" "#A♡" "#info" "#crans" "#roots" "#emacs" "#ca" "#pimeys")
+      '(("irc" "#A♡" "#info" "#emacs" "#pimeys")
 	("localhost" "#general")))
 ;(erc :server "irc")
 ;(erc :server "localhost")
