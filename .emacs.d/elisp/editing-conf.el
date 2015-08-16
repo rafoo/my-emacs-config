@@ -4,23 +4,38 @@
 ;; (require 'flymake)
 ;; (add-hook 'find-file-hook 'flymake-find-file-hook)
 
-;; Auto-complete
-(when (require 'auto-complete nil t)
-  (add-hook 'prog-mode-hook 'auto-complete-mode))
-
 ;; Enforce 80 columns
-(when (require 'column-enforce-mode nil t)
+(when (fboundp 'column-enforce-mode)
   (add-hook 'prog-mode-hook 'column-enforce-mode))
 
-
-
 ;; Modes for special languages
-;(require 'tuareg-conf) ; OCaml
+(eval-after-load "tuareg"
+  '(require 'tuareg-conf)) ; OCaml
 ;(require 'focalize) ; FoCaLiZe
-;(require 'dedukti) ; Dedukti
-(require 'latex-conf) ; LaTeX
-(require 'org-conf) ; Org mode
+(eval-after-load "tex"
+  '(require 'latex-conf)) ; LaTeX
 ; (require 'isabelle) ; Isabelle
-(require 'python-conf)
+(eval-after-load "python"
+  '(require 'python-conf))
+(eval-after-load "proofgeneral"
+  '(require 'coq-conf))
+
+;; Bind keys to functions jumping to source code
+;; Idea from http://emacsredux.com/blog/2014/06/18/quickly-find-emacs-lisp-sources/
+(define-key 'help-command (kbd "C-l") 'find-library)
+(define-key 'help-command (kbd "C-f") 'find-function)
+(define-key 'help-command (kbd "C-k") 'find-function-on-key)
+(define-key 'help-command (kbd "C-v") 'find-variable)
+
+;; Iedit-mode
+(global-set-key (kbd "C-;") 'iedit-mode)
+
+;; Spell checking
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
+;; Checking
+(when (fboundp 'flycheck-mode)
+  (add-hook 'prog-mode-hook 'flycheck-mode))
 
 (provide 'editing-conf)

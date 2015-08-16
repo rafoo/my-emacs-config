@@ -18,6 +18,4 @@
     (call-interactively 'v-resize))
    (t (push key unread-command-events))))
 
-(global-set-key "\C-c+" 'v-resize)
-
 (provide 'resize)

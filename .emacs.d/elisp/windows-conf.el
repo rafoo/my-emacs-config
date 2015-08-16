@@ -1,10 +1,9 @@
 ;; Configuration of Windows and panes look
 
 (set-scroll-bar-mode 'right)
-(setq
-  scroll-margin 0
-  scroll-conservatively 100000
-  scroll-preserve-screen-position 1)
+(setq scroll-margin 0
+      scroll-conservatively 100000
+      scroll-preserve-screen-position 1)
 
 (add-hook
  'after-change-major-mode-hook
@@ -21,7 +20,7 @@
                              (setq old-fullscreen current-value)
                              'fullboth) ) ) ) )
 (global-set-key [f11] 'toggle-fullscreen)
-  
+
 ;; Make new frames fullscreen by default. Note: this hook doesn't do
 ;; anything to the initial frame if it's in your .emacs, since that file is
 ;; read _after_ the initial frame is created.

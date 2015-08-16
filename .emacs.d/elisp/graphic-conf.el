@@ -7,6 +7,7 @@
 (eval-after-load "menu-bar" '(require 'menu-bar+))
 
 ;; Tool-bar
+(tool-bar-mode 0)
 (add-hook 'after-change-major-mode-hook
           (lambda () (tool-bar-mode 0)))
 
@@ -29,7 +30,7 @@
       (setq hcz-set-cursor-type-buffer (buffer-name)))
     )
   )
-(add-hook 'post-command-hook 'hcz-set-cursor-type-according-to-mode) 
+(add-hook 'post-command-hook 'hcz-set-cursor-type-according-to-mode)
 
 ;; Couleurs du terminal dans le buffer *Shell Command Output*
 (require 'ansi-color)

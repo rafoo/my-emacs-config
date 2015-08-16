@@ -1,91 +1,15 @@
 ;; Configuration of org mode
 
-; (require 'org-install)
-; (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-; (define-key global-map "\C-cl" 'org-store-link)
-(global-set-key (kbd "C-c a") 'org-agenda)
-; (setq org-log-done t)
-
-; (require 'org-special-blocks nil t)
-
-; (require 'org-latex)
-; (require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
 
 (unless (boundp 'org-latex-classes)
   (setq org-latex-classes nil))
 
-;(add-to-list 'org-latex-packages-alist
-;             '( "utf8" . "inputenc" ))
-
-;; (add-to-list ' org-latex-classes
-;;              '("article"
-;;                "\\documentclass{article}"
-;;                ("\\section{%s}" . "\\section*{%s}")))
-
 (add-to-list 'org-latex-classes
-             '("logic-article"
-               "\\documentclass{llncs}
-[NO-DEFAULT-PACKAGES]
-\\usepackage{amsmath}
-%\\usepackage{a4wide}
-\\usepackage{fixltx2e}
-\\usepackage{graphicx}
-\\usepackage{longtable}
-\\usepackage{float}
-\\usepackage{wrapfig}
-\\usepackage{soul}
-\\usepackage{textcomp}
-\\usepackage{marvosym}
-\\usepackage{wasysym}
-\\usepackage{latexsym}
-\\usepackage{amssymb}
-\\usepackage{hyperref}
-\\tolerance=1000
-\\usepackage{mathspec}
-\\usepackage{unicode-math}
-\\setallmainfonts{FreeSerif}
-\\setmathfont{xits-math.otf}
-%\\usepackage[french]{babel} 
-\\usepackage{bussproofs}
-\\newcommand{\\myUIC}[3]
-  {\\mbox{
-     \\AxiomC{#2}
-     \\RightLabel{\\scriptsize(#1)}
-     \\UnaryInfC{#3}
-     \\DisplayProof}}
-\\newcommand{\\myBIC}[4]
-  {\\mbox{
-     \\AxiomC{#2}
-     \\AxiomC{#3}
-     \\RightLabel{\\scriptsize(#1)}
-     \\BinaryInfC{#4}
-     \\DisplayProof}}
-\\newcommand{\\myTIC}[5]
-  {\\mbox{
-     \\AxiomC{#2}
-     \\AxiomC{#3}
-     \\AxiomC{#4}
-     \\RightLabel{\\scriptsize(#1)}
-     \\TrinaryInfC{#5}
-     \\DisplayProof}}
-\\newcommand{\\myQIC}[6]
-  {\\mbox{
-     \\AxiomC{#2}
-     \\AxiomC{#3}
-     \\AxiomC{#4}
-     \\AxiomC{#5}
-     \\RightLabel{\\scriptsize(#1)}
-     \\QuaternaryInfC{#6}
-     \\DisplayProof}}
-\\usepackage{setspace}
-\\usepackage{framed}
-\\newenvironment{infset}
-  {\\begin{center}
-     \\begin{framed}
-       \\setstretch{3}}
-  {  \\end{framed}
-   \\end{center}}
-"
+             `("logic-article"
+               ,(with-temp-buffer
+                  (insert-file-contents "~/git/emacs-config/.emacs.d/elisp/logic-article-prelude.tex")
+                  (buffer-string))
                ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
@@ -113,5 +37,47 @@
 
 (when (boundp 'org-export-filter-special-block-functions)
   (add-to-list 'org-export-filter-special-block-functions 'my-latex-captions-bellow))
+(setq org-agenda-files '("/zamok:org/todo.org.gpg")
+      org-agenda-span 14
+      org-export-latex-default-packages-alist '(("" "fixltx2e" nil)
+                                                ("" "graphicx" t)
+                                                ("" "longtable" nil)
+                                                ("" "float" nil)
+                                                ("" "wrapfig" nil)
+                                                ("" "soul" t)
+                                                ("" "textcomp" t)
+                                                ("" "marvosym" t)
+                                                ("" "wasysym" t)
+                                                ("" "latexsym" t)
+                                                ("" "amssymb" t)
+                                                ("" "hyperref" nil)
+                                                "\\tolerance=1000")
+      org-export-latex-packages-alist nil
+      org-latex-listings t
+      org-latex-pdf-process '("xelatex -interaction nonstopmode -output-directory %o %f"
+                              "bibtex %b"
+                              "xelatex -interaction nonstopmode -output-directory %o %f"
+                              "xelatex -interaction nonstopmode -output-directory %o %f")
+      org-mobile-directory "~/zamok/org/mobile/"
+      org-modules  '(org-bbdb
+                     org-bibtex
+                     org-docview
+                     org-gnus
+                     org-info
+                     org-jsinfo
+                     org-irc
+                     org-mew
+                     org-mhe
+                     org-rmail
+                     org-vm
+                     org-wl
+                     org-w3m
+                     org-special-blocks)
+      org-src-fontify-natively t)
+
+;; New names for some variables
+(setq org-latex-default-packages-alist org-export-latex-default-packages-alist
+      org-latex-packages-alist org-export-latex-packages-alist
+      org-latex-to-pdf-process org-latex-pdf-process)
 
 (provide 'org-conf)
