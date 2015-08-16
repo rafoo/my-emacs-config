@@ -60,9 +60,9 @@
 	       (vertical 50
 			 (group 1.0))
 	       (vertical 1.0
-			 (summary 0.25)
-                         (if (featurep 'bbdb) ("*BBDB*" 10))
-			 (article 1.0 point)))))
+			 (summary 0.25 point)
+                         (if (get-buffer "*BBDB*") '("*BBDB*" 10))
+			 (article 1.0)))))
 
 (gnus-add-configuration
  '(summary
@@ -71,7 +71,7 @@
 			 (group 1.0))
 	       (vertical 1.0
 			 (summary 1.0 point)
-                         (if (featurep 'bbdb) ("*BBDB*" 10))
+                         (if (get-buffer "*BBDB*") '("*BBDB*" 10))
                          ))))
 
 (setq-default gnus-summary-line-format
@@ -119,17 +119,4 @@
 ;; BBDB
 (when (featurep 'bbdb)
   (setq bbdb/mail-auto-create-p t)
-  (autoload 'bbdb/send-hook "moy-bbdb"
-    "Function to be added to `message-send-hook' to notice records when sending messages" t)
-  (add-hook 'message-setup-hook 'bbdb/send-hook)
-
-  (defun display-bbdb-sender ()
-    (prin1 "Displaying BBDB for Sender")
-    (save-excursion
-      (let* ((sender (mail-fetch-field "from"))
-             (components (when sender (bbdb-extract-address-components sender))))
-        (when components (bbdb-search-mail (cadr components))
-              ))))
-
-  (add-hook 'gnus-article-mode-hook 'display-bbdb-sender)
   )

@@ -87,9 +87,10 @@
 )
 
 ;; BBDB
-;(require 'bbdb)
-;(bbdb-initialize 'gnus 'message)
-
+(require 'bbdb)
+(bbdb-initialize 'gnus 'message)
+(bbdb-mua-auto-update-init 'message 'gnus)
+(setq bbdb-mua-auto-update-p 'query)
 
 
 ;; Spell checking
