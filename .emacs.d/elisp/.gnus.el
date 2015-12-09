@@ -5,17 +5,17 @@
 
 ;; Topic
 
-;; les nouveaux groupes vont dans le topic qui les réclamme
-(setq gnus-subscribe-newsgroup-method 'gnus-subscribe-topics)
-;; passe en topic-mode dès le lancement
-(add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
+;; ;; les nouveaux groupes vont dans le topic qui les réclamme
+;; (setq gnus-subscribe-newsgroup-method 'gnus-subscribe-topics)
+;; ;; passe en topic-mode dès le lancement
+;; (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 
 ; (setq gnus-fetch-old-headers 'some) ;; Reconstruction des threads
 (setq gnus-summary-gather-subject-limit 'fuzzy)
 
 ;; Vérification des nouveaux messages toutes les minutes
-(require 'gnus-demon)
-(gnus-demon-add-handler 'gnus-demon-scan-news 1 t)
+;; (require 'gnus-demon)
+;; (gnus-demon-add-handler 'gnus-demon-scan-news 1 t)
 
 ;; Composition
 
@@ -32,17 +32,21 @@
 ;; Configuration des serveurs
 
 ;; Mails Cr@ns
-(setq gnus-select-method '(nnimap "Crans"
-                                  (nnimap-address "imap.crans.org")
-                                  (nnimap-stream ssl)))
+;; (setq gnus-select-method '(nnimap "Crans"
+;;                                   (nnimap-address "imap.crans.org")
+;;                                   (nnimap-stream ssl)))
+(setq gnus-select-method '(nnmaildir "Crans"
+                                     (directory "~/OfflineIMAP/Crans")))
 
 ;; News
-(setq gnus-secondary-select-methods '(;; (nntp "news.crans.org")
-				      ;; (nntp "news.gmane.org")
-                                      ;; (nnimap "Cnam"
-                                      ;;         (nnimap-address "imap.cnam.fr")
-                                      ;;         (nnimap-stream ssl))
-))
+(setq gnus-secondary-select-methods '(
+                                      (nntp "news.crans.org")
+				      (nntp "news.gmane.org")
+                                      (nnmaildir "Cnam"
+                                              (directory "~/OfflineIMAP/Cnam"))))
+;; RSS
+(setq nnrss-use-local t)
+
 
 ;; Envoi
 (setq smtpmail-default-smtp-server "smtp.crans.org")
@@ -51,14 +55,9 @@
 (setq message-send-mail-function 'smtpmail-send-it)
 (setq smtpmail-local-domain "crans.org")
 (setq smtpmail-sendto-domain "crans.org")
-(require 'smtpmail)
+(setq smtpmail-smtp-service 587)
 
-;; BBDB (http://bbdb.sourceforge.net/bbdb.html)
-(when (require 'bbdb nil 'noerror)
-  (bbdb-initialize 'gnus 'message)
-  (bbdb-mua-auto-update-init 'message 'gnus)
-  (setq bbdb-mua-auto-update-p 'query)
-  )
+(require 'smtpmail)
 
 ;; Display
 (gnus-add-configuration
@@ -68,7 +67,6 @@
 			 (group 1.0))
 	       (vertical 1.0
 			 (summary 0.25 point)
-                         (if (get-buffer "*BBDB*") '("*BBDB*" 10))
 			 (article 1.0)))))
 
 (gnus-add-configuration
@@ -77,12 +75,9 @@
 	       (vertical 50
 			 (group 1.0))
 	       (vertical 1.0
-			 (summary 1.0 point)
-                         (if (get-buffer "*BBDB*") '("*BBDB*" 10))
-                         ))))
+			 (summary 1.0 point)))))
 
-(setq-default gnus-summary-line-format
-              (concat "%U%R%z %(%&user-date; %* %B" (if (featurep 'bbdb) "%uB" "%a") "  %s%)\n")
+(setq-default gnus-summary-line-format "%U%R%z %(%&user-date; %* %B%a  %s%)\n"
 	      gnus-user-date-format-alist '((t . "%Y-%m-%d %H:%M"))
 	      gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references
 	      gnus-thread-sort-functions '(gnus-thread-sort-by-date)
@@ -96,7 +91,19 @@
 ;; HTML
 
 ;(setq mm-text-html-renderer 'w3m)
-(setq mm-discouraged-alternatives '("text/html" "text/richtext"))
+;(setq mm-discouraged-alternatives '("text/html" "text/richtext"))
+
+;; Set the default value of mm-discouraged-alternatives.
+(eval-after-load "gnus-sum"
+  '(add-to-list
+    'gnus-newsgroup-variables
+    '(mm-discouraged-alternatives
+      . '("text/html" "image/.*"))))
+
+;; Display ‘text/html’ parts in nnrss groups.
+(add-to-list
+ 'gnus-parameters
+ '("\\`nnrss:" (mm-discouraged-alternatives nil)))
 
 ;; Posting styles
 (setq user-mail-address "cauderlier@crans.org")
@@ -115,7 +122,9 @@
                     "raphael.cauderlier@ens-cachan.fr"
                     "rcauderl@ens-cachan.fr"
                     "raphael@interagir.com"
-                    "harry@crans.org")))
+                    "harry@crans.org"
+                    "missive@with-love.fr"
+                    "rafoo@crans.org")))
 
 ;; Attachments
 (setq mm-enable-external 'ask)
