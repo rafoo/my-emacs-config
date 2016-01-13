@@ -20,6 +20,8 @@
 (eval-after-load "proofgeneral"
   '(require 'coq-conf))
 
+(require 'ottmode)
+
 ;; Bind keys to functions jumping to source code
 ;; Idea from http://emacsredux.com/blog/2014/06/18/quickly-find-emacs-lisp-sources/
 (define-key 'help-command (kbd "C-l") 'find-library)
