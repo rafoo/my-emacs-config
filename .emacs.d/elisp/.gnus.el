@@ -124,7 +124,9 @@
                     "raphael@interagir.com"
                     "harry@crans.org"
                     "missive@with-love.fr"
-                    "rafoo@crans.org")))
+                    "rafoo@crans.org"
+                    "cauderlier@lsv.fr"
+                    "raphael.cauderlier@lsv.fr")))
 
 ;; Attachments
 (setq mm-enable-external 'ask)
