@@ -105,29 +105,6 @@
  'gnus-parameters
  '("\\`nnrss:" (mm-discouraged-alternatives nil)))
 
-;; Posting styles
-(setq user-mail-address "cauderlier@crans.org")
-
-(setq gnus-posting-styles '((".*"
-                             (address "cauderlier@crans.org"
-			      name "Raphaël Cauderlier"))))
-
-(setq message-alternative-emails
-      (regexp-opt '("cauderlier@crans.org"
-                    "raphael.cauderlier@crans.org"
-                    "raphael.cauderlier@inria.fr"
-                    "raphael.cauderlier@cnam.fr"
-                    "raphael.cauderlier@dptinfo.ens-cachan.fr"
-                    "rcauderl@dptinfo.ens-cachan.fr"
-                    "raphael.cauderlier@ens-cachan.fr"
-                    "rcauderl@ens-cachan.fr"
-                    "raphael@interagir.com"
-                    "harry@crans.org"
-                    "missive@with-love.fr"
-                    "rafoo@crans.org"
-                    "cauderlier@lsv.fr"
-                    "raphael.cauderlier@lsv.fr")))
-
 ;; Attachments
 (setq mm-enable-external 'ask)
 
