@@ -25,7 +25,36 @@
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
+(add-to-list 'org-latex-classes
+             '("report"
+               "\\documentclass[11pt]{report}"
+               ("\\part{%s}" . "\\part*{%s}")
+               ("\\chapter{%s}" . "\\chapter*{%s}")
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
+(add-to-list 'org-latex-classes
+             '("book"
+               "\\documentclass[a4paper,11pt]{book}\n\\pdfobjcompresslevel 0\n\\usepackage[a-1b]{pdfx}"
+               ("\\mypart{%s}" . "\\part*{%s}")
+               ("\\myregchapter{%s}" . "\\mychapter{%s}")
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+(add-to-list 'org-latex-classes
+             '("sigplan"
+               "\\documentclass[preprint,10pt]{sigplanconf}"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 (setq org-export-latex-hyperref-format "\\ref{%s}")
 
