@@ -36,6 +36,8 @@
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
+(add-hook 'prog-mode-hook 'auto-highlight-symbol-mode)
+
 ;; Checking
 (when (fboundp 'flycheck-mode)
   (add-hook 'prog-mode-hook 'flycheck-mode))

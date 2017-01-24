@@ -202,6 +202,7 @@ call it before FORM when perspective is created."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ahs-idle-interval 0.2)
  '(auth-source-save-behavior nil)
  '(backup-directory-alist (quote ((".*" . "./.bkp/"))))
  '(canlock-password "0a42e4942e41dbbd56282757bd18beccbbbcd635")
