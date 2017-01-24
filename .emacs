@@ -220,50 +220,6 @@ call it before FORM when perspective is created."
  '(list-directory-verbose-switches "-l")
  '(makefile-electric-keys t)
  '(mm-text-html-renderer (quote w3m))
- '(org-agenda-span 14)
- '(org-export-latex-default-packages-alist
-   (quote
-    (("" "fixltx2e" nil)
-     ("" "graphicx" t)
-     ("" "longtable" nil)
-     ("" "float" nil)
-     ("" "wrapfig" nil)
-     ("" "soul" t)
-     ("" "textcomp" t)
-     ("" "marvosym" t)
-     ("" "wasysym" t)
-     ("" "latexsym" t)
-     ("" "amssymb" t)
-     ("" "hyperref" nil)
-     "\\tolerance=1000")))
- '(org-export-latex-packages-alist nil)
- '(org-latex-default-packages-alist
-   (quote
-    (("" "fixltx2e" nil)
-     ("" "graphicx" t)
-     ("" "longtable" nil)
-     ("" "float" nil)
-     ("" "wrapfig" nil)
-     ("" "soul" t)
-     ("" "textcomp" t)
-     ("" "marvosym" t)
-     ("" "wasysym" t)
-     ("" "latexsym" t)
-     ("" "amssymb" t)
-     ("" "hyperref" nil)
-     "\\tolerance=1000")))
- '(org-latex-packages-alist nil)
- '(org-latex-pdf-process
-   (quote
-    ("xelatex -interaction nonstopmode -output-directory %o %f" "bibtex %b" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
- '(org-latex-to-pdf-process
-   (quote
-    ("xelatex -interaction nonstopmode -output-directory %o %f" "bibtex %b" "xelatex -interaction nonstopmode -output-directory %o %f" "xelatex -interaction nonstopmode -output-directory %o %f")))
- '(org-mobile-directory "~/org/mobile/")
- '(org-modules
-   (quote
-    (org-bbdb org-bibtex org-docview org-gnus org-info org-jsinfo org-irc org-mew org-mhe org-rmail org-vm org-wl org-w3m org-special-blocks)))
- '(org-src-fontify-natively t)
  '(package-archive-exclude-alist (quote (("melpa" org))))
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
