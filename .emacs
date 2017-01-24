@@ -182,7 +182,7 @@ call it before FORM when perspective is created."
 (require 'coq-conf)
 
 ;; Compilation
-(global-set-key (kbd "C-c c") 'compile)
+; (global-set-key (kbd "C-c c") 'compile)
 
 ;; Pairs matching
 (setq electric-pair-pairs '((?\" . ?\")
