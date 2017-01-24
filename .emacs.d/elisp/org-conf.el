@@ -39,22 +39,22 @@
   (add-to-list 'org-export-filter-special-block-functions 'my-latex-captions-bellow))
 (setq org-agenda-files '("~/org/todo.org.gpg")
       org-agenda-span 14
-      org-export-latex-default-packages-alist '(("" "fixltx2e" nil)
-                                                ("" "graphicx" t)
-                                                ("" "longtable" nil)
-                                                ("" "float" nil)
-                                                ("" "wrapfig" nil)
-                                                ("" "soul" t)
-                                                ("" "textcomp" t)
-                                                ("" "marvosym" t)
-                                                ("" "wasysym" t)
-                                                ("" "latexsym" t)
-                                                ("" "amssymb" t)
-                                                ("" "hyperref" nil)
-                                                "\\tolerance=1000")
-      org-export-latex-packages-alist nil
+      org-latex-default-packages-alist '(("" "amsmath" t)
+                                         ("" "graphicx" t)
+                                         ("" "longtable" nil)
+                                         ("" "float" nil)
+                                         ("" "wrapfig" nil)
+                                         ("" "soul" t)
+                                         ("" "textcomp" t)
+                                         ("" "marvosym" t)
+                                         ("" "wasysym" t)
+                                         ("" "latexsym" t)
+                                         ("" "amssymb" t)
+                                         ("" "hyperref" nil)
+                                         "\\tolerance=1000")
+      org-latex-packages-alist nil
       org-latex-listings t
-      org-latex-pdf-process '("xelatex -interaction nonstopmode -output-directory %o %f"
+      org-latex-to-pdf-process '("xelatex -interaction nonstopmode -output-directory %o %f"
                               "bibtex %b"
                               "xelatex -interaction nonstopmode -output-directory %o %f"
                               "xelatex -interaction nonstopmode -output-directory %o %f")
@@ -71,13 +71,7 @@
                      org-rmail
                      org-vm
                      org-wl
-                     org-w3m
-                     org-special-blocks)
+                     org-w3m)
       org-src-fontify-natively t)
-
-;; New names for some variables
-(setq org-latex-default-packages-alist org-export-latex-default-packages-alist
-      org-latex-packages-alist org-export-latex-packages-alist
-      org-latex-to-pdf-process org-latex-pdf-process)
 
 (provide 'org-conf)
