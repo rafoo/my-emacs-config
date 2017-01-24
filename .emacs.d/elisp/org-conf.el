@@ -2,6 +2,17 @@
 
 (define-key global-map "\C-cl" 'org-store-link)
 
+;; Capture
+(global-set-key (kbd "C-c c") 'org-capture)
+
+(setq org-capture-templates nil)
+
+(add-to-list 'org-capture-templates
+             '("r"
+               "Rendez-vous"
+               entry
+               (file+headline "~/org/agenda.org" "Rendez-vous")
+               "* %:fromname\n    SCHEDULED: %^T"))
 (unless (boundp 'org-latex-classes)
   (setq org-latex-classes nil))
 
