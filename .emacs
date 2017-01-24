@@ -264,6 +264,45 @@ call it before FORM when perspective is created."
 ;; Per-host, unversionized configuration
 (require 'local-conf nil t)
 
+;; EXWM
+
+(require 'exwm)
+(require 'exwm-config)
+
+(defun exwm-run (command)
+  "Run a command in EXWM"
+  (interactive (list (read-shell-command "$ ")))
+  (start-process-shell-command command nil command))
+
+(exwm-input-set-key
+ (kbd "s-&")
+ (lambda () (interactive) (exwm-workspace-switch 0)))
+(exwm-input-set-key
+ (kbd "s-é")
+ (lambda () (interactive) (exwm-workspace-switch 1)))
+(exwm-input-set-key
+ (kbd "s-\"")
+ (lambda () (interactive) (exwm-workspace-switch 2)))
+(exwm-input-set-key
+ (kbd "s-'")
+ (lambda () (interactive) (exwm-workspace-switch 3)))
+
+(exwm-input-set-key (kbd "s-r") #'exwm-reset)
+
+(exwm-input-set-key (kbd "s-!") #'exwm-run)
+
+(exwm-input-set-key (kbd "s-s") #'persp-switch)
+
+;; Make class name the buffer name
+(add-hook 'exwm-update-class-hook
+          (lambda ()
+            (exwm-workspace-rename-buffer exwm-class-name)))
+
+(exwm-enable-ido-workaround)
+
+(exwm-enable)
+
+(put 'scroll-left 'disabled nil)
 
 ;; other interesting emacs features :
 ;; SES : tableur en elisp
