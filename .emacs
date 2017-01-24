@@ -153,36 +153,6 @@ call it before FORM when perspective is created."
        (setq browse-url-firefox-programm "iceweasel")))
 
 (setq browse-url-browser-function 'browse-url-default-browser)
-(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." 'interactive)
-(eval-after-load "w3m"
-  '(setq browse-url-browser-function 'w3m-browse-url
-         w3m-search-default-engine "duckduckgo"
-         w3m-search-engine-alist
-         '(("debian-pkg"
-            "http://packages.debian.org/cgi-bin/search_contents.pl?word=%s"
-            nil)
-           ("debian-bts"
-            "http://bugs.debian.org/cgi-bin/pkgreport.cgi?archive=yes&pkg=%s"
-            nil)
-           ("emacswiki"
-            "http://www.emacswiki.org/cgi-bin/wiki?search=%s"
-            nil)
-           ("wikipedia-en"
-            "http://en.wikipedia.org/wiki/Special:Search?search=%s"
-            nil)
-           ("wikipedia-fr"
-            "http://fr.wikipedia.org/wiki/Special:Search?search=%s"
-            utf-8)
-           ("ja.wikipedia"
-            "http://ja.wikipedia.org/wiki/Special:Search?search=%s"
-            utf-8)
-           ("duckduckgo" "https://duckduckgo.com/?q=%s" utf-8)
-           ("wiki"
-            "http://wiki.crans.org/?action=fullsearch&value=%s"
-            utf-8)
-           ("wikoeur"
-            "http://pimeys.fr/wikoeur/?action=fullsearch&value=%s"
-            utf-8))))
 
 ;; File browser
 (eval-after-load "dired"
