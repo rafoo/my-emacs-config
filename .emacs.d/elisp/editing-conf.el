@@ -1,9 +1,5 @@
 ;;; Programming
 
-;; FlyMake : on-the-fly syntax checking
-;; (require 'flymake)
-;; (add-hook 'find-file-hook 'flymake-find-file-hook)
-
 ;; Enforce 80 columns
 (when (fboundp 'column-enforce-mode)
   (add-hook 'prog-mode-hook 'column-enforce-mode))
