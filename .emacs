@@ -206,7 +206,6 @@ call it before FORM when perspective is created."
  '(auth-source-save-behavior nil)
  '(backup-directory-alist (quote ((".*" . "./.bkp/"))))
  '(canlock-password "0a42e4942e41dbbd56282757bd18beccbbbcd635")
- '(coq-load-path (quote ("/usr/local/lib/focalize" "/usr/local/lib/zenon")))
  '(dedukti-check-options (quote ("-nc" "-r")))
  '(dedukti-compile-options (quote ("-nc" "-e" "-r")))
  '(default-input-method "TeX")
