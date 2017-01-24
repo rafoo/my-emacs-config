@@ -146,11 +146,10 @@ call it before FORM when perspective is created."
 
 ;; Web browser
 
-;; firefox is iceweasel on Debian
-(let ((file "/usr/bin/iceweasel"))
+(let ((file "~/scripts/tbb"))
   (and (file-exists-p file)
        (file-executable-p file)
-       (setq browse-url-firefox-programm "iceweasel")))
+       (setq browse-url-firefox-program "tbb")))
 
 (setq browse-url-browser-function 'browse-url-default-browser)
 
