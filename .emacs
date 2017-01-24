@@ -123,12 +123,6 @@ call it before FORM when perspective is created."
 
 (define-persp-app "erc" () (kbd "C-c i") (erc))
 
-(eval-after-load "emms"
-  '(require 'emms-conf))
-
-(define-persp-app "emms" (emms) (kbd "C-c m")
-  (emms-play-playlist "~/Musique/playlist"))
-
 (autoload 'eshell-in-other-window "eshell-conf")
 (global-set-key (kbd "<s-return>") 'eshell-in-other-window)
 (global-set-key (kbd "M-RET") 'eshell-in-other-window)
