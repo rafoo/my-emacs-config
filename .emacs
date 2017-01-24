@@ -223,12 +223,6 @@ call it before FORM when perspective is created."
  '(package-archive-exclude-alist (quote (("melpa" org))))
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
- '(safe-local-variable-values
-   (quote
-    ((coq-prog-name . "~/pkg/focalize-0.6.0/bin/coqtop")
-     (org-html-postamble)
-     (org-html-preamble)
-     (encoding . utf-8))))
  '(send-mail-function (quote smtpmail-send-it))
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
