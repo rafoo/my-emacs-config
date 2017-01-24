@@ -32,20 +32,22 @@
 ;; Configuration des serveurs
 
 ;; Mails Cr@ns
-;; (setq gnus-select-method '(nnimap "Crans"
-;;                                   (nnimap-address "imap.crans.org")
-;;                                   (nnimap-stream ssl)))
-(setq gnus-select-method '(nnmaildir "Crans"
-                                     (directory "~/OfflineIMAP/Crans")))
+(setq gnus-select-method '(nnimap "IMAP" (nnimap-address "localhost")
+                                                     (nnimap-stream network)
+                                                     (nnimap-authenticator login))
+                                      )
 
-;; News
-(setq gnus-secondary-select-methods '(
-                                      (nntp "news.crans.org")
-				      (nntp "news.gmane.org")
-                                      (nnmaildir "Cnam"
-                                              (directory "~/OfflineIMAP/Cnam"))))
-;; RSS
-(setq nnrss-use-local t)
+;; ;; News
+;; (setq gnus-secondary-select-methods '(
+;;                                       (nntp "news.crans.org")
+;; 				      (nntp "news.gmane.org")
+;;                                       (nnmaildir "Cnam"
+;;                                               (directory "~/OfflineIMAP/Cnam"))
+;;                                       )
+;;                                       )
+
+;; ;; RSS
+;; (setq nnrss-use-local t)
 
 
 ;; Envoi
