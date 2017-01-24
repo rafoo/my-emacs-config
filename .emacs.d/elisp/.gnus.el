@@ -32,6 +32,7 @@
 ;; Configuration des serveurs
 
 ;; Mails Cr@ns
+;; Borrowed from http://sachachua.com/blog/2008/05/geek-how-to-use-offlineimap-and-the-dovecot-mail-server-to-read-your-gmail-in-emacs-efficiently/
 (setq gnus-select-method '(nnimap "IMAP" (nnimap-address "localhost")
                                                      (nnimap-stream network)
                                                      (nnimap-authenticator login))
