@@ -214,6 +214,7 @@ call it before FORM when perspective is created."
  '(ede-project-directories (quote ("/home/harry/wicd-mode")))
  '(electric-pair-mode t)
  '(erc-track-switch-direction (quote importance))
+ '(flyspell-auto-correct-binding (kbd "M-<tab>"))
  '(gnus-init-file "~/.emacs.d/elisp/.gnus")
  '(indent-tabs-mode nil)
  '(initial-scratch-message nil)
