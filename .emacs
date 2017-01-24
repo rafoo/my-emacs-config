@@ -195,9 +195,6 @@ call it before FORM when perspective is created."
 
 (define-persp-app "xkcd" (xkcd) (kbd "C-c x"))
 
-(require 'zone)
-(zone-when-idle 120)
-
 (when (require 'hungry-delete nil t)
   (global-hungry-delete-mode))
 
