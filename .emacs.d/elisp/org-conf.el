@@ -37,7 +37,7 @@
 
 (when (boundp 'org-export-filter-special-block-functions)
   (add-to-list 'org-export-filter-special-block-functions 'my-latex-captions-bellow))
-(setq org-agenda-files '("/zamok:org/todo.org.gpg")
+(setq org-agenda-files '("~/org/todo.org.gpg")
       org-agenda-span 14
       org-export-latex-default-packages-alist '(("" "fixltx2e" nil)
                                                 ("" "graphicx" t)
