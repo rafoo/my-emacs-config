@@ -314,9 +314,6 @@ call it before FORM when perspective is created."
 ;; Per-host, unversionized configuration
 (require 'local-conf nil t)
 
-;; Use tabs in the header line
-(eval-after-load "tabbar"
-  '(tabbar-mode 1))
 
 ;; other interesting emacs features :
 ;; SES : tableur en elisp
