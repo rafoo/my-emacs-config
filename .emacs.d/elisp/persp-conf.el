@@ -90,14 +90,10 @@ Used by `define-persp-magit-app'"
   (gnus)
   (kbd "C-c n"))
 
-(define-persp-app "wicd"
-  (progn
-    (exwm-run "wicd-gtk"))
-;    (load "~/git/wicd-mode/wicd-mode.el")
-;    (wicd))
-  (kbd "C-c w"))
-
-(define-persp-app "web" (exwm-run "tbb") (kbd "C-c b"))
+(eval-after-load 'exwm-conf
+  '(progn
+     (define-persp-app "wicd" (exwm-run "wicd-gtk") (kbd "C-c w"))
+     (define-persp-app "web" (exwm-run "tbb") (kbd "C-c b"))))
 
 (provide 'persp-conf)
 ;;; persp-conf.el ends here
