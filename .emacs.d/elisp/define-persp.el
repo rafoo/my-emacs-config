@@ -87,7 +87,7 @@ nil, call it before FORM when perspective is created."
      (when key
        `(global-set-key ,key ',persp-command)))))
 
-(defcustom define-persp-git-repositories-path "~/git"
+(defcustom define-persp-git-repositories-path "~/git/"
   "Path to a directory of git repositories.
 Used by `define-persp-magit-app' and `define-persp-with-git'."
   :group 'persp-app)
@@ -130,7 +130,7 @@ The string NAME is both the shell command and the name of the
 created perspective.  The command is called in its own process
 using `start-process-shell-command'."
   (interactive (list (read-shell-command "New command perspective: ")))
-  (define-persp-with-shell-process name name)
+  (eval `(define-persp-with-shell-process ,name ,name))
   (eval (read (concat "(persp-" name ")")))
   )
 
