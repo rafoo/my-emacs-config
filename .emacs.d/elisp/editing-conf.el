@@ -8,6 +8,13 @@
 (eval-after-load "tuareg"
   '(require 'tuareg-conf)) ; OCaml
 ;(require 'focalize) ; FoCaLiZe
+; (load "~/git/focalize/focalizec/emacs/focalize.el")
+
+;; ;; Dedukti
+;; (add-hook 'dedukti-mode-hook (lambda ()
+;;                                (flycheck-select-checker 'dedukti)
+;;                                (flycheck-mode)))
+
 (eval-after-load "tex"
   '(require 'latex-conf)) ; LaTeX
 ; (require 'isabelle) ; Isabelle

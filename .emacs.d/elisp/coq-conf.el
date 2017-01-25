@@ -5,4 +5,6 @@
       proof-electric-terminator-enable t
       proof-three-window-mode-policy 'hybrid)
 
+(global-set-key (kbd "C-c RET") 'proof-goto-point)
+
 (provide 'coq-conf)

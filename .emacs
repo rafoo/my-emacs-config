@@ -10,45 +10,6 @@
 (add-to-list 'load-path "~/.emacs.d/elisp/") ; Configuration
 (add-to-list 'load-path "~/git/wicd-mode/")  ; My wicd interface
 
-(defmacro my-with-persp (name &rest body)
-  "Switch to the perspective given by NAME and evaluate BODY.
-If the perspective NAME doesn't yet exists, create it.
-If the perspective library is not available, just evaluate BODY."
-  `(if (fboundp 'persp-mode)             ; persp library available
-       (progn
-         (unless persp-mode (persp-mode))
-         (persp-switch ,name)
-         ,@body)
-     ,@body))
-
-(defmacro define-persp-app (persp-name form &optional key first-form)
-  "Define a command persp- PERSP-NAME by wrapping FORM by `my-with-persp'.
-If KEY is non nil, bind it to this command.
-If FIRST-FORM is non nil,
-call it before FORM when perspective is created."
-  (let ((persp-command (intern (concat "persp-" persp-name))))
-    (list 'progn
-     `(defun ,persp-command ()
-        ,(format "Run %s in a dedicated perspective." persp-name)
-        (interactive)
-        (my-with-persp ,persp-name
-                       ,(if first-form
-                          `(unless (and (fboundp 'persp-names)
-                                        (member ,persp-name (persp-names)))
-                             ,first-form ,form)
-                          form)))
-     (when key
-       `(global-set-key ,key ',persp-command)))))
-
-(defmacro define-persp-magit-app (persp-name key)
-  "Define a perspective application for a git project using `magit-status'."
-  `(define-persp-app
-     ,persp-name
-     (magit-status ,(concat "~/git/" persp-name))
-     ,key))
-
-(define-persp-app "packages" (list-packages) (kbd "C-c p"))
-
 ;; Package management
 (eval-after-load "package"
   '(setq package-archives
@@ -59,7 +20,6 @@ call it before FORM when perspective is created."
 
 (let ((default-directory "~/.emacs.d/elpa/"))
   (normal-top-level-add-subdirs-to-load-path))
-
 
 ;; Extend path with opam directory
 
@@ -77,6 +37,14 @@ call it before FORM when perspective is created."
 (when (executable-find "opam")
   (add-to-path
    (concat my-home "/.opam/" (substring (shell-command-to-string "opam switch show") 0 -1) "/bin")))
+
+;; C-z is always typed by accident
+(global-unset-key (kbd "C-z"))
+;; Xmonad-like bindings
+(global-set-key (kbd "<s-tab>") 'other-window)
+
+;; Jabber
+(global-set-key (kbd "C-c j") 'jabber-connect)
 
 ;;; Display
 
@@ -103,6 +71,7 @@ call it before FORM when perspective is created."
 
 ;; Buffers listing
 ;; Rebind C-x C-b to ibuffer, an improved buffer list
+(require 'persp-conf)
 (define-persp-app "ibuffer" (ibuffer) (kbd "C-x C-b"))
 
 ;; Minibuffer
@@ -197,15 +166,33 @@ call it before FORM when perspective is created."
 (when (require 'hungry-delete nil t)
   (global-hungry-delete-mode))
 
+
+;; Ispell
+(defun my-ispell-switch-language ()
+  "Switch Ispell dictionary between English and French."
+  (interactive)
+  (ispell-change-dictionary
+   (if (string= ispell-current-dictionary "english")
+       "french"
+     "english"))
+  )
+
+(global-set-key (kbd "C-c f") 'my-ispell-switch-language)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ahs-idle-interval 0.2)
+ '(ansi-color-names-vector
+   ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
  '(auth-source-save-behavior nil)
  '(backup-directory-alist (quote ((".*" . "./.bkp/"))))
  '(canlock-password "0a42e4942e41dbbd56282757bd18beccbbbcd635")
+ '(custom-safe-themes
+   (quote
+    ("dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" default)))
  '(dedukti-check-options (quote ("-nc" "-r")))
  '(dedukti-compile-options (quote ("-nc" "-e" "-r")))
  '(default-input-method "TeX")
@@ -214,6 +201,7 @@ call it before FORM when perspective is created."
  '(ede-project-directories (quote ("/home/harry/wicd-mode")))
  '(electric-pair-mode t)
  '(erc-track-switch-direction (quote importance))
+ '(fci-rule-color "#383838")
  '(flyspell-auto-correct-binding (kbd "M-<tab>"))
  '(gnus-init-file "~/.emacs.d/elisp/.gnus")
  '(indent-tabs-mode nil)
@@ -262,46 +250,14 @@ call it before FORM when perspective is created."
 
 (global-set-key (kbd "<menu>") 'my-startup)
 
+(require 'offlineimap-conf)
+
 ;; Per-host, unversionized configuration
 (require 'local-conf nil t)
 
 ;; EXWM
-
-(require 'exwm)
-(require 'exwm-config)
-
-(defun exwm-run (command)
-  "Run a command in EXWM"
-  (interactive (list (read-shell-command "$ ")))
-  (start-process-shell-command command nil command))
-
-(exwm-input-set-key
- (kbd "s-&")
- (lambda () (interactive) (exwm-workspace-switch 0)))
-(exwm-input-set-key
- (kbd "s-é")
- (lambda () (interactive) (exwm-workspace-switch 1)))
-(exwm-input-set-key
- (kbd "s-\"")
- (lambda () (interactive) (exwm-workspace-switch 2)))
-(exwm-input-set-key
- (kbd "s-'")
- (lambda () (interactive) (exwm-workspace-switch 3)))
-
-(exwm-input-set-key (kbd "s-r") #'exwm-reset)
-
-(exwm-input-set-key (kbd "s-!") #'exwm-run)
-
-(exwm-input-set-key (kbd "s-s") #'persp-switch)
-
-;; Make class name the buffer name
-(add-hook 'exwm-update-class-hook
-          (lambda ()
-            (exwm-workspace-rename-buffer exwm-class-name)))
-
-(exwm-enable-ido-workaround)
-
-(exwm-enable)
+(when (require 'exwm nil t)
+  (require 'exwm-conf))
 
 (put 'scroll-left 'disabled nil)
 
