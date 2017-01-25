@@ -35,20 +35,30 @@ and restored by `eshell-exit'.")
         (eshell)))))
 
 (defun eshell-exit ()
+  "Exit Eshell and restore the previous window configuration."
   (interactive)
   (when eshell-before-wconf
     (set-window-configuration eshell-before-wconf))
   (setq eshell-before-wconf nil))
 
+(defun eshell-exit-when-eolp ()
+  "Exit Eshell if point is at end of line.
+Otherwise delete one character."
+  (interactive)
+  (if (eolp)
+      (eshell-exit)
+    (delete-char 1)))
+
+(defun eshell-C-d-hook ()
+  ;; I don't know how to do this whitout local-set-key
+  ;; because eshell-mode-map is buffer-local
+  ;; (and I don't know why).
+  (local-set-key
+   (kbd "C-d")
+   'eshell-exit-when-eolp))
+
 ;; C-d in eshell exit
-(add-hook 'eshell-mode-hook
-          (lambda ()
-            ;; I don't know how to do this whitout local-set-key
-            ;; because eshell-mode-map is buffer-local
-            ;; (and I don't know why).
-            (local-set-key
-              (kbd "C-d")
-              'eshell-exit)))
+(add-hook 'eshell-mode-hook #'eshell-C-d-hook)
 
 (provide 'eshell-conf)
 ;;; eshell-conf.el ends here
