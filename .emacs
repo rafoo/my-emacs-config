@@ -38,11 +38,14 @@
   (add-to-path
    (concat my-home "/.opam/" (substring (shell-command-to-string "opam switch show") 0 -1) "/bin")))
 
+
+;; Custom keys
+(require 'persp-conf)
+
 ;; C-z is always typed by accident
 (global-unset-key (kbd "C-z"))
 ;; Xmonad-like bindings
 (global-set-key (kbd "<s-tab>") 'other-window)
-
 ;; Jabber
 (global-set-key (kbd "C-c j") 'jabber-connect)
 
@@ -65,14 +68,8 @@
 (require 'header-line-conf)
 
 ;;; Buffers
-
 (global-auto-revert-mode 1)     ; update buffer contents when their files change
 (global-visual-line-mode 1)     ; wrap long lines on words
-
-;; Buffers listing
-;; Rebind C-x C-b to ibuffer, an improved buffer list
-(require 'persp-conf)
-(define-persp-app "ibuffer" (ibuffer) (kbd "C-x C-b"))
 
 ;; Minibuffer
 (setq minibuffer-auto-raise t
@@ -90,8 +87,6 @@
 (eval-after-load "erc"
   '(require 'erc-conf))
 
-(define-persp-app "erc" () (kbd "C-c i") (erc))
-
 (autoload 'eshell-in-other-window "eshell-conf")
 (global-set-key (kbd "<s-return>") 'eshell-in-other-window)
 (global-set-key (kbd "M-RET") 'eshell-in-other-window)
@@ -105,10 +100,6 @@
 
 (eval-after-load "rudel"
   '(require 'rudel-conf))
-
-(define-persp-app "agenda" (org-agenda) (kbd "C-c a"))
-
-(define-persp-app "org" (dired (concat my-home "/git/org")) (kbd "C-c o"))
 
 (eval-after-load "org"
   '(require 'org-conf))
@@ -159,13 +150,8 @@
                             (?\{ . ?\})
                             (?\[ . ?\])))
 
-(define-persp-app "wicd" (wicd) (kbd "C-c w"))
-
-(define-persp-app "xkcd" (xkcd) (kbd "C-c x"))
-
 (when (require 'hungry-delete nil t)
   (global-hungry-delete-mode))
-
 
 ;; Ispell
 (defun my-ispell-switch-language ()
@@ -242,13 +228,6 @@
  '(w3m-anchor ((((class color) (background light)) (:foreground "light blue")))))
 
 (require 'init-actions nil t)
-
-(defun my-startup ()
-  "Visit my startup file."
-  (interactive)
-  (my-with-persp "main" (find-file "~/org/startup.org")))
-
-(global-set-key (kbd "<menu>") 'my-startup)
 
 (require 'offlineimap-conf)
 
