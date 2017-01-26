@@ -77,7 +77,7 @@
 
 (when (boundp 'org-export-filter-special-block-functions)
   (add-to-list 'org-export-filter-special-block-functions 'my-latex-captions-bellow))
-(setq org-agenda-files '("~/org/todo.org.gpg")
+(setq org-agenda-files '("~/org/todo.org.gpg" "~/org/agenda.org" "~/org/startup.org" "~/git/papiers_vecolib/biblio.org")
       org-agenda-span 14
       org-latex-default-packages-alist '(("" "amsmath" t)
                                          ("" "graphicx" t)
