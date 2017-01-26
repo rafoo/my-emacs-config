@@ -240,6 +240,12 @@
 
 (put 'scroll-left 'disabled nil)
 
+;; PDF
+;; PDF-tools is a replacement for Docview
+(when (require 'pdf-tools nil t)
+  (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
+  (add-hook 'pdf-view-mode-hook #'pdf-tools-enable-minor-modes))
+
 ;; other interesting emacs features :
 ;; SES : tableur en elisp
 ;; image modes
