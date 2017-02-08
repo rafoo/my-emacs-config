@@ -37,8 +37,16 @@
 
 ;; Spell checking
 (add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+(add-hook 'text-mode-hook 'typo-mode)
 
+(eval-after-load 'guess-language
+  '(progn
+     (setq guess-language-languages '(en fr))
+     (setq guess-language-min-paragraph-length 35)))
+
+(add-hook 'text-mode-hook 'guess-language-mode)
+
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 (add-hook 'prog-mode-hook 'auto-highlight-symbol-mode)
 
 ;; Checking
