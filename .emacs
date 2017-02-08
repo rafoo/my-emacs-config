@@ -50,13 +50,8 @@
 (global-set-key (kbd "C-c j") 'jabber-connect)
 
 ;;; Display
-
-;; Customizations depending on wheter Emacs is in tty.
-(add-hook 'after-make-frame-functions
-          (lambda (frame)
-            (if (display-graphic-p frame)
-                (require 'graphic-conf)
-              (require 'tty-conf))))
+(package-initialize)
+(require 'graphic-conf)
 
 (autoload 'v-resize "resize" 'interactive nil) ; resize windows with C-c +
 (global-set-key (kbd "C-c +") 'v-resize)
