@@ -30,10 +30,10 @@
 (global-set-key (kbd "<pause>") 'vol0)
 
 (eval-after-load 'exwm-conf
-  (defun alsamixer ()
-    "Run alsamixer in a X terminal."
-    (interactive)
-    (exwm-run "xterm alsamixer")))
+  '(defun alsamixer ()
+     "Run alsamixer in a X terminal."
+     (interactive)
+     (exwm-run "xterm alsamixer")))
 
 (global-set-key (kbd "C-c m") 'alsamixer)
 
