@@ -233,6 +233,13 @@
 (when (require 'exwm nil t)
   (require 'exwm-conf))
 
+;; Auto-kill password file ~/passwd.gpg
+;; Source: https://stackoverflow.com/questions/15255080/how-to-auto-close-an-auto-encryption-mode-buffer-in-emacs
+(run-with-idle-timer 60 t (lambda ()
+                         (let ((victim (get-buffer "passwd.gpg")))
+                           (when victim (message "Killing buffer %s" (buffer-name victim)
+                                                 (kill-buffer victim))))))
+
 (put 'scroll-left 'disabled nil)
 
 ;; PDF
