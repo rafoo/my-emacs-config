@@ -144,7 +144,18 @@
         "multipart/signed")
 
       epg-debug t ;;  then read the *epg-debug*" buffer
-     )
+      )
+
+;; Switching to offlineimap buffer with bey o
+
+(defun my-switch-to-offlineimap ()
+  (interactive)
+  (switch-to-buffer (get-buffer offlineimap-buffer-name)))
+
+(define-key gnus-group-mode-map "o" 'my-switch-to-offlineimap)
+(define-key gnus-group-mode-map "O" 'offlineimap)
+
+
 
 (defun nnmaildir--scan (gname scan-msgs groups method srv-dir srv-ls)
   (catch 'return
