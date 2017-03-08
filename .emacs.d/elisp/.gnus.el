@@ -154,6 +154,7 @@
 
 (define-key gnus-group-mode-map "O" 'my-switch-to-offlineimap)
 (define-key gnus-group-mode-map "o" 'offlineimap)
+(define-key offlineimap-mode-map "o" 'offlineimap)
 
 
 
