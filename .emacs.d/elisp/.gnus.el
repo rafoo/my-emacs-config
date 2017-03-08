@@ -152,8 +152,8 @@
   (interactive)
   (switch-to-buffer (get-buffer offlineimap-buffer-name)))
 
-(define-key gnus-group-mode-map "o" 'my-switch-to-offlineimap)
-(define-key gnus-group-mode-map "O" 'offlineimap)
+(define-key gnus-group-mode-map "O" 'my-switch-to-offlineimap)
+(define-key gnus-group-mode-map "o" 'offlineimap)
 
 
 
