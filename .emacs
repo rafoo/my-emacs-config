@@ -215,6 +215,7 @@
      ("duckduckgo" "https://duckduckgo.com/?q=%s" utf-8)
      ("wiki" " http://wiki.crans.org/?action=fullsearch&value=%s&titlesearch=Titres" utf-8)
      ("wikoeur" "http://pimeys.fr/wikoeur/?action=fullsearch&value=%s&titlesearch=Titres" utf-8))))
+ '(wdired-allow-to-change-permissions t)
  '(which-function-mode t)
  '(wicd-wireless-filter ".*"))
 
