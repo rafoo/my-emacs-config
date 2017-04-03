@@ -234,6 +234,10 @@
 ;; Per-host, unversionized configuration
 (require 'local-conf nil t)
 
+;; Enable which-key
+(when (require 'which-key nil t)
+  (which-key-mode t))
+
 ;; EXWM
 (when (require 'exwm nil t)
   (require 'exwm-conf))
