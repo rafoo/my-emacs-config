@@ -23,7 +23,7 @@
 
 ;; Extend path with opam directory
 
-(setq my-home (getenv "HOME"))
+(defvar my-home (getenv "HOME"))
 
 (defun add-to-path (dirname)
   "Add DIRNAME to `'exec-path' and env variable PATH."
@@ -35,8 +35,12 @@
       (setenv "PATH" (concat dirname ":" path)))))
 
 (when (executable-find "opam")
-  (add-to-path
-   (concat my-home "/.opam/" (substring (shell-command-to-string "opam switch show") 0 -1) "/bin")))
+  (let ((opam-switch (substring (shell-command-to-string "opam switch show") 0 -1)))
+    (add-to-path
+     (concat my-home "/.opam/" opam-switch "/bin"))
+    (eval-after-load 'dedukti-mode
+      (setq dedukti-path (concat my-home "/.opam/" opam-switch "/bin/dkcheck"))
+    )))
 
 
 ;; Custom keys
