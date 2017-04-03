@@ -238,6 +238,12 @@
 (when (require 'exwm nil t)
   (require 'exwm-conf))
 
+(require 'rtiling nil t)
+
+(when (require 'perspective nil t)
+  (require 'rtiling-conf nil t))
+
+
 ;; Auto-kill password file ~/passwd.gpg
 ;; Source: https://stackoverflow.com/questions/15255080/how-to-auto-close-an-auto-encryption-mode-buffer-in-emacs
 (run-with-idle-timer 60 t (lambda ()

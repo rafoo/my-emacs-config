@@ -29,8 +29,18 @@
 (exwm-input-set-key (kbd "s-!") #'exwm-run)
 
 (eval-after-load 'persp-conf
-  '(exwm-input-set-key (kbd "s-s") #'persp-switch)
-  )
+  '(progn
+     (exwm-input-set-key (kbd "s-s") #'persp-switch)
+     (exwm-input--update-global-prefix-keys)))
+
+(eval-after-load 'rtiling
+  '(progn
+     (exwm-input-set-key (kbd "<s-tab>") #'rtiling-other-buffer-or-window)
+     (exwm-input-set-key (kbd "s-SPC") #'rtiling-change-orientation)
+     (exwm-input-set-key (kbd "<s-return>") #'rtiling-switch-windows)
+     (exwm-input--update-global-prefix-keys)))
+
+(exwm-input--update-global-prefix-keys)
 
 ;; Make class name the buffer name
 (add-hook 'exwm-update-class-hook
