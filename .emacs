@@ -87,7 +87,6 @@
   '(require 'erc-conf))
 
 (autoload 'eshell-in-other-window "eshell-conf")
-(global-set-key (kbd "<s-return>") 'eshell-in-other-window)
 (global-set-key (kbd "M-RET") 'eshell-in-other-window)
 (global-set-key (kbd "C-c s") 'eshell-in-other-window)
 
