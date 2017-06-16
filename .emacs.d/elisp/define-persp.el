@@ -99,7 +99,9 @@ The string `PERSP-NAME' is both the name of the git directory in
 perspective.  If KEY is non nil, bind it to this perspective."
   `(define-persp-app
      ,persp-name
-     (magit-status ,(concat define-persp-git-repositories-path persp-name))
+     (progn
+       (magit-status ,(concat define-persp-git-repositories-path persp-name))
+       (delete-other-windows))
      ,key))
 
 (defun define-persp-with-git (name)
