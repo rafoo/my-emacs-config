@@ -30,7 +30,7 @@
 
 (eval-after-load 'persp-conf
   '(progn
-     (exwm-input-set-key (kbd "s-s") #'persp-switch)
+     (exwm-input-set-key (kbd "s-s") #'my-persp-switch)
      (exwm-input--update-global-prefix-keys)))
 
 (eval-after-load 'rtiling

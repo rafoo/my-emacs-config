@@ -10,6 +10,12 @@
 (global-set-key (kbd "C-c v") 'define-persp-with-git)
 (global-set-key (kbd "C-c !") 'define-persp-with-cmd)
 
+(defun my-persp-switch ()
+  (interactive)
+  (unless persp-mode (persp-mode))
+  (persp-switch nil)
+  )
+
 (define-persp-app "config"
   (progn
     (find-file "~/.emacs")
