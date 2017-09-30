@@ -38,14 +38,14 @@
                                                      (nnimap-authenticator login))
                                       )
 
-;; ;; News
-;; (setq gnus-secondary-select-methods '(
-;;                                       (nntp "news.crans.org")
-;; 				      (nntp "news.gmane.org")
-;;                                       (nnmaildir "Cnam"
-;;                                               (directory "~/OfflineIMAP/Cnam"))
-;;                                       )
-;;                                       )
+;; News
+(setq gnus-secondary-select-methods '(
+                                      (nntp "news.crans.org")
+				      (nntp "news.gmane.org")
+                                      ;; (nnmaildir "Cnam"
+                                      ;;         (directory "~/OfflineIMAP/Cnam"))
+                                      )
+                                      )
 
 ;; ;; RSS
 ;; (setq nnrss-use-local t)
