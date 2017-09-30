@@ -37,7 +37,7 @@
 (define-persp-app "ibuffer" (ibuffer) (kbd "C-x C-b"))
 
 (define-persp-with-shell-process "wicd" "wicd-gtk" (kbd "C-c w"))
-(define-persp-with-shell-process "web" "tbb" (kbd "C-c b"))
+(define-persp-with-shell-process "tbb" "tbb" (kbd "C-c b"))
 
 (provide 'persp-conf)
 ;;; persp-conf.el ends here
