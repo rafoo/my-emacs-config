@@ -57,6 +57,8 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 
 ;;; Code:
+(require 's)
+(require 'subr-x)
 
 (defmacro define-persp-run (name &rest body)
   "Switch to the perspective given by NAME and evaluate BODY.
@@ -132,8 +134,9 @@ The string NAME is both the shell command and the name of the
 created perspective.  The command is called in its own process
 using `start-process-shell-command'."
   (interactive (list (read-shell-command "New command perspective: ")))
-  (eval `(define-persp-with-shell-process ,name ,name))
-  (eval (read (concat "(persp-" name ")")))
+  (let ((name (string-trim name)))
+    (eval `(define-persp-with-shell-process ,name ,name))
+    (eval (read (concat "(persp-" name ")"))))
   )
 
 (eval-after-load 'perspective
