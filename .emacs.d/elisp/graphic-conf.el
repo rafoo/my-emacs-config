@@ -49,6 +49,19 @@
     ))
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
+;; Pour les autres buffers, une fonction pour remplacer les séquences d'échappement
+;; Source: https://stackoverflow.com/questions/23378271/how-do-i-display-ansi-color-codes-in-emacs-for-any-mode
+
+(defun my-ansi-color (&optional beg end)
+  "Interpret ANSI color esacape sequence by colorifying cotent.
+Operate on selected region on whole buffer."
+  (interactive
+   (if (use-region-p)
+       (list (region-beginning) (region-end))
+     (list (point-min) (point-max))))
+  (ansi-color-apply-on-region beg end))
+
+
 ;; Color theme
 (load-theme 'zenburn t)
 
