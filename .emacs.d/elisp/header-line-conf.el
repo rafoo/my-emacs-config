@@ -1,6 +1,6 @@
 ;; Configuration of the header-line to display global informations such as time, battery, ...
 
-(setq global-header-string)
+(setq global-header-string nil)
 (defmacro var-subst (var1 var2 exp)
   `(let ((,var1 ,var2))
         ,exp
