@@ -54,6 +54,9 @@ DIRNAME is a path relative to the HOME directory."
 (add-to-path-from-home "scripts")
 
 
+;; Used by the texdoc program called from AucTeX
+(setenv "PDFVIEWER" "evince")
+
 ;; Custom keys
 (require 'persp-conf)
 
