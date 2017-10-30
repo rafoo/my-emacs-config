@@ -26,7 +26,7 @@
 (defvar my-home (getenv "HOME"))
 
 (defun add-to-path (dirname)
-  "Add DIRNAME to `'exec-path' and env variable PATH."
+  "Add DIRNAME to `exec-path' and env variable PATH."
   (let ((path (getenv "PATH")))
     (add-to-list 'exec-path dirname)
     (unless (string-match-p
@@ -41,6 +41,17 @@
     (eval-after-load 'dedukti-mode
       (setq dedukti-path (concat my-home "/.opam/" opam-switch "/bin/dkcheck"))
     )))
+
+(defun add-to-path-from-home (dirname)
+  "Add DIRNAME to `exec-path' and env variable PATH.
+DIRNAME is a path relative to the HOME directory."
+  (add-to-path (concat my-home "/" dirname)))
+
+(add-to-path-from-home "bin/opentheory/bin/mlton")
+(add-to-path-from-home "git/imogen/src/main/sml/bin")
+(add-to-path-from-home "git/verifast/bin")
+(add-to-path-from-home "git/CVC4/builds/x86_64-unknown-linux-gnu/production/bin")
+(add-to-path-from-home "scripts")
 
 
 ;; Custom keys
