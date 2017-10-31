@@ -40,6 +40,7 @@
    (,(kbd "C-d") . delete)
    (,(kbd "C-k") . (S-end delete))
    (,(kbd "C-w") . ?\C-x)
+   (,(kbd "C-S-w") . ?\C-w) ;; To close Firefox tabs
    (,(kbd "M-w") . ?\C-c)
    (,(kbd "C-y") . ?\C-v)
    (,(kbd "C-_") . ?\C-z)
