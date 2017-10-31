@@ -1,6 +1,6 @@
 ;; Configuration of Windows and panes look
 
-(set-scroll-bar-mode 'right)
+(when (fboundp 'set-scroll-bar-mode) (set-scroll-bar-mode 'right))
 (setq scroll-margin 0
       scroll-conservatively 100000
       scroll-preserve-screen-position 1)
