@@ -4,7 +4,7 @@
 (require 'windows-conf)
 
 ;; Menu bar
-(eval-after-load "menu-bar" '(require 'menu-bar+))
+(eval-after-load "menu-bar" '(require 'menu-bar+ nil t))
 
 ;; Tool-bar
 (tool-bar-mode 0)
