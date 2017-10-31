@@ -8,9 +8,7 @@
     (funcall (plist-get result :secret))))
 
 ;; Start Emacs Server to ensure that OfflineIMAP will find a client
-(server-start)
-
-;; Run offlineimap from time to time
-(run-with-idle-timer 60 'repeat 'offlineimap)
+(require 'server)
+(unless (server-running-p) (server-start))
 
 (provide 'offlineimap-conf)
