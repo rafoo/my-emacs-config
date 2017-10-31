@@ -5,8 +5,8 @@
 
 ;; Enforce the dependencies of the define-persp package to be
 ;; installed
-(use-package s
-  :ensure t)
+(when (fboundp 'use-package)
+  (use-package s :ensure t))
 
 (require 'define-persp)
 
