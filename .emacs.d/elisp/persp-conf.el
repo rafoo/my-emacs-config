@@ -3,6 +3,11 @@
 ;; This is not part of Emacs.
 ;;; Code:
 
+;; Enforce the dependencies of the define-persp package to be
+;; installed
+(use-package s
+  :ensure t)
+
 (require 'define-persp)
 
 ;; Custom Perspectives
