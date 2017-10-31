@@ -267,8 +267,6 @@ gpg --pinentry-mode loopback --decrypt /path/to/some/encrypted/file.gpg > /dev/n
   (send-invisible "GPG Passphrase: ")
   )
 
-(put 'scroll-left 'disabled nil)
-
 ;; PDF
 ;; PDF-tools is a replacement for Docview
 (use-package pdf-tools
