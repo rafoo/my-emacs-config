@@ -173,10 +173,8 @@ DIRNAME is a path relative to the HOME directory."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ahs-idle-interval 0.2)
  '(ansi-color-names-vector
    ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
- '(auth-source-save-behavior nil)
  '(backup-directory-alist (quote ((".*" . "./.bkp/"))))
  '(canlock-password "0a42e4942e41dbbd56282757bd18beccbbbcd635")
  '(custom-safe-themes
