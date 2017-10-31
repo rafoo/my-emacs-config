@@ -26,6 +26,28 @@
      (exwm-input-set-key (kbd "<s-return>") #'rtiling-switch-windows)
      (exwm-input--update-global-prefix-keys)))
 
+(exwm-input-set-simulation-keys
+ `((,(kbd "C-b") . left)
+   (,(kbd "M-b") . C-left)
+   (,(kbd "C-f") . right)
+   (,(kbd "M-f") . C-right)
+   (,(kbd "C-p") . up)
+   (,(kbd "C-n") . down)
+   (,(kbd "C-a") . home)
+   (,(kbd "C-e") . end)
+   (,(kbd "M-v") . prior)
+   (,(kbd "C-v") . next)
+   (,(kbd "C-d") . delete)
+   (,(kbd "C-k") . (S-end delete))
+   (,(kbd "C-w") . ?\C-x)
+   (,(kbd "M-w") . ?\C-c)
+   (,(kbd "C-y") . ?\C-v)
+   (,(kbd "C-_") . ?\C-z)
+   (,(kbd "C-s") . ?\C-f)
+   (,(kbd "C-o") . (return home left))
+   ))
+
+
 (exwm-input--update-global-prefix-keys)
 
 ;; Make class name the buffer name
