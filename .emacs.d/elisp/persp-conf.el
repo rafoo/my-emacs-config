@@ -3,17 +3,7 @@
 ;; This is not part of Emacs.
 ;;; Code:
 
-;; Enforce the dependencies of the define-persp package to be
-;; installed
-(when (fboundp 'use-package)
-  (use-package s :ensure t))
-
-(require 'define-persp)
-
 ;; Custom Perspectives
-
-(global-set-key (kbd "C-c v") 'define-persp-with-git)
-(global-set-key (kbd "C-c !") 'define-persp-with-cmd)
 
 (defun my-persp-switch ()
   (interactive)

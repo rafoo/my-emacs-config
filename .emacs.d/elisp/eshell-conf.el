@@ -22,6 +22,7 @@
   "Window configuration recorded by `eshell-in-other-window'
 and restored by `eshell-exit'.")
 
+;;;###autoload
 (defun eshell-in-other-window ()
   "Save window configuration and start eshell in other window."
   (interactive)
@@ -59,6 +60,10 @@ Otherwise delete one character."
 
 ;; C-d in eshell exit
 (add-hook 'eshell-mode-hook #'eshell-C-d-hook)
+
+;; Hide password prompt
+(add-hook 'comint-output-filter-functions
+          'comint-watch-for-password-prompt)
 
 (provide 'eshell-conf)
 ;;; eshell-conf.el ends here

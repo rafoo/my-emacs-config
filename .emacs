@@ -21,6 +21,8 @@
 (let ((default-directory "~/.emacs.d/elpa/"))
   (normal-top-level-add-subdirs-to-load-path))
 
+(package-initialize)
+
 ;; Extend path with opam directory
 
 (defvar my-home (getenv "HOME"))
@@ -38,9 +40,7 @@
   (let ((opam-switch (substring (shell-command-to-string "opam switch show") 0 -1)))
     (add-to-path
      (concat my-home "/.opam/" opam-switch "/bin"))
-    (eval-after-load 'dedukti-mode
-      (setq dedukti-path (concat my-home "/.opam/" opam-switch "/bin/dkcheck"))
-    )))
+    ))
 
 (defun add-to-path-from-home (dirname)
   "Add DIRNAME to `exec-path' and env variable PATH.
@@ -57,18 +57,30 @@ DIRNAME is a path relative to the HOME directory."
 ;; Used by the texdoc program called from AucTeX
 (setenv "PDFVIEWER" "evince")
 
-;; Custom keys
-(require 'persp-conf)
-
 ;; C-z is always typed by accident
 (global-unset-key (kbd "C-z"))
 ;; Xmonad-like bindings
 (global-set-key (kbd "<s-tab>") 'other-window)
-;; Jabber
-(global-set-key (kbd "C-c j") 'jabber-connect)
 
-;;; Display
-(package-initialize)
+;; Custom keys
+
+;; Perspectives
+
+;; Enforce the dependencies of the define-persp package to be
+;; installed
+(use-package s :ensure t)
+
+(use-package perspecive
+  :config
+  (use-package rtiling :config (require 'rtiling-conf nil t)))
+
+(use-package define-persp
+  :commands (define-persp-app define-persp-with-shell-process)
+  :bind
+  (("C-c v" . define-persp-with-git)
+   ("C-c !" . define-persp-with-cmd))
+  :init (require 'persp-conf))
+
 (require 'graphic-conf)
 
 (autoload 'v-resize "resize" 'interactive nil) ; resize windows with C-c +
@@ -92,29 +104,32 @@ DIRNAME is a path relative to the HOME directory."
 
 (require 'completion-conf)
 
-;; (when (require 'discover nil t)
-;;   (global-discover-mode 1))
+;; (use-package discover
+;;   :config (global-discover-mode 1))
 
 ;;; Applications
 
-(eval-after-load "erc"
-  '(require 'erc-conf))
+(use-package jabber
+  :bind ("C-c j" . jabber-connect))
+(use-package erc
+  :config (require 'erc-conf))
 
-(autoload 'eshell-in-other-window "eshell-conf")
-(global-set-key (kbd "M-RET") 'eshell-in-other-window)
-(global-set-key (kbd "C-c s") 'eshell-in-other-window)
+;; M-RET and C-c s start a new eshell instance in the other window
+(use-package eshell-conf
+  :bind (("M-RET" . eshell-in-other-window)
+         ("C-c s" . eshell-in-other-window)))
+
+(use-package eshell
+  :config (require 'eshell-conf))
 
 ;; Activate compilation-shell-minor-mode to jump to files
 (add-hook 'shell-mode-hook 'compilation-shell-minor-mode)
 
-(eval-after-load "eshell"
-  '(require 'eshell-conf))
+(use-package rudel
+  :config (require 'rudel-conf))
 
-(eval-after-load "rudel"
-  '(require 'rudel-conf))
-
-(eval-after-load "org"
-  '(require 'org-conf))
+(use-package org
+  :config (require 'org-conf))
 
 ;; Web browser
 
@@ -126,56 +141,32 @@ DIRNAME is a path relative to the HOME directory."
 (setq browse-url-browser-function 'browse-url-default-browser)
 
 ;; File browser
-(eval-after-load "dired"
-  '(setq dired-auto-revert-buffer t
-         dired-dwim-target t)) ; guess default target dir
-
-;; Spell checking
-(eval-after-load "ispell"
-  '(setq ispell-program-name "aspell"))
+(use-package dired
+  :config
+  (setq dired-auto-revert-buffer t
+        dired-dwim-target t)) ; guess default target dir
 
 ;; Net-utils
-(eval-after-load "net-utils"
-  '(setq arp-program "/usr/sbin/arp"
-         ifconfig-program "/sbin/ifconfig"
-         iwconfig-program "/sbin/iwconfig"
-         iwconfig-program-options '("wlan0")
-         iwlist-program "/sbin/iwlist"
-         iwlist-program-options '("wlan0" "scan")))
+(use-package net-utils
+  :config
+  (setq arp-program "/usr/sbin/arp"
+        ifconfig-program "/sbin/ifconfig"
+        iwconfig-program "/sbin/iwconfig"
+        iwconfig-program-options '("wlan0")
+        iwlist-program "/sbin/iwlist"
+        iwlist-program-options '("wlan0" "scan")))
 
 ;; Editing
 (require 'editing-conf)
 
 ;; Git
-(autoload 'magit-status "magit" "Open a Magit status buffer […]" t nil)
-(global-set-key (kbd "C-c g") 'magit-status)
-(eval-after-load 'magit '(require 'magit-conf))
+(use-package magit
+  :bind ("C-c g" . magit-status)
+  :config (require 'magit-conf))
 
-(require 'coq-conf)
-
-;; Compilation
-; (global-set-key (kbd "C-c c") 'compile)
-
-;; Pairs matching
-(setq electric-pair-pairs '((?\" . ?\")
-                            (?\( . ?\))
-                            (?\{ . ?\})
-                            (?\[ . ?\])))
-
-(when (require 'hungry-delete nil t)
-  (global-hungry-delete-mode))
-
-;; Ispell
-(defun my-ispell-switch-language ()
-  "Switch Ispell dictionary between English and French."
-  (interactive)
-  (ispell-change-dictionary
-   (if (string= ispell-current-dictionary "english")
-       "french"
-     "english"))
-  )
-
-(global-set-key (kbd "C-c f") 'my-ispell-switch-language)
+;; Dired
+(use-package dired
+  :config (require 'dired-conf))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -191,16 +182,7 @@ DIRNAME is a path relative to the HOME directory."
  '(custom-safe-themes
    (quote
     ("dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" default)))
- '(dedukti-check-options (quote ("-nc" "-r")))
- '(dedukti-compile-options (quote ("-nc" "-e" "-r")))
- '(default-input-method "TeX")
  '(delete-selection-mode t)
- '(dired-listing-switches "-lrth --time-style=+%D%6R")
- '(ede-project-directories (quote ("/home/harry/wicd-mode")))
- '(electric-pair-mode t)
- '(erc-track-switch-direction (quote importance))
- '(fci-rule-color "#383838")
- '(flyspell-auto-correct-binding (kbd "M-<tab>"))
  '(gnus-init-file "~/.emacs.d/elisp/.gnus")
  '(indent-tabs-mode nil)
  '(initial-scratch-message nil)
@@ -213,24 +195,9 @@ DIRNAME is a path relative to the HOME directory."
  '(send-mail-function (quote smtpmail-send-it))
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
- '(tab-always-indent (quote complete))
  '(underline-minimum-offset 0)
  '(visible-bell t)
- '(w3m-search-default-engine "duckduckgo")
- '(w3m-search-engine-alist
-   (quote
-    (("debian-pkg" "http://packages.debian.org/cgi-bin/search_contents.pl?directories=yes&arch=i386&version=unstable&case=insensitive&word=%s" nil)
-     ("debian-bts" "http://bugs.debian.org/cgi-bin/pkgreport.cgi?archive=yes&pkg=%s" nil)
-     ("emacswiki" "http://www.emacswiki.org/cgi-bin/wiki?search=%s" nil)
-     ("wikipedia-en" "http://en.wikipedia.org/wiki/Special:Search?search=%s" nil)
-     ("wikipedia-fr" "http://fr.wikipedia.org/wiki/Special:Search?search=%s" utf-8)
-     ("ja.wikipedia" "http://ja.wikipedia.org/wiki/Special:Search?search=%s" utf-8)
-     ("duckduckgo" "https://duckduckgo.com/?q=%s" utf-8)
-     ("wiki" " http://wiki.crans.org/?action=fullsearch&value=%s&titlesearch=Titres" utf-8)
-     ("wikoeur" "http://pimeys.fr/wikoeur/?action=fullsearch&value=%s&titlesearch=Titres" utf-8))))
- '(wdired-allow-to-change-permissions t)
- '(which-function-mode t)
- '(wicd-wireless-filter ".*"))
+ '(which-function-mode t))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -242,23 +209,23 @@ DIRNAME is a path relative to the HOME directory."
 
 (require 'init-actions nil t)
 
-(require 'offlineimap-conf)
+(use-package offlineimap
+  :init
+  ;; Run offlineimap from time to time
+  (run-with-idle-timer 60 'repeat 'offlineimap)
+  :config
+  (require 'offlineimap-conf))
 
 ;; Per-host, unversionized configuration
 (require 'local-conf nil t)
 
 ;; Enable which-key
-(when (require 'which-key nil t)
-  (which-key-mode t))
+(use-package which-key
+  :config (which-key-mode t))
 
 ;; EXWM
-(when (require 'exwm nil t)
-  (require 'exwm-conf))
-
-(require 'rtiling nil t)
-
-(when (require 'perspective nil t)
-  (require 'rtiling-conf nil t))
+(use-package exwm
+  :config (require 'exwm-conf))
 
 
 ;; Auto-kill password file ~/passwd.gpg
@@ -306,8 +273,9 @@ gpg --pinentry-mode loopback --decrypt /path/to/some/encrypted/file.gpg > /dev/n
 
 ;; PDF
 ;; PDF-tools is a replacement for Docview
-(when (require 'pdf-tools nil t)
-  (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
+(use-package pdf-tools
+  :mode ("\\.pdf\\'" . pdf-view-mode)
+  :config
   (add-hook 'pdf-view-mode-hook #'pdf-tools-enable-minor-modes))
 
 ;; other interesting emacs features :

@@ -71,6 +71,7 @@ If the perspective library is not available, just evaluate BODY."
          ,@body)
      ,@body))
 
+;;;###autoload
 (defmacro define-persp-app (persp-name form &optional key first-form)
   "Define a command persp- PERSP-NAME by wrapping FORM by `define-persp-run'.
 If KEY is non nil, bind it to this command.  If FIRST-FORM is non
@@ -94,6 +95,7 @@ nil, call it before FORM when perspective is created."
 Used by `define-persp-magit-app' and `define-persp-with-git'."
   :group 'persp-app)
 
+;;;###autoload
 (defmacro define-persp-magit-app (persp-name &optional key)
   "Define a perspective application for a git project using `magit-status'.
 The string `PERSP-NAME' is both the name of the git directory in
@@ -106,6 +108,7 @@ perspective.  If KEY is non nil, bind it to this perspective."
        (delete-other-windows))
      ,key))
 
+;;;###autoload
 (defun define-persp-with-git (name)
   "Interactive `define-persp-magit-app' with completion.
 NAME is both the name of the git directory in
@@ -117,6 +120,7 @@ perspective."
   (eval `(define-persp-magit-app ,name))
   (eval (read (concat "(persp-" name ")"))))
 
+;;;###autoload
 (defmacro define-persp-with-shell-process (persp-name cmd &optional key)
     "Define a perspective application for a shell command.
 The string PERSP-NAME is the name of the created perspective.
@@ -128,6 +132,7 @@ non nil, bind it to this perspective."
        (start-process-shell-command ,persp-name nil ,cmd)
        ,key))
 
+;;;###autoload
 (defun define-persp-with-cmd (name)
   "Define a perspective application for a shell command.
 The string NAME is both the shell command and the name of the

@@ -1,28 +1,51 @@
 ;;; Programming
 
 ;; Enforce 80 columns
-(when (fboundp 'column-enforce-mode)
-  (add-hook 'prog-mode-hook 'column-enforce-mode))
+(use-package column-enforce-mode
+  :config (add-hook 'prog-mode-hook 'column-enforce-mode))
 
 ;; Modes for special languages
-(eval-after-load "tuareg"
-  '(require 'tuareg-conf)) ; OCaml
-;(require 'focalize) ; FoCaLiZe
+;; OCaml
+(use-package tuareg
+  :config (require 'tuareg-conf))
+
+;; FoCaLiZe
+; (require 'focalize)
 ; (load "~/git/focalize/focalizec/emacs/focalize.el")
 
-;; ;; Dedukti
-;; (add-hook 'dedukti-mode-hook (lambda ()
-;;                                (flycheck-select-checker 'dedukti)
-;;                                (flycheck-mode)))
+;; Dedukti
+(use-package dedukti-mode
+  :config
+  (setq dedukti-path (executable-find "dkcheck")
+	dedukti-check-options '("-nc" "-r")
+        dedukti-compile-options '("-nc" "-e" "-r"))
+  (add-hook 'dedukti-mode-hook (lambda () (electric-pair-mode nil))))
 
-(eval-after-load "tex"
-  '(require 'latex-conf)) ; LaTeX
-; (require 'isabelle) ; Isabelle
-(eval-after-load "python"
-  '(require 'python-conf))
-(eval-after-load "proofgeneral"
-  '(require 'coq-conf))
+(use-package flycheck-dedukti
+  :config
+  (add-hook 'dedukti-mode-hook (lambda ()
+     (flycheck-select-checker 'dedukti)
+     (flycheck-mode)
+     )))
 
+;; LaTeX
+(use-package tex
+  :config (require 'latex-conf))
+
+;; Python
+(use-package python
+  :config (require 'python-conf))
+
+;; Coq
+(use-package proofgeneral
+  :init (load "~/.emacs.d/elisp/PG/generic/proof-site")
+  :config (require 'coq-conf))
+
+;; GrassHopper
+(load "~/.emacs.d/elisp/flycheck")
+(load "~/.emacs.d/elisp/spl-mode")
+
+;; OTT
 (require 'ottmode)
 
 ;; Bind keys to functions jumping to source code
@@ -32,25 +55,50 @@
 (define-key 'help-command (kbd "C-k") 'find-function-on-key)
 (define-key 'help-command (kbd "C-v") 'find-variable)
 
+;; Electric pairs
+(setq electric-pair-mode t
+      electric-pair-pairs '((?\" . ?\")
+                            (?\( . ?\))
+                            (?\{ . ?\})
+                            (?\[ . ?\])))
+
 ;; Iedit-mode
 (global-set-key (kbd "C-;") 'iedit-mode)
 
+(use-package auto-highlight-symbol
+  :config
+  (setq  ahs-idle-interval 0.2)
+  (add-hook 'prog-mode-hook 'auto-highlight-symbol-mode))
+
+;; Delete many whitespace at once
+(use-package hungry-delete
+  :config (global-hungry-delete-mode))
+
 ;; Spell checking
-(add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'text-mode-hook 'typo-mode)
+(use-package ispell
+  :config (setq ispell-program-name "aspell"))
 
-(eval-after-load 'guess-language
-  '(progn
-     (setq guess-language-languages '(en fr))
-     (setq guess-language-min-paragraph-length 35)))
+(use-package flyspell
+  :config
+  (add-hook 'text-mode-hook 'flyspell-mode)
+  (add-hook 'prog-mode-hook 'flyspell-prog-mode))
 
-(add-hook 'text-mode-hook 'guess-language-mode)
+(use-package guess-language
+  :config
+  (setq guess-language-languages '(en fr)
+        guess-language-min-paragraph-length 35)
+  (add-hook 'text-mode-hook 'guess-language-mode))
 
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
-(add-hook 'prog-mode-hook 'auto-highlight-symbol-mode)
+;; Typographic improvements
+(use-package typo-mode
+  :config
+  (add-hook 'text-mode-hook 'typo-mode))
 
 ;; Checking
-(when (fboundp 'flycheck-mode)
-  (add-hook 'prog-mode-hook 'flycheck-mode))
+(use-package flycheck-mode
+  :config
+  (add-hook 'prog-mode-hook 'flycheck-mode)
+  (setq flyspell-auto-correct-binding (kbd "M-<tab>"))
+  )
 
 (provide 'editing-conf)

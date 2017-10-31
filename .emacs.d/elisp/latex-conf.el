@@ -1,5 +1,4 @@
 ;; LaTeX configuration : use evince as pdf-reader
-
 (setq TeX-output-view-style
       '(("^dvi$" ("^landscape$" "^pstricks$\\|^pst-\\|^psfrag$") "%(o?)dvips -t landscape %d -o && gv %f")
         ("^dvi$" "^pstricks$\\|^pst-\\|^psfrag$" "%(o?)dvips %d -o && gv %f")
