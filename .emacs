@@ -277,9 +277,6 @@ gpg --pinentry-mode loopback --decrypt /path/to/some/encrypted/file.gpg > /dev/n
 ;; other interesting emacs features :
 ;; SES : tableur en elisp
 ;; image modes
-;; dired
-;; vc-mode -> Version Control
-;; org-mode -> TODO lists
 ;; WoMan
 
 ;;; .emacs ends here
