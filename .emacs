@@ -268,6 +268,40 @@ DIRNAME is a path relative to the HOME directory."
                               (when victim (message "Killing buffer %s" (buffer-name victim)
                                                  (kill-buffer victim))))))
 
+
+;; ;; Allow gpg-agent to use the Emacs prompt to get the passphrase
+;; (setenv "INSIDE_EMACS" (format "%s,comint" emacs-version))
+;; (pinentry-start)
+
+(defun ssh-add ()
+  "Call the ssh-add shell command.
+
+The user is asked for her passphrase.  This function uses
+`send-invisible' to hide the passphrase."
+  (interactive)
+  (start-process-shell-command "ssh-add" "*ssh-add*" "ssh-add")
+  (switch-to-buffer "*ssh-add*")
+  (send-invisible "SSH Passphrase: ")
+  )
+
+(defun gpg-add ()
+  "Unlock gpg-agent.
+
+This function is similar to `ssh-add' but for the GPG agent
+instead of the SSH agent.  The user is asked for her passphrase.
+This function uses `send-invisible' to hide the passphrase.
+
+This function assumes that a gpg-add script is present in PATH.  It can be implemented as follows:
+
+#!/bin/bash
+
+gpg --pinentry-mode loopback --decrypt /path/to/some/encrypted/file.gpg > /dev/null"
+  (interactive)
+  (start-process-shell-command "gpg-add" "*gpg-add*" "gpg-add")
+  (switch-to-buffer "*gpg-add*")
+  (send-invisible "GPG Passphrase: ")
+  )
+
 (put 'scroll-left 'disabled nil)
 
 ;; PDF
