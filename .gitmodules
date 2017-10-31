@@ -1,0 +1,3 @@
+[submodule "PG"]
+	path = .emacs.d/elisp/PG
+	url = https://github.com/ProofGeneral/PG
