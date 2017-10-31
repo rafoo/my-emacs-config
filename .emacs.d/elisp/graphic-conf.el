@@ -65,6 +65,8 @@ Operate on selected region on whole buffer."
 
 
 ;; Color theme
-(load-theme 'zenburn t)
+(use-package zenburn-theme
+  :config
+  (load-theme 'zenburn t))
 
 (provide 'graphic-conf)
