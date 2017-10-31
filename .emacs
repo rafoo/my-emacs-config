@@ -233,11 +233,6 @@ DIRNAME is a path relative to the HOME directory."
                               (when victim (message "Killing buffer %s" (buffer-name victim)
                                                  (kill-buffer victim))))))
 
-
-;; ;; Allow gpg-agent to use the Emacs prompt to get the passphrase
-;; (setenv "INSIDE_EMACS" (format "%s,comint" emacs-version))
-;; (pinentry-start)
-
 (defun ssh-add ()
   "Call the ssh-add shell command.
 
