@@ -7,9 +7,11 @@
 (eval-after-load "menu-bar" '(require 'menu-bar+ nil t))
 
 ;; Tool-bar
-(tool-bar-mode 0)
-(add-hook 'after-change-major-mode-hook
-          (lambda () (tool-bar-mode 0)))
+(use-package tool-bar
+  :config
+  (tool-bar-mode 0)
+  (add-hook 'after-change-major-mode-hook
+            (lambda () (tool-bar-mode 0))))
 
 ;; Cursor depending on mode (insert vs. overwrite)
 ;; From a comment from
