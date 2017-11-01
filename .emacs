@@ -70,9 +70,12 @@ DIRNAME is a path relative to the HOME directory."
 ;; installed
 (use-package s :ensure t)
 
+(use-package rtiling
+ :config (require 'rtiling-conf))
+
 (use-package perspecive
   :config
-  (use-package rtiling :config (require 'rtiling-conf nil t)))
+  (require rtiling))
 
 (use-package define-persp
   :commands (define-persp-app define-persp-with-shell-process)
