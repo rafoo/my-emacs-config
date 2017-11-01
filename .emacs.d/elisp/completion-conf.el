@@ -5,9 +5,6 @@
       read-file-name-completion-ignore-case t
       tab-always-indent 'complete)
 
-;; Icomplete
-(icomplete-mode 1)
-
 ;; IDO
 (use-package ido
   :config (ido-mode t))
