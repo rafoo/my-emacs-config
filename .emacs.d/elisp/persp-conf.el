@@ -13,7 +13,7 @@
 
 (define-persp-app "config"
   (progn
-    (find-file "~/.emacs")
+    (find-file "~/git/emacs-config/.emacs")
     (find-file "~/elisp/local-conf.el")
     (dired "~/git/emacs-config/.emacs.d/elisp")
     (magit-status "~/git/emacs-config"))
