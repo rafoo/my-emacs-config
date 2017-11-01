@@ -57,6 +57,9 @@ DIRNAME is a path relative to the HOME directory."
 ;; Used by the texdoc program called from AucTeX
 (setenv "PDFVIEWER" "evince")
 
+;; To use git grep in eshell
+(setenv "GIT_PAGER" "")
+
 ;; C-z is always typed by accident
 (global-unset-key (kbd "C-z"))
 ;; Xmonad-like bindings
