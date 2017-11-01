@@ -10,10 +10,10 @@
 ;; Taken from Magit manual, 5.1 Status Buffer
 ;; This allows to launch magit-status from ido
 (eval-after-load 'ido
-  (add-hook 'ido-setup-hook
-            (lambda ()
-              (define-key ido-completion-map
-                (kbd "C-x g") 'ido-enter-magit-status))))
+  '(add-hook 'ido-setup-hook
+             (lambda ()
+               (define-key ido-completion-map
+                 (kbd "C-x g") 'ido-enter-magit-status))))
 
 ;; Configuration of M-x magit-list-repositories
 (setq magit-repository-directories '(("~/git/" . 1)))
