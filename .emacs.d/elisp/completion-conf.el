@@ -12,10 +12,10 @@
 (use-package ido
   :config (ido-mode t))
 
-(use-package ido-at-point-mode
+(use-package ido-at-point
   :config (ido-at-point-mode 1))
 
-(use-package ido-ubiquitous-mode
+(use-package ido-completing-read+
   :config (ido-ubiquitous-mode 1))
 
 (use-package ido-vertical-mode

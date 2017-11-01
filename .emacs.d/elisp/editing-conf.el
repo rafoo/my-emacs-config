@@ -95,7 +95,7 @@
   (add-hook 'text-mode-hook 'typo-mode))
 
 ;; Checking
-(use-package flycheck-mode
+(use-package flycheck
   :config
   (add-hook 'prog-mode-hook 'flycheck-mode)
   (setq flyspell-auto-correct-binding (kbd "M-<tab>"))
