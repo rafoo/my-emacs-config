@@ -180,6 +180,7 @@ DIRNAME is a path relative to the HOME directory."
  '(custom-safe-themes
    (quote
     ("dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" default)))
+ '(default-input-method "TeX")
  '(delete-selection-mode t)
  '(gnus-init-file "~/.emacs.d/elisp/.gnus")
  '(indent-tabs-mode nil)
