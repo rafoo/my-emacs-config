@@ -237,6 +237,13 @@ DIRNAME is a path relative to the HOME directory."
                               (when victim (message "Killing buffer %s" (buffer-name victim)
                                                  (kill-buffer victim))))))
 
+(defun kill-current-buffer ()
+  "Kill the current buffer."
+  (interactive)
+  (kill-buffer))
+
+(bind-key "C-x k" 'kill-current-buffer)
+
 (defun ssh-add ()
   "Call the ssh-add shell command.
 
