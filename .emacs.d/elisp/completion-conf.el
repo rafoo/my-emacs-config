@@ -19,7 +19,17 @@
   :config (ido-ubiquitous-mode 1))
 
 (use-package ido-vertical-mode
-  :config (ido-vertical-mode 1))
+  :config
+  (ido-vertical-mode 1)
+  (setq ido-vertical-disable-if-short nil
+        ido-vertical-pad-list t
+        ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
+
+  ;; Ido-vertical-mode is too slow for describe-function
+  ;; It is not yet possible to deactivate it on a per-function basis
+  ;; (https://github.com/creichert/ido-vertical-mode.el/issues/24)
+  ;; so we deactivate ido for describe-function
+  (add-to-list 'ido-cr+-function-blacklist 'describe-function))
 
 ;; Auto-complete
 (use-package auto-complete
