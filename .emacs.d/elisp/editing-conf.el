@@ -4,6 +4,15 @@
 (use-package column-enforce-mode
   :config (add-hook 'prog-mode-hook 'column-enforce-mode))
 
+;; Keep parens balanced
+(use-package smartparens
+  :config
+  (require 'smartparens-config)
+  (add-hook 'prog-mode-hook 'smartparens-mode))
+
+
+
+
 ;; Modes for special languages
 ;; OCaml
 (use-package tuareg
@@ -14,19 +23,19 @@
 ; (load "~/git/focalize/focalizec/emacs/focalize.el")
 
 ;; Dedukti
+(use-package flycheck-dedukti)
+
 (use-package dedukti-mode
   :config
   (setq dedukti-path (executable-find "dkcheck")
 	dedukti-check-options '("-nc" "-r")
         dedukti-compile-options '("-nc" "-e" "-r"))
-  (add-hook 'dedukti-mode-hook (lambda () (electric-pair-mode nil))))
-
-(use-package flycheck-dedukti
-  :config
-  (add-hook 'dedukti-mode-hook (lambda ()
-     (flycheck-select-checker 'dedukti)
-     (flycheck-mode)
-     )))
+  ;; Activate smartparens
+  (add-hook 'dedukti-mode-hook 'smartparens-mode)
+  (sp-with-modes '(dedukti-mode) (sp-local-pair "(;" ";)" ))
+  ;; Activate flycheck
+  (add-hook 'dedukti-mode-hook 'flycheck-dedukti-hook)
+  )
 
 ;; LaTeX
 (use-package tex
@@ -54,13 +63,6 @@
 (define-key 'help-command (kbd "C-f") 'find-function)
 (define-key 'help-command (kbd "C-k") 'find-function-on-key)
 (define-key 'help-command (kbd "C-v") 'find-variable)
-
-;; Electric pairs
-(setq electric-pair-mode t
-      electric-pair-pairs '((?\" . ?\")
-                            (?\( . ?\))
-                            (?\{ . ?\})
-                            (?\[ . ?\])))
 
 ;; Iedit-mode
 (global-set-key (kbd "C-;") 'iedit-mode)
