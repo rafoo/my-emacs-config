@@ -36,11 +36,7 @@
              path)
       (setenv "PATH" (concat dirname ":" path)))))
 
-(when (executable-find "opam")
-  (let ((opam-switch (substring (shell-command-to-string "opam switch show") 0 -1)))
-    (add-to-path
-     (concat my-home "/.opam/" opam-switch "/bin"))
-    ))
+(use-package opam :config (opam-init))
 
 (defun add-to-path-from-home (dirname)
   "Add DIRNAME to `exec-path' and env variable PATH.
