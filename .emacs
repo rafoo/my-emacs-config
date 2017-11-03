@@ -68,16 +68,14 @@ DIRNAME is a path relative to the HOME directory."
 
 ;; Perspectives
 
-;; Enforce the dependencies of the define-persp package to be
-;; installed
-(use-package s :ensure t)
+(use-package perspective
+  :requires s
+  :config
+  (require 'rtiling))
 
 (use-package rtiling
- :config (require 'rtiling-conf))
-
-(use-package perspecive
-  :config
-  (require rtiling))
+  :requires perspective
+  :config (require 'rtiling-conf))
 
 (use-package define-persp
   :commands (define-persp-app define-persp-with-shell-process)
