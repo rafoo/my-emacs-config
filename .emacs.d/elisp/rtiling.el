@@ -6,6 +6,7 @@
 ;; Maintainer: Raphaël Cauderlier
 ;; Copyright (C) 2014, Raphaël Cauderlier.
 ;; Version: 0.1
+;; Package-Requires: (perspective)
 ;;
 ;;; Commentary:
 ;;
