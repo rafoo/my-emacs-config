@@ -85,6 +85,7 @@ DIRNAME is a path relative to the HOME directory."
   :config (require 'rtiling-conf))
 
 (use-package define-persp
+  :requires perspective
   :commands (define-persp-app define-persp-with-shell-process)
   :bind
   (("C-c v" . define-persp-with-git)
