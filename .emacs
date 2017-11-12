@@ -15,7 +15,8 @@
          '(("gnu" . "http://elpa.gnu.org/packages/")
            ("org" . "http://orgmode.org/elpa/")
            ("melpa" . "http://melpa.org/packages/")
-           ("marmalade" . "http://marmalade-repo.org/packages/"))))
+           ; ("marmalade" . "http://marmalade-repo.org/packages/")
+	   )))
 
 (let ((default-directory "~/.emacs.d/elpa/"))
   (normal-top-level-add-subdirs-to-load-path))
@@ -62,20 +63,25 @@ DIRNAME is a path relative to the HOME directory."
 
 ;; Custom keys
 
+;; Use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+
 ;; Perspectives
 
-;; Enforce the dependencies of the define-persp package to be
-;; installed
-(use-package s :ensure t)
+(use-package perspective
+  :requires s
+  :config
+  (require 'rtiling))
 
 (use-package rtiling
- :config (require 'rtiling-conf))
-
-(use-package perspecive
-  :config
-  (require rtiling))
+  :requires perspective
+  :config (require 'rtiling-conf))
 
 (use-package define-persp
+  :requires perspective
   :commands (define-persp-app define-persp-with-shell-process)
   :bind
   (("C-c v" . define-persp-with-git)
