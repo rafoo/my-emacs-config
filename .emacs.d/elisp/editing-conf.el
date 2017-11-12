@@ -46,13 +46,13 @@
   :config (require 'python-conf))
 
 ;; Coq
-(use-package proofgeneral
-  :init (load "~/.emacs.d/elisp/PG/generic/proof-site")
-  :config (require 'coq-conf))
+;; (use-package proofgeneral
+;;   :init (load "~/.emacs.d/elisp/PG/generic/proof-site")
+;;   :config (require 'coq-conf))
 
-;; GrassHopper
-(load "~/.emacs.d/elisp/flycheck")
-(load "~/.emacs.d/elisp/spl-mode")
+;; ;; GrassHopper
+;; (load "~/.emacs.d/elisp/flycheck")
+;; (load "~/.emacs.d/elisp/spl-mode")
 
 ;; OTT
 (require 'ottmode)
