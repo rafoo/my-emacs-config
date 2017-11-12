@@ -67,6 +67,12 @@ DIRNAME is a path relative to the HOME directory."
 
 ;; Custom keys
 
+;; Use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+
 ;; Perspectives
 
 (use-package perspective
