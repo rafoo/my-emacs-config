@@ -23,8 +23,6 @@
 
 (package-initialize)
 
-;; Extend path with opam directory
-
 (defvar my-home (getenv "HOME"))
 
 (defun add-to-path (dirname)
