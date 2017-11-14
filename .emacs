@@ -41,11 +41,13 @@
 DIRNAME is a path relative to the HOME directory."
   (add-to-path (concat my-home "/" dirname)))
 
-(add-to-path-from-home "bin/opentheory/bin/mlton")
-(add-to-path-from-home "git/imogen/src/main/sml/bin")
-(add-to-path-from-home "git/verifast/bin")
-(add-to-path-from-home "git/CVC4/builds/x86_64-unknown-linux-gnu/production/bin")
-(add-to-path-from-home "scripts")
+(add-to-path-from-home "bin/opentheory/bin/mlton") ; opentheory (HOL package manager)
+(add-to-path-from-home "bin/veriT-stable2016") ; veriT (SMT solver)
+(add-to-path-from-home "git/imogen/src/main/sml/bin") ; imogen (theorem prover)
+(add-to-path-from-home "git/verifast/bin") ; verifast, vfide
+(add-to-path-from-home "git/CVC4/builds/x86_64-unknown-linux-gnu/production/bin") ; cvc4 (SMT solver)
+(add-to-path-from-home "git/yices2/build/x86_64-pc-linux-gnu-release/bin") ; yices2 (SMT solver)
+(add-to-path-from-home "scripts")      ; Small personnal shell scripts
 
 
 ;; Used by the texdoc program called from AucTeX
