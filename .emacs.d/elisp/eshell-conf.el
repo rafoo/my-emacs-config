@@ -18,6 +18,10 @@
                             eshell-term
                             eshell-unix))
 
+;; Also complete according to lisp functions
+(setq eshell-show-lisp-completions t)
+
+
 (defvar eshell-before-wconf nil
   "Window configuration recorded by `eshell-in-other-window'
 and restored by `eshell-exit'.")
