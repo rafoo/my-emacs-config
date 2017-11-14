@@ -22,6 +22,12 @@
   "Window configuration recorded by `eshell-in-other-window'
 and restored by `eshell-exit'.")
 
+
+;; Small BUG: `pop-to-buffer' can return a buffer from another
+;; perspective.  In this case, this buffer is also added to the
+;; current perspective but the user will probably not notice it
+;; immediately.
+
 ;;;###autoload
 (defun eshell-in-other-window ()
   "Save window configuration and start eshell in other window."
