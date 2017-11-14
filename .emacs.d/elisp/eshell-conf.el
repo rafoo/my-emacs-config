@@ -29,10 +29,15 @@ and restored by `eshell-exit'.")
   (let ((persp-name (if (and (require 'perspective nil t)
                              persp-curr)
                         (concat " <" (persp-name persp-curr) ">")
-                      "")))
+                      "")
+                    )
+        ;; Save the pwd because the buffer returned by (pop-to-buffer
+        ;; nil) might use another one
+        (eshell-in-other-window-pwd default-directory))
     (setq eshell-before-wconf (current-window-configuration))
     (with-current-buffer (pop-to-buffer nil)
-      (let ((eshell-buffer-name (concat "*eshell*" persp-name)))
+      (let ((eshell-buffer-name (concat "*eshell*" persp-name))
+            (default-directory eshell-in-other-window-pwd))
         (eshell)))))
 
 (defun eshell-exit ()
