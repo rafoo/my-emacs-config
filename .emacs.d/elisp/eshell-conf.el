@@ -80,5 +80,35 @@ Otherwise delete one character."
 (add-hook 'comint-output-filter-functions
           'comint-watch-for-password-prompt)
 
+
+
+
+
+;; Eshell automatically adds "cd" before a single-word command if it
+;; is a directory.  The following code performs the same for
+;; "find-file" before readable files This works even for files ouside
+;; the current directory.  However, I have not yet hacked the
+;; completion mechanism (advice `eshell-complete-commands-list'?).
+
+(defun my-eshell-file-readable-p (file args)
+  "Return non-nil if FILE is a readable file and ARGS is nil.
+
+This is intended to be used as car in
+`eshell-interpreter-alist'."
+  (and (null args) (file-readable-p file)))
+
+(defun my-eshell-find-file (&rest args)
+  "Throw an `eshell-replace-command' exception prefixing ARGS with `find-file'.
+
+This is intended to be used as the cdr corresponding to
+`my-eshell-file-readable-p' in `eshell-interpreter-alist'."
+  (throw 'eshell-replace-command
+         (eshell-parse-command "find-file" (eshell-flatten-list args))))
+
+(defun my-eshell-find-file-hook ()
+  "Hook for making Eshell accept single files and prepend `find-file' automatically."
+  (add-to-list 'eshell-interpreter-alist
+               '(my-eshell-file-readable-p . my-eshell-find-file) 'append))
+
 (provide 'eshell-conf)
 ;;; eshell-conf.el ends here
