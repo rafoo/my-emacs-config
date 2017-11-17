@@ -5,7 +5,11 @@
 
 ;; Custom Perspectives
 
+(eval-when-compile
+  (require 'perspective))
+
 (defun my-persp-switch ()
+  "Wrapper aroud `persp-switch' activating `persp-mode'."
   (interactive)
   (unless persp-mode (persp-mode))
   (persp-switch nil)
@@ -16,15 +20,17 @@
     (find-file "~/git/emacs-config/.emacs")
     (find-file "~/elisp/local-conf.el")
     (dired "~/git/emacs-config/.emacs.d/elisp")
-    (magit-status "~/git/emacs-config"))
+    (magit-status-internal "~/git/emacs-config"))
   (kbd "C-c <menu>"))
 
 (define-persp-app "packages" (list-packages) (kbd "C-c p"))
 (define-persp-app "gnus" (gnus) (kbd "C-c n")) ;; News
 (define-persp-app "erc" () (kbd "C-c i") (erc)) ;; IRC
 (define-persp-app "agenda" (org-agenda) (kbd "C-c a"))
-(define-persp-app "org" (dired (concat my-home "/git/org")) (kbd "C-c o"))
-(define-persp-app "xkcd" (xkcd) (kbd "C-c x"))
+(define-persp-app "org" (dired "~/git/org") (kbd "C-c o"))
+(eval-and-compile
+  (when (require 'xkcd nil t)
+    (define-persp-app "xkcd" (xkcd) (kbd "C-c x"))))
 (define-persp-app "main" (find-file "~/org/startup.org") (kbd "<menu>"))
 
 ;; Buffers listing

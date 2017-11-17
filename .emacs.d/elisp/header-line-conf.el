@@ -24,6 +24,7 @@
 
 ;; Time
 (when (require 'time nil t)
+  (eval-when-compile (require 'time))
   (setq display-time-default-load-average nil
         display-time-format "%T (%a %d %b)"
         display-time-interval 1
@@ -32,9 +33,10 @@
   (apply-header 'display-time-mode 1) )
 
 ;; Wireless network
-(when (require 'wireless nil t)
-  (setq wireless-mode-line-format "[%n:%k,%l,%s]")
-  (apply-header 'display-wireless-mode 1))
+(eval-and-compile
+  (when (require 'wireless nil t)
+    (setq wireless-mode-line-format "[%n:%k,%l,%s]")
+    (apply-header 'display-wireless-mode 1)))
 
 ;;; More header-line
 

@@ -1,5 +1,10 @@
-;; Desktop configuration: save session when closing emacs and reload it when restarting
+;;; desktop-conf --- Desktop configuration
 
+;;; Commentary:
+;; Save session when closing Emacs and reload it when restarting.
+
+;;; Code:
+(require 'desktop)
 (desktop-save-mode 1)
 (add-to-list 'desktop-globals-to-save 'command-history)
 (add-to-list 'desktop-globals-to-save 'shell-command-history)
@@ -9,3 +14,4 @@
       desktop-save t)
 
 (provide 'desktop-conf)
+;;; desktop-conf ends here
