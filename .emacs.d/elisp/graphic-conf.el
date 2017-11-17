@@ -1,4 +1,9 @@
+;;; graphic-conf --- Configuration of the graphical user interface.
+
+;;; Commentary:
 ;; Configuration for graphical Emacs session
+
+;;; Code:
 
 ;; Windows and panes
 (require 'windows-conf)
@@ -46,6 +51,7 @@
 
 ;; Et dans le buffer de compilation
 (defun colorize-compilation-buffer ()
+  "Hook replacing ANSI color codes by colored text in compilation buffer."
   (let ((buffer-read-only))
     (ansi-color-apply-on-region (point-min) (point-max))
     ))
@@ -56,7 +62,8 @@
 
 (defun my-ansi-color (&optional beg end)
   "Interpret ANSI color esacape sequence by colorifying cotent.
-Operate on selected region on whole buffer."
+Operate on selected region (between BEG and END) on whole buffer
+if no region is selected."
   (interactive
    (if (use-region-p)
        (list (region-beginning) (region-end))
@@ -70,3 +77,4 @@ Operate on selected region on whole buffer."
   (load-theme 'zenburn t))
 
 (provide 'graphic-conf)
+;;; graphic-conf ends here

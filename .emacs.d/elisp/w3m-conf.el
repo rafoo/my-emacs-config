@@ -1,3 +1,11 @@
+;;; w3m-conf --- Configuration for w3m.el
+;;; Commentary:
+;;; Code:
+
+(eval-when-compile
+  (require 'w3m)
+  (require 'w3m-search))
+
 (setq w3m-search-default-engine "duckduckgo"
       w3m-search-engine-alist
       '(("debian-pkg"
@@ -19,3 +27,4 @@
          utf-8)))
 
 (provide 'w3m-conf)
+;;; w3m-conf ends here

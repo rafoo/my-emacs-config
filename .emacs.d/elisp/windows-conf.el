@@ -1,4 +1,7 @@
-;; Configuration of Windows and panes look
+;;; windows-conf --- Configuration of windows and panes look
+
+;;; Commentary:
+;;; Code:
 
 (when (fboundp 'set-scroll-bar-mode) (set-scroll-bar-mode 'right))
 (setq scroll-margin 0
@@ -10,7 +13,10 @@
  (lambda () (setq indicate-buffer-boundaries 'right)) )
 
 ;; fullscreen toogle by F11
-(defun toggle-fullscreen (&optional f)
+(defvar old-fullscreen nil)
+
+(defun toggle-fullscreen ()
+  "Toggle between displaying Emacs fullscreen or in an X window."
   (interactive)
   (let ((current-value (frame-parameter nil 'fullscreen)))
     (set-frame-parameter nil 'fullscreen
@@ -22,3 +28,4 @@
 (global-set-key [f11] 'toggle-fullscreen)
 
 (provide 'windows-conf)
+;;; windows-conf ends here
