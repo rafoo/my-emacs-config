@@ -90,25 +90,35 @@ Otherwise delete one character."
 ;; the current directory.  However, I have not yet hacked the
 ;; completion mechanism (advice `eshell-complete-commands-list'?).
 
-(defun my-eshell-file-readable-p (file args)
-  "Return non-nil if FILE is a readable file and ARGS is nil.
+(defun my-eshell-file-readable-not-executable-p (file args)
+  "Return non-nil if FILE is a readable non executable file and ARGS is nil.
 
 This is intended to be used as car in
 `eshell-interpreter-alist'."
-  (and (null args) (file-readable-p file)))
+  (and (null args)
+       (file-readable-p file)           ; if the file is not readable,
+                                        ; there is no point in trying
+                                        ; to visit it
+       (not (file-executable-p file)))) ; if the file is executable,
+                                        ; we probably want to execute
+                                        ; it instead of visiting it
 
 (defun my-eshell-find-file (&rest args)
   "Throw an `eshell-replace-command' exception prefixing ARGS with `find-file'.
 
 This is intended to be used as the cdr corresponding to
-`my-eshell-file-readable-p' in `eshell-interpreter-alist'."
+`my-eshell-file-readable-not-executable-p' in
+`eshell-interpreter-alist'."
   (throw 'eshell-replace-command
          (eshell-parse-command "find-file" (eshell-flatten-list args))))
 
 (defun my-eshell-find-file-hook ()
   "Hook for making Eshell accept single files and prepend `find-file' automatically."
   (add-to-list 'eshell-interpreter-alist
-               '(my-eshell-file-readable-p . my-eshell-find-file) 'append))
+               '(my-eshell-file-readable-not-executable-p . my-eshell-find-file)
+               'append))
+
+(add-hook 'eshell-mode-hook #'my-eshell-find-file-hook)
 
 (provide 'eshell-conf)
 ;;; eshell-conf.el ends here
