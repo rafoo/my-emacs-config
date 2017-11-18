@@ -5,6 +5,14 @@
 
 ;;; Code:
 
+(eval-when-compile
+  (require 'perspective)
+  (require 'em-cmpl))
+
+(require 'eshell)
+(require 'esh-cmd)
+(require 'esh-util)
+
 (setq eshell-modules-list '(eshell-alias
                             eshell-basic
                             eshell-cmpl
@@ -23,8 +31,7 @@
 
 
 (defvar eshell-before-wconf nil
-  "Window configuration recorded by `eshell-in-other-window'
-and restored by `eshell-exit'.")
+  "Window configuration recorded by `eshell-in-other-window'and restored by `eshell-exit'.")
 
 
 ;; Small BUG: `pop-to-buffer' can return a buffer from another
@@ -66,6 +73,7 @@ Otherwise delete one character."
     (delete-char 1)))
 
 (defun eshell-C-d-hook ()
+  "Hook binding `C-d' to `eshell-exit-when-eolp' in eshell buffers."
   ;; I don't know how to do this whitout local-set-key
   ;; because eshell-mode-map is buffer-local
   ;; (and I don't know why).
