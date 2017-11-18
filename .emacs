@@ -63,7 +63,7 @@ DIRNAME is a path relative to the HOME directory."
 
 ;; Custom keys
 
-;; Use-package
+;; Enforce that the `use-package' macro is available.
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -223,6 +223,7 @@ DIRNAME is a path relative to the HOME directory."
   (require 'offlineimap-conf))
 
 ;; Per-host, unversionized configuration
+;; Alternative: use the sensitive package
 (require 'local-conf nil t)
 
 ;; Enable which-key
