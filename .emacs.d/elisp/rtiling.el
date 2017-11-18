@@ -6,7 +6,7 @@
 ;; Maintainer: Raphaël Cauderlier
 ;; Copyright (C) 2014, Raphaël Cauderlier.
 ;; Version: 0.1
-;; Package-Requires: (perspective)
+;; Package-Requires: perspective, which-key
 ;;
 ;;; Commentary:
 ;;
@@ -31,6 +31,8 @@
 
 ;;; Code:
 
+(require 'perspective)
+(require 'which-key)
 
 (defvar rtiling-orientation :horizontal)
 
@@ -115,6 +117,7 @@
            ((listp tree) (if (car tree) :vertical :horizontal))
            (t :full)))))
 
+;;;###autoload
 (defun rtiling-change-orientation ()
   "Cycle the value of the `rtiling-orientation' variable."
   (interactive)
@@ -128,6 +131,7 @@
   )
 
 ;; Inspired by XMonad behaviour and Marcin Borkowski's other-window-or-switch-buffer
+;;;###autoload
 (defun rtiling-other-buffer-or-window ()
   "Equivalent to `other-window' in :horizontal and :vertical orientation but switch to `other-buffer' in :full orientation."
   (interactive)
@@ -137,6 +141,7 @@
     (other-window 1))
   )
 
+;;;###autoload
 (defun rtiling-switch-windows ()
   "Exchange selected window and master window."
   (interactive)
@@ -150,6 +155,7 @@
     )
   )
 
+;;;###autoload
 (defun rtiling-kill-current-window ()
   "Destroy the current window and remove the associated buffer from the current perspective."
   (interactive)
@@ -161,6 +167,7 @@
     )
   )
 
+;;;###autoload
 (defun rtiling-find-file ()
   "Find a file in a new window."
   (interactive)

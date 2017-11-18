@@ -19,12 +19,12 @@
      (exwm-input-set-key (kbd "s-s") #'my-persp-switch)
      (exwm-input--update-global-prefix-keys)))
 
-(eval-after-load 'rtiling
-  '(progn
-     (exwm-input-set-key (kbd "<s-tab>") #'rtiling-other-buffer-or-window)
-     (exwm-input-set-key (kbd "s-SPC") #'rtiling-change-orientation)
-     (exwm-input-set-key (kbd "<s-return>") #'rtiling-switch-windows)
-     (exwm-input--update-global-prefix-keys)))
+(exwm-input-set-key (kbd "<s-tab>") #'rtiling-other-buffer-or-window)
+(exwm-input-set-key (kbd "s-SPC") #'rtiling-change-orientation)
+(exwm-input-set-key (kbd "<s-return>") #'rtiling-switch-windows)
+(exwm-input-set-key (kbd "s-c") #'rtiling-kill-current-window)
+(exwm-input-set-key (kbd "s-f") #'rtiling-find-file)
+(exwm-input--update-global-prefix-keys)
 
 (exwm-input-set-simulation-keys
  `((,(kbd "C-b") . left)
