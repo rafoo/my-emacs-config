@@ -70,14 +70,15 @@ DIRNAME is a path relative to the HOME directory."
 
 
 ;; Perspectives
+(use-package s
+  :ensure t)
 
 (use-package perspective
   :requires s
-  :config
-  (require 'rtiling))
+  :config (require 'rtiling))
 
 (use-package rtiling
-  :requires perspective
+  :requires (perspective which-key)
   :config (require 'rtiling-conf))
 
 (use-package define-persp
