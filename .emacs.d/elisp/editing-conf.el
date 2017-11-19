@@ -78,10 +78,18 @@
   :config (global-hungry-delete-mode))
 
 ;; Spell checking
+(setq my-ispell-program-name
+      (or
+       (executable-find "aspell")
+       (executable-find "ispell")))
+
 (use-package ispell
-  :config (setq ispell-program-name "aspell"))
+  :if my-ispell-program-name
+  :config
+  (setq ispell-program-name my-ispell-program-name))
 
 (use-package flyspell
+  :if my-ispell-program-name
   :config
   (add-hook 'text-mode-hook 'flyspell-mode)
   (add-hook 'prog-mode-hook 'flyspell-prog-mode))
