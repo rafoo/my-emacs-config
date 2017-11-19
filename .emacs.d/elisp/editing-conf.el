@@ -6,6 +6,7 @@
 
 ;; Keep parens balanced
 (use-package smartparens
+  :commands sp-with-modes
   :config
   (require 'smartparens-config)
   (add-hook 'prog-mode-hook 'smartparens-mode))
