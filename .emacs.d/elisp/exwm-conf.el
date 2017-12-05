@@ -48,6 +48,12 @@
    (,(kbd "C-o") . (return home left))
    ))
 
+(add-hook 'exwm-manage-finish-hook
+          (lambda ()
+            (when (and exwm-class-name
+                       (string= exwm-class-name "URxvt"))
+              (exwm-input-set-local-simulation-keys nil))))
+
 
 (exwm-input--update-global-prefix-keys)
 
