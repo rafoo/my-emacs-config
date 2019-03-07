@@ -92,7 +92,7 @@
   (add-hook 'text-mode-hook 'guess-language-mode))
 
 ;; Typographic improvements
-(use-package typo-mode
+(use-package typo
   :config
   (add-hook 'text-mode-hook 'typo-mode))
 
