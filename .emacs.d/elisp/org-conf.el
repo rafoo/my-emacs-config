@@ -77,7 +77,7 @@
 
 (when (boundp 'org-export-filter-special-block-functions)
   (add-to-list 'org-export-filter-special-block-functions 'my-latex-captions-bellow))
-(setq org-agenda-files '("~/org/todo.org.gpg" "~/org/agenda.org" "~/org/startup.org" "~/git/papiers_vecolib/biblio.org")
+(setq org-agenda-files '("~/org/agenda.org" "~/org/startup.org" "~/git/papiers_vecolib/biblio.org")
       org-agenda-span 14
       org-latex-default-packages-alist '(("" "amsmath" t)
                                          ("" "graphicx" t)
@@ -113,5 +113,62 @@
                      org-wl
                      org-w3m)
       org-src-fontify-natively t)
+
+;; Make an easy template <S inserting a special block after querying
+;; the corresponding LaTeX environment
+
+(add-to-list 'org-structure-template-alist '("S" "#+BEGIN_%s\n?\n#+END_%s"))
+
+;; Org templates do not have prompts except for file names so we
+;; redefine an org function so that "%s" in the template is understood
+;; as a string to be prompted.
+
+(defun org-complete-expand-structure-template (start cell)
+  "Expand a structure template."
+  (let ((rpl (nth 1 cell))
+	(ind ""))
+    (delete-region start (point))
+    (when (string-match "\\`[ \t]*#\\+" rpl)
+      (cond
+       ((bolp))
+       ((not (string-match "\\S-" (buffer-substring (point-at-bol) (point))))
+	(setq ind (buffer-substring (point-at-bol) (point))))
+       (t (newline))))
+    (setq start (point))
+    (when (string-match "%file" rpl)
+      (setq rpl (replace-match
+		 (concat
+		  "\""
+		  (save-match-data
+		    (abbreviate-file-name (read-file-name "Include file: ")))
+		  "\"")
+		 t t rpl)))
+    (when (string-match "%s" rpl)
+      (let ((replacement
+             (save-match-data
+               (abbreviate-file-name (read-string "LaTeX Environment: ")))))
+        (while (string-match "%s" rpl)
+          (setq rpl (replace-match replacement t t rpl)))))
+    (setq rpl (mapconcat 'identity (split-string rpl "\n")
+			 (concat "\n" ind)))
+    (insert rpl)
+    (when (re-search-backward "\\?" start t) (delete-char 1))))
+
+
+(defun org-block-split-block ()
+  (interactive)
+  (forward-line 0)
+  (let (previous next)
+    (save-excursion
+      (re-search-backward "#\\+BEGIN_.*$")
+      (setq previous (match-string 0)))
+    (save-excursion
+      (re-search-forward "#\\+END_[a-zA-Z]+")
+      (setq next (match-string 0)))
+    (unless (bolp) (insert "\n"))
+    (insert next "\n")
+    (save-excursion (insert "\n" previous "\n"))))
+
+(define-key org-mode-map (kbd "C-c _") 'org-block-split-block)
 
 (provide 'org-conf)

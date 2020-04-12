@@ -122,19 +122,19 @@ DIRNAME is a path relative to the HOME directory."
 (use-package erc
   :config (require 'erc-conf))
 
+(use-package eshell
+  :config (require 'eshell-conf))
+
 ;; M-RET and C-c s start a new eshell instance in the other window
 (use-package eshell-conf
   :bind (("M-RET" . eshell-in-other-window)
          ("C-c s" . eshell-in-other-window)))
 
-(use-package eshell
-  :config (require 'eshell-conf))
-
 ;; Activate compilation-shell-minor-mode to jump to files
 (add-hook 'shell-mode-hook 'compilation-shell-minor-mode)
 
-(use-package rudel
-  :config (require 'rudel-conf))
+;; (use-package rudel
+;;   :config (require 'rudel-conf))
 
 (use-package org
   :config (require 'org-conf))
@@ -190,6 +190,7 @@ DIRNAME is a path relative to the HOME directory."
     ("dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" default)))
  '(default-input-method "TeX")
  '(delete-selection-mode t)
+ '(dired-listing-switches "-lth --time-style=+%D%6R")
  '(gnus-init-file "~/.emacs.d/elisp/.gnus")
  '(indent-tabs-mode nil)
  '(initial-scratch-message nil)
@@ -197,14 +198,24 @@ DIRNAME is a path relative to the HOME directory."
  '(makefile-electric-keys t)
  '(mm-text-html-renderer (quote w3m))
  '(package-archive-exclude-alist (quote (("melpa" org))))
+ '(package-selected-packages
+   (quote
+    (forge edit-indirect markdown-mode exec-path-from-shell ido-completing-read+ memoize dmenu use-package auctex bind-key dedukti-mode hydra iedit lua-mode magit org pdf-tools php-mode proof-general smartparens tuareg utop which-key zenburn-theme company-coq exwm forth-mode dired-quick-sort "org" "org" "org" "org" "org" "org" org-lint deferred cl-generic zoom-frm z3-mode wgrep verifast-mode start-menu ssh-agency perspective opam offlineimap menu-bar+ magit-popup ido-vertical-mode ido-at-point hungry-delete htmlize guess-language graphviz-dot-mode flycheck-dedukti diminish define-persp column-enforce-mode auto-highlight-symbol auto-complete)))
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
+ '(safe-local-variable-values
+   (quote
+    ((coq-prog-name . "~/.opam/4.07.1/bin/hoqtop")
+     (visual-line-mode . 0)
+     (visual-line-mode)
+     (global-visual-line-mode))))
  '(send-mail-function (quote smtpmail-send-it))
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(underline-minimum-offset 0)
  '(visible-bell t)
- '(which-function-mode t))
+ '(which-function-mode t)
+ '(z3-solver-cmd "z3"))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -222,10 +233,6 @@ DIRNAME is a path relative to the HOME directory."
   (run-with-idle-timer 60 'repeat 'offlineimap)
   :config
   (require 'offlineimap-conf))
-
-;; Per-host, unversionized configuration
-;; Alternative: use the sensitive package
-(require 'local-conf nil t)
 
 ;; Enable which-key
 (use-package which-key
@@ -286,9 +293,75 @@ gpg --pinentry-mode loopback --decrypt /path/to/some/encrypted/file.gpg > /dev/n
   :config
   (add-hook 'pdf-view-mode-hook #'pdf-tools-enable-minor-modes))
 
+
+;; Per-host, unversionized configuration
+;; Alternative: use the sensitive package
+(require 'local-conf nil t)
+
+
 ;; other interesting emacs features :
 ;; SES : tableur en elisp
 ;; image modes
 ;; WoMan
 
+;; bookmarks
+;; registers
+
+;; org-highlight-latex-and-related
+
+;;;; Packages to try
+;;
+;;; Completion
+;; Ivy
+;; Helm, helm-swoop, swiper
+;; Pcompelte
+;;
+;;; Parsers
+;; wisi (LALR parser for indentation, fontification, and navigation)
+;; rdp (another parser for indentation)
+;; peg
+;; parsec and emacs-pl (parser combinators)
+;; CEDET Semantic (Wisent & Bovine)
+;; ParserCompiler (https://www.emacswiki.org/emacs/ParserCompiler)
+;;
+;;; Project Management
+;; projectile
+;;
+;;; Volume control
+;; volume
+;; pulseaudio-control
+;;
+;;; OCaml
+;; ocp-indent: use ocamlpro indenter in Tuareg
+;; utop: interface au toplevel OCaml utop
+;; merlin
+;; also try Ecaml (https://blag.bcc32.com)
+;;
+;;; Other
+;; hydra
+;; wrap-region (for example to add $ around region in LaTeX)
+;; togetherly (collaborative editing)
+;; elfeed (RSS the org way)
+;; system-packages (frontend for many package managers)
+;; secretaria (reminder for org TODOs)
+;; repl-toggle
+;; pass, passmm, password-store (pass interface)
+;; auto-insert
+;; org-ehtml: org-html files that are editable in browser
+;; narrow-indirect
+;; mpages
+;; minibuffer-line
+;; magithub / magit-gh-pulls
+;; magit-find-file
+;;
+;; nnreddit: (gnus-reddit integration)
+;; anaphora, emacs-huskie, emacs-kv, shoes-off
+;;
+;; Outshine: org-mode sections in program comments (https://orgmode.org/worg/org-tutorials/org-outside-org.html)
+;;
+;; look at all available packages from A to M (excl.)
 ;;; .emacs ends here
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line
+(put 'narrow-to-region 'disabled nil)
