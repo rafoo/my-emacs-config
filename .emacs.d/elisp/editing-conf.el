@@ -38,6 +38,11 @@
   (add-hook 'dedukti-mode-hook 'flycheck-dedukti-hook)
   )
 
+(load "~/git/tezos/emacs/michelson-mode.el" nil t)
+
+(use-package michelson-mode
+  :config (require 'michelson-conf))
+
 ;; LaTeX
 (use-package tex
   :config (require 'latex-conf))
@@ -47,9 +52,9 @@
   :config (require 'python-conf))
 
 ;; Coq
-;; (use-package proofgeneral
-;;   :init (load "~/.emacs.d/elisp/PG/generic/proof-site")
-;;   :config (require 'coq-conf))
+(use-package proof-general
+  :init
+  :config (require 'coq-conf))
 
 ;; ;; GrassHopper
 ;; (load "~/.emacs.d/elisp/flycheck")

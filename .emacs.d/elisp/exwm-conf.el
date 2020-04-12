@@ -54,6 +54,20 @@
                        (string= exwm-class-name "URxvt"))
               (exwm-input-set-local-simulation-keys nil))))
 
+(defvar last-file-name "")
+
+(defun evince (filename)
+  "Run evince and rename the buffer."
+  (interactive "f")
+  (setq last-file-name (concat (file-name-base filename) ".pdf"))
+  (start-process-shell-command "evince" nil (format "evince %s" filename))
+  )
+
+(add-hook 'exwm-manage-finish-hook
+          (lambda ()
+            (when (and exwm-class-name
+                       (string= exwm-class-name "Evince"))
+              (exwm-workspace-rename-buffer last-file-name))))
 
 (exwm-input--update-global-prefix-keys)
 

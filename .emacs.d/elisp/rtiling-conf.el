@@ -9,7 +9,7 @@
 
 (defun persp-list-buffers ()
   "List buffers in the current perspective."
-  (persp-buffers persp-curr))
+  (persp-buffers (persp-curr)))
 
 (setq rtiling-buffer-listing-function #'persp-list-buffers)
 

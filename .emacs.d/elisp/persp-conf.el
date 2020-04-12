@@ -31,7 +31,7 @@
 (eval-and-compile
   (when (require 'xkcd nil t)
     (define-persp-app "xkcd" (xkcd) (kbd "C-c x"))))
-(define-persp-app "main" (find-file "~/org/startup.org") (kbd "<menu>"))
+; (define-persp-app "main" (find-file "~/org/startup.org") (kbd "<menu>"))
 
 ;; Buffers listing
 ;; Rebind C-x C-b to ibuffer, an improved buffer list

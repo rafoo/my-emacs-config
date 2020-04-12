@@ -7,10 +7,11 @@
 
 (eval-when-compile
   (require 'perspective)
-  (require 'em-cmpl))
+  )
 
 (require 'eshell)
 (require 'esh-cmd)
+(require 'em-cmpl)
 (require 'esh-util)
 
 (setq eshell-modules-list '(eshell-alias
@@ -44,8 +45,8 @@
   "Save window configuration and start eshell in other window."
   (interactive)
   (let ((persp-name (if (and (require 'perspective nil t)
-                             persp-curr)
-                        (concat " <" (persp-name persp-curr) ">")
+                             (persp-curr))
+                        (concat " <" (persp-name (persp-curr)) ">")
                       "")
                     )
         ;; Save the pwd because the buffer returned by (pop-to-buffer
@@ -127,6 +128,13 @@ This is intended to be used as the cdr corresponding to
                'append))
 
 (add-hook 'eshell-mode-hook #'my-eshell-find-file-hook)
+
+(defadvice eshell-complete-commands-list (around eshell-complete-with-filenames)
+  "Also complete files."
+  ad-do-it
+  (setq ad-return-value (append ad-return-value (directory-files "."))))
+
+(ad-activate 'eshell-complete-commands-list)
 
 (provide 'eshell-conf)
 ;;; eshell-conf.el ends here
