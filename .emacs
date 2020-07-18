@@ -136,9 +136,6 @@ DIRNAME is a path relative to the HOME directory."
 ;; Activate compilation-shell-minor-mode to jump to files
 (add-hook 'shell-mode-hook 'compilation-shell-minor-mode)
 
-(use-package rudel
-  :config (require 'rudel-conf))
-
 (use-package org
   :config (require 'org-conf))
 
@@ -200,6 +197,9 @@ DIRNAME is a path relative to the HOME directory."
  '(makefile-electric-keys t)
  '(mm-text-html-renderer (quote w3m))
  '(package-archive-exclude-alist (quote (("melpa" org))))
+ '(package-selected-packages
+   (quote
+    (magit auctex smartparens auto-highlight-symbol column-enforce-mode dedukti-mode flycheck-dedukti tuareg auto-complete ido-at-point ido-completing-read+ ido-vertical-mode zenburn-theme exwm flycheck guess-language which-key use-package)))
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
  '(send-mail-function (quote smtpmail-send-it))
