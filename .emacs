@@ -199,7 +199,7 @@ DIRNAME is a path relative to the HOME directory."
  '(package-archive-exclude-alist (quote (("melpa" org))))
  '(package-selected-packages
    (quote
-    (magit auctex smartparens auto-highlight-symbol column-enforce-mode dedukti-mode flycheck-dedukti tuareg auto-complete ido-at-point ido-completing-read+ ido-vertical-mode zenburn-theme exwm flycheck guess-language which-key use-package)))
+    (s perspective magit auctex smartparens auto-highlight-symbol column-enforce-mode dedukti-mode flycheck-dedukti tuareg auto-complete ido-at-point ido-completing-read+ ido-vertical-mode zenburn-theme exwm flycheck guess-language which-key use-package)))
  '(read-mail-command (quote gnus))
  '(recentf-mode t)
  '(send-mail-function (quote smtpmail-send-it))
