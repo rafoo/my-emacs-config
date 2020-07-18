@@ -219,17 +219,17 @@ DIRNAME is a path relative to the HOME directory."
 
 (require 'init-actions nil t)
 
-(defun my-offlineimap-wrapper ()
-  "Wrapper around offlineimap that does not fail."
-  (when (require 'offlineimap nil t)
-    (offlineimap)))
+;; (defun my-offlineimap-wrapper ()
+;;   "Wrapper around offlineimap that does not fail."
+;;   (when (require 'offlineimap nil t)
+;;     (offlineimap)))
 
-(use-package offlineimap
-  :init
-  ;; Run offlineimap from time to time
-  (run-with-idle-timer 60 'repeat 'my-offlineimap-wrapper)
-  :config
-  (require 'offlineimap-conf))
+;; (use-package offlineimap
+;;   :init
+;;   ;; Run offlineimap from time to time
+;;   (run-with-idle-timer 60 'repeat 'my-offlineimap-wrapper)
+;;   :config
+;;   (require 'offlineimap-conf))
 
 ;; Per-host, unversionized configuration
 (require 'local-conf nil t)
