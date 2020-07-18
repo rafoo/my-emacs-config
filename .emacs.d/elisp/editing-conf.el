@@ -73,10 +73,6 @@
   (setq  ahs-idle-interval 0.2)
   (add-hook 'prog-mode-hook 'auto-highlight-symbol-mode))
 
-;; Delete many whitespace at once
-(use-package hungry-delete
-  :config (global-hungry-delete-mode))
-
 ;; Spell checking
 (setq my-ispell-program-name
       (or
