@@ -100,11 +100,6 @@
         guess-language-min-paragraph-length 35)
   (add-hook 'text-mode-hook 'guess-language-mode))
 
-;; Typographic improvements
-(use-package typo-mode
-  :config
-  (add-hook 'text-mode-hook 'typo-mode))
-
 ;; Checking
 (use-package flycheck
   :config
