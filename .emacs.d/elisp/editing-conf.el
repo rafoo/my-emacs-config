@@ -38,8 +38,6 @@
   (add-hook 'dedukti-mode-hook 'flycheck-dedukti-hook)
   )
 
-(load "~/git/tezos/emacs/michelson-mode.el" nil t)
-
 (use-package michelson-mode
   :config (require 'michelson-conf))
 
