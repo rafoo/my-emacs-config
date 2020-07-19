@@ -20,7 +20,7 @@
     (find-file "~/git/emacs-config/.emacs")
     (find-file "~/elisp/local-conf.el")
     (dired "~/git/emacs-config/.emacs.d/elisp")
-    (magit-status-internal "~/git/emacs-config"))
+    (magit-status-setup-buffer "~/git/emacs-config"))
   (kbd "C-c <menu>"))
 
 (define-persp-app "packages" (list-packages) (kbd "C-c p"))
