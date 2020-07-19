@@ -40,5 +40,9 @@
 (define-persp-with-shell-process "wicd" "wicd-gtk" (kbd "C-c w"))
 (define-persp-with-shell-process "tbb" "tbb" (kbd "C-c b"))
 
+(defun persp-killed-p (persp)
+  "Ignore PERSP and return nil."
+  nil)
+
 (provide 'persp-conf)
 ;;; persp-conf.el ends here
