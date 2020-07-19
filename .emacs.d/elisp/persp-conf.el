@@ -40,8 +40,10 @@
 (define-persp-with-shell-process "wicd" "wicd-gtk" (kbd "C-c w"))
 (define-persp-with-shell-process "tbb" "tbb" (kbd "C-c b"))
 
-(defun persp-killed-p (persp)
-  "Ignore PERSP and return nil."
+;; Overide persp-delete-frame that is supposed to be called to clear a
+;; closing frame but is in fact causing trouble in other frames too.
+(defun persp-delete-frame (frame)
+  "Ignore the FRAME."
   nil)
 
 (provide 'persp-conf)
