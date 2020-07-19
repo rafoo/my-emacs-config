@@ -6,6 +6,13 @@
 
 (require 'exwm-config)
 
+(declare-function rtiling-other-buffer-or-window "rtiling")
+(declare-function rtiling-change-orientation "rtiling")
+(declare-function rtiling-switch-windows "rtiling")
+(declare-function rtiling-kill-current-window "rtiling")
+(declare-function rtiling-find-file "rtiling")
+(declare-function my-persp-switch "persp-conf")
+
 (defun exwm-run (command)
   "Run a COMMAND in EXWM."
   (interactive (list (read-shell-command "$ ")))
@@ -26,7 +33,7 @@
 (exwm-input-set-key (kbd "s-f") #'rtiling-find-file)
 (exwm-input--update-global-prefix-keys)
 
-(exwm-input-set-simulation-keys
+(setq exwm-input-simulation-keys
  `((,(kbd "C-b") . left)
    (,(kbd "M-b") . C-left)
    (,(kbd "C-f") . right)
