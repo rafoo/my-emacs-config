@@ -51,13 +51,14 @@
 (add-hook 'exwm-manage-finish-hook
           (lambda ()
             (when (and exwm-class-name
-                       (string= exwm-class-name "URxvt"))
+                       (or (string= exwm-class-name "URxvt")
+                           (string= exwm-class-name "Tilix")))
               (exwm-input-set-local-simulation-keys nil))))
 
 (defvar last-file-name "")
 
 (defun evince (filename)
-  "Run evince and rename the buffer."
+  "Run evince and rename the buffer to FILENAME's basename."
   (interactive "f")
   (setq last-file-name (concat (file-name-base filename) ".pdf"))
   (start-process-shell-command "evince" nil (format "evince %s" filename))
