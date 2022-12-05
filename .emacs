@@ -42,10 +42,19 @@ DIRNAME is a path relative to the HOME directory."
   (add-to-path (concat my-home "/" dirname)))
 
 (add-to-path-from-home "bin/opentheory/bin/mlton") ; opentheory (HOL package manager)
-(add-to-path-from-home "bin/veriT-stable2016") ; veriT (SMT solver)
+; (add-to-path-from-home "bin/veriT-stable2016") ; veriT (SMT solver)
+;; Version of veriT needed for SMTCoq
+(add-to-path-from-home "bin/veriT/veriT9f48a98")
 (add-to-path-from-home "git/imogen/src/main/sml/bin") ; imogen (theorem prover)
 (add-to-path-from-home "git/verifast/bin") ; verifast, vfide
-(add-to-path-from-home "git/CVC4/builds/x86_64-unknown-linux-gnu/production/bin") ; cvc4 (SMT solver)
+; (add-to-path-from-home "git/CVC4/builds/x86_64-unknown-linux-gnu/production/bin") 
+
+;; Version of CVC4 needed for SMTCoq
+(add-to-path "/home/cauderlier/git/cvc5/builds/bin")
+
+;; LFSC signatures are needed to use CVC4 with SMTCoq
+(setenv "LFSCSIGS" "/home/cauderlier/.opam/4.12.0/.opam-switch/sources/coq-smtcoq.dev+8.13/src/lfsc/tests/signatures/")
+
 (add-to-path-from-home "git/yices2/build/x86_64-pc-linux-gnu-release/bin") ; yices2 (SMT solver)
 (add-to-path-from-home "scripts")      ; Small personnal shell scripts
 
@@ -180,33 +189,34 @@ DIRNAME is a path relative to the HOME directory."
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
- '(backup-directory-alist (quote ((".*" . "./.bkp/"))))
+ '(backup-directory-alist '((".*" . "./.bkp/")))
  '(canlock-password "0a42e4942e41dbbd56282757bd18beccbbbcd635")
  '(custom-safe-themes
-   (quote
-    ("dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" default)))
+   '("dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" default))
  '(default-input-method "TeX")
  '(delete-selection-mode t)
  '(dired-listing-switches "-lth --time-style=+%D%6R")
+ '(ediff-window-setup-function 'ediff-setup-windows-plain)
  '(gnus-init-file "~/.emacs.d/elisp/.gnus")
  '(indent-tabs-mode nil)
  '(initial-scratch-message nil)
  '(list-directory-verbose-switches "-l")
  '(makefile-electric-keys t)
- '(mm-text-html-renderer (quote w3m))
- '(package-archive-exclude-alist (quote (("melpa" org))))
+ '(michelson-client-command
+   "~/git/tezos/octez-client --base-dir /tmp/mockup --mode mockup --protocol ProtoALpha")
+ '(mm-text-html-renderer 'w3m)
+ '(org-agenda-files nil)
+ '(package-archive-exclude-alist '(("melpa" org)))
  '(package-selected-packages
-   (quote
-    (s forge edit-indirect markdown-mode exec-path-from-shell ido-completing-read+ memoize dmenu use-package auctex bind-key dedukti-mode hydra iedit lua-mode magit org pdf-tools php-mode proof-general smartparens tuareg utop which-key zenburn-theme company-coq exwm forth-mode dired-quick-sort "org" "org" "org" "org" "org" "org" org-lint deferred cl-generic zoom-frm z3-mode wgrep verifast-mode start-menu ssh-agency perspective opam offlineimap menu-bar+ magit-popup ido-vertical-mode ido-at-point htmlize guess-language graphviz-dot-mode flycheck-dedukti diminish define-persp column-enforce-mode auto-highlight-symbol auto-complete)))
- '(read-mail-command (quote gnus))
+   '(diff-hl yaml-mode smart-tab origami tldr slack michelson-mode s forge edit-indirect markdown-mode exec-path-from-shell ido-completing-read+ memoize dmenu use-package auctex bind-key dedukti-mode hydra iedit lua-mode magit org pdf-tools php-mode proof-general smartparens tuareg utop which-key zenburn-theme company-coq exwm forth-mode dired-quick-sort "org" "org" "org" "org" "org" "org" org-lint deferred cl-generic zoom-frm z3-mode wgrep verifast-mode start-menu ssh-agency perspective opam offlineimap menu-bar+ magit-popup ido-vertical-mode ido-at-point htmlize guess-language graphviz-dot-mode flycheck-dedukti diminish define-persp column-enforce-mode auto-highlight-symbol auto-complete))
+ '(read-mail-command 'gnus)
  '(recentf-mode t)
  '(safe-local-variable-values
-   (quote
-    ((coq-prog-name . "~/.opam/4.07.1/bin/hoqtop")
+   '((coq-prog-name . "~/.opam/4.07.1/bin/hoqtop")
      (visual-line-mode . 0)
      (visual-line-mode)
-     (global-visual-line-mode))))
- '(send-mail-function (quote smtpmail-send-it))
+     (global-visual-line-mode)))
+ '(send-mail-function 'smtpmail-send-it)
  '(show-paren-mode t)
  '(show-trailing-whitespace t)
  '(underline-minimum-offset 0)
@@ -295,6 +305,24 @@ gpg --pinentry-mode loopback --decrypt /path/to/some/encrypted/file.gpg > /dev/n
   :config
   (add-hook 'pdf-view-mode-hook #'pdf-tools-enable-minor-modes))
 
+
+(use-package slack
+  :commands (slack-start)
+  :init
+  (setq slack-buffer-emojify t) ;; if you want to enable emoji, default nil
+  (setq slack-prefer-current-team t)
+  :config
+  (slack-register-team
+   :name "tezos-dev"
+   :default t
+   :token "xoxs-179713602035-550331317701-1311200527729-913243f278e4d1a8b353d22ad7d39b28c7ccf9a10d36c43d006957b676464063"
+   :subscribed-channels '((general devteam)))
+)
+
+(use-package alert
+  :commands (alert)
+  :init
+  (setq alert-default-style 'notifier))
 
 ;; Per-host, unversionized configuration
 ;; Alternative: use the sensitive package

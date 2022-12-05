@@ -33,7 +33,7 @@
         dedukti-compile-options '("-nc" "-e" "-r"))
   ;; Activate smartparens
   (add-hook 'dedukti-mode-hook 'smartparens-mode)
-  (sp-with-modes '(dedukti-mode) (sp-local-pair "(;" ";)" ))
+;  (sp-with-modes '(dedukti-mode) (sp-local-pair "(;" ";)" )) ;; commented because sp-local-pair does not seem to exist anymore (Debugger entered--Lisp error: (void-function sp-local-pair))
   ;; Activate flycheck
   (add-hook 'dedukti-mode-hook 'flycheck-dedukti-hook)
   )
@@ -105,5 +105,20 @@
   (add-hook 'prog-mode-hook 'flycheck-mode)
   (setq flyspell-auto-correct-binding (kbd "M-<tab>"))
   )
+
+;; Folding
+(use-package origami
+  :config
+  (global-origami-mode)
+  (define-key origami-mode-map (kbd "C-<tab>") 'origami-toggle-all-nodes)
+  (define-key origami-mode-map (kbd "M-<tab>") 'origami-recursively-toggle-node))
+
+;; Smart tabs
+(require 'smart-tab)
+(use-package smart-tab
+  :config
+  (global-smart-tab-mode 1))
+
+
 
 (provide 'editing-conf)

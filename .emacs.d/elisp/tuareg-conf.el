@@ -16,15 +16,9 @@
     (setq merlin-command 'opam)))
 
 (add-to-list 'load-path "/home/cauderlier/git/tezos/_opam/share/emacs/site-lisp")
-(use-package ocp-indent
-  :config
-  (add-hook 'before-save-hook
-            (lambda ()
-              (when (and (stringp buffer-file-name)
-                         (string-match "\\.ml[ily]?\\'" buffer-file-name))
-                ;; remove l and y from the regex
-             (ocp-indent-buffer)))))
 
-(setq ocp-indent-path "ocamlformat")
+(use-package ocamlformat
+  :config
+  (add-hook 'before-save-hook 'ocamlformat-before-save))
 
 (provide 'tuareg-conf)
