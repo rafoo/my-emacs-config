@@ -315,7 +315,6 @@ gpg --pinentry-mode loopback --decrypt /path/to/some/encrypted/file.gpg > /dev/n
   (slack-register-team
    :name "tezos-dev"
    :default t
-   :token "xoxs-179713602035-550331317701-1311200527729-913243f278e4d1a8b353d22ad7d39b28c7ccf9a10d36c43d006957b676464063"
    :subscribed-channels '((general devteam)))
 )
 
