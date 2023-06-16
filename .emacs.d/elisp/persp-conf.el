@@ -17,10 +17,10 @@
 
 (define-persp-app "config"
   (progn
-    (find-file "~/git/emacs-config/.emacs")
+    (find-file "~/git/my-emacs-config/.emacs")
     (find-file "~/elisp/local-conf.el")
-    (dired "~/git/emacs-config/.emacs.d/elisp")
-    (magit-status-setup-buffer "~/git/emacs-config"))
+    (dired "~/git/my-emacs-config/.emacs.d/elisp")
+    (magit-status-setup-buffer "~/git/my-emacs-config"))
   (kbd "C-c <menu>"))
 
 (define-persp-app "packages" (list-packages) (kbd "C-c p"))

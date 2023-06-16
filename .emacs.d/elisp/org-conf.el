@@ -19,7 +19,7 @@
 (add-to-list 'org-latex-classes
              `("logic-article"
                ,(with-temp-buffer
-                  (insert-file-contents "~/git/emacs-config/.emacs.d/elisp/logic-article-prelude.tex")
+                  (insert-file-contents "~/git/my-emacs-config/.emacs.d/elisp/logic-article-prelude.tex")
                   (buffer-string))
                ("\\section{%s}" . "\\section*{%s}")
                ("\\subsection{%s}" . "\\subsection*{%s}")
